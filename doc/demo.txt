@@ -1,0 +1,2 @@
+Demo command: 
+	repeat 10 [repeat 2 [repeat 30 [fd 5 rt 1] rt 150] rt 36]
