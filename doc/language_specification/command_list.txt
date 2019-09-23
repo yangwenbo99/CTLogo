@@ -1,0 +1,756 @@
+Move
+	ASK	Applies a run list to specific turtles
+	BACK	Moves the turtles backwards
+	DRAW	Resets all turtles and the Graphics window
+	FORWARD	Moves the turtles forward
+	GETXY	Outputs the coordinates of the first active turtle
+	HEADING	Outputs the heading of the first active turtle
+	HIDETURTLE	Hides all turtles
+	HOME	Moves all turtles home
+	LEFT	Turns the turtles left
+	ORIGIN	Outputs the coordinate system origin for the current turtle(s)
+	PENDOWN	Sets the pen down
+	RIGHT	Turns the turtles right
+	ROUND	Round its input to the nearest integer
+	SETHEADING	Sets the heading of all turtles
+	SETORIGIN	Defines the coordinate system origin for the current turtle(s)
+	SETSPEED	Sets the turtle speed
+	SETX	Sets the X coordinate for all turtles
+	SETXY	Sets both the X and the Y coordinates for all turtles
+	SETY	Sets the Y coordinate for all turtles
+	TOWARDS	Outputs the heading to a given coordinate
+	XCOR	Outputs the X coordinate of the first active turtle
+	YCOR	Outputs the Y coordinate of the first active turtle
+	TURTLEFACTS	Outputs information about the first active turtle
+	.TURTLEPOINT	Converts window coordinates to turtle coordinates
+	TURTLES	Outputs the number of available turtles
+	TURTLETEXT	Prints its inputs at the current turtle location
+
+
+Other paint
+	BACKGROUND	Outputs the background color
+	CLEAN	Cleans the graphics screen
+	CLEARSCREEN	Clears the Graphics window
+	DOT	Draws a dot
+	DOTCOLOR	Outputs the color of a dot
+	EACH	Sequentially executes a command list for all active turtles
+	EXTENT	Outputs the extents of the Graphics window
+	(abandoned) FENCE	Sets the Graphics window to fence mode
+	FONT	Outputs the current turtle font
+	FONTS	Outputs a list of available fonts
+	LOADPIC	Loads a picture into the Graphics window
+	LOADSNAP	Loads a snapped image or a bitmap file
+	PATTERN	Returns the fill pattern number of the first active turtle
+	PEN	Outputs the pen state of the first active turtle
+	PENCOLOR	Outputs the pen color of the first active turtle
+	PENERASE	Sets the pen color to the background color
+	PENREVERSE	Sets the pen to invert the colors under the pen
+	PENUP	Lifts the pen up
+	SETBG	Sets the background color of the Graphics window
+	SETBGPATTERN	Sets the background pattern of the Graphics window
+	SETCOLOR	Defines a color
+	SETEXTENT	Changes the logical size of the Graphics window
+	SETFONT	Changes the turtle font
+	SETPALLET	Changes the current palette
+	(removed) SETPATTERN	Sets the fill pattern
+	SETPC	Sets the pen color
+	SETPEN	Sets pen color and pen state
+	SETSHAPE	Defines the turtle shape
+	SETTURTLEFACTS	Sets turtle attributes
+	SETTURTLES	Defines the number of turtles
+	SETWIDTH	Sets the pen width
+	SHAPE	Outputs the shape of the first active turtle
+	SHOWTURTLE	Displays all turtles
+	SPEED	Outputs the turtle speed
+	STAMP	Draws a previously saved screen area
+	STAMPOVAL	Draws a circle or ellipse
+	STAMPRECT	Draws a rectangle
+	TELL	Activates turtles
+	TELLALL	Activates a range of turtles
+	TEXTBG	Outputs the background color of the Listener window
+	TEXTFG	Outputs the foreground color of the Listener window
+	WHO	Outputs the number of the first active turtle
+	WIDTH	Outputs the pen width of the first active turtle
+
+
+
+Math and lovgical
+	ABS	Outputs the absolute value of its input
+	AND	Performs a logical AND on its inputs
+	ARCTAN	Outputs the arc tangent of its input
+	COS	Outputs the cosine of its input
+	EQUAL?	Checks for its inputs being equal
+	EXPN	Outputs the e value of its input
+	INT	Truncates its input to an integer
+	LOG	Outputs the logarithm of its input
+	LOG10	Outputs the base 10 logarithm of its input
+	LOGAND	Performs a bitwise AND on its inputs
+	LOGNOT	Performs a bitwise NOT on its input
+	LOGOR	Performs a bitwise OR on its inputs
+	LOGXOR	Performs a bitwise XOR on its inputs
+	LSH	Performs a bitwise shift operation on its input
+	NOT	Performs a logical NOT on its input
+	OR	Performs a logical OR on its inputs
+	PI	Outputs 
+	PRODUCT	Multiplies its inputs
+	PRODUCT	Multiplies its inputs
+	QUOTIENT	Divides its inputs
+	RANDOM	Outputs a random number
+	REMAINDER	Outputs the remainder of its inputs
+	SIN	Outputs the sine of its input
+	SQRT	Returns the square root of its input
+	SUM	Adds its inputs
+	TEST	Tests its input
+
+
+Array
+	AGET	Accesses an array element
+	APPLY	Applies a function to a list
+	ARRAY	Defines an array
+	ARRAY?	Checks for its input being an array
+	ARRAYDIMS	Outputs the array dimensions of its input
+	ASET	Stores a value in an array
+	BYTEARRAY	Defines an array of byte values
+	BYTEARRAY?	Checks for its input being a byte array
+	(abandoned) FILLARRAY	Fills an array with values
+	TEXTARRAY	Converts a byte array into a text string
+
+
+List and word processing
+	BUTFIRST	Outputs all but the first element of a list or a word
+	BUTLAST	Outputs all but the last element of a list or a word
+	BUTMEMBER	Removes a member from a list or a word
+	FIRST	Outputs the first element of a list or a word
+	FPUT	Adds the specified element to the beginning of a list or word
+	FROMMEMBER	Outputs a list where the first elements are removed
+	ITEM	Returns a specific element of a list or a word
+	LAST	Returns the last element of a list or a word
+	LIST	Creates a list
+	LIST?	Verifies that its input is a list
+	LISTARRAY	Converts an array into a list
+	LPUT	Adds an element to the end of a word or list
+	MEMBER?	Checks for an element being a member of the specified word or list
+	NODES	Outputs the number of available list elements
+	PLIST	Outputs the proerty list of its input
+	SENTENCE	Combines its inputs
+	WORD	Creates a word
+	WORD?	Verfies that its input is a word
+
+
+
+Utils
+	ASCII	Outputs the ASCII number code of its input
+	COUNT	Counts the size of its input
+	CHAR	Outputs the character for its ASCII input
+
+
+IO
+	BASE	System variable; sets the conversion base for numerical output
+	BGPATTERN	Outputs the background pattern number
+	BUTTON?	Checks if a mouse button is pressed
+	BYE	Leaves PC Logo for Windows
+	CASE	Enables case conversion
+	CASE?	Checks for case conversion
+	CLEARINPUT	Clears the keyboard buffer
+	CLEARTEXT	Clears the Listener window
+	CLOSE	Closes a file
+	COLOR	Outputs the color code of a specific color
+	CONTENTS	Outputs a list of all objects
+	COPYOFF	Turns off the Listener window protocol
+	COPYON	Turns on the Listener window protocol
+	CREATE	Creates a file
+	CURDIR	Outputs the current working directory
+	DATE	Outputs the current date
+	DELETE	Deletes a file
+	DIRECTORY	Outputs a list of files
+	DISK	Outputs the current disk
+	EMPTY?	Checks for its input being an empty list
+	EVENT	Generates an event
+	FILE.INFO	Outputs information about a file
+	FILE?	Verifies the presence of the specified file
+	FILL	Fills an area in the Graphics window
+	(abandioned) .FREEDC	Releases a previously obtained device context
+	GETBYTE	Outputs the next byte of the input stream
+	GETBYTE.NO.ECHO	Outputs the next byte of the input stream without echo
+	.GETDC	Obtains a device context for use within Windows
+	(abandoned) GETPALLET	Outputs the current palette number
+	GPROP	Outputs a property
+	IBASE	System variable specifying the base in which numbers are input
+	IGNORE	Ignores the output of a command
+	KEY?	Checks for the presence of input in the keyboard buffer
+	LOAD	Loads procedure defintions, names and constants into workspace
+	(abandoned) MCI	Provides access to the Windows 3.1 multimedia extensions
+	(abandoned) MCI?	Checks for the presence of the Windows 3.1 multimedia extensions
+	.MESSAGE	Establishes a message processing procedure
+	MOUSE	Outputs the current mouse coordinates
+	.MOUSEON	Checks for mouse presence
+	MOUSESHAPE	Outputs the shape of the mouse cursor
+	NOCASE	Turns off case conversion
+	NUMBER?	Checks if its input is a number
+	OPEN	Opens a file
+	PEEKBYTE	Returns the next byte of an input stream without reading it
+	PLAY	Plays notes or a sound file
+	PRECISION	System variable; sets the numerical output precision
+	PRINT	Prints its inputs
+	PRINTER	Outputs information about the printer
+	PRINTLINE	Prints numerical input as ASCII
+	PRINTOUT	Prints procedures, names, properties and constants
+	PRINTSCREEN	Prints the Graphics window
+	PROCLIST	Outputs a list of all user-defined procedures
+	PROMPT	System variable; sets the prompt string
+	PRTRACE	Prints to the Trace window
+	PUTBYTE	Writes a byte to the output stream
+	READ	Reads a Logo object
+	.READ	Reads binary or text data from a file
+	READCHAR	Reads a character
+	READLINE	Reads a line as a list of numbers
+
+	READLIST	Reads a Logo list
+	READQUOTE	Reads a line as a Logo word
+	RENAME	Renames a file
+	SAVE	Saves the workspace into a file
+	SAVEPIC	Saves the contents of the Graphics window
+	SAVESNAP	Saves a snapped image to disk
+	SCREENFACTS	Outputs information about the Listener and Graphics windows
+	.SEEK	Moves the read/write pointer in a file
+	SETCURDIR	Defines the current working directory
+	SETDISK	Changes the current disk
+	SETMOUSESHAPE	Defines the shape of the mouse cursor
+	SETPRINTER	Defines a printer
+	SETWINSIZE	Sets the physical size of the Graphics window
+	SHOW	Prints its inputs
+	SHOWN?	Checks the visible state of the first active turtle
+	SNAP	Saves an area of the Graphics window
+	SNAPSIZE	Outputs the size of a snapped image
+	STANDARD.INPUT	System variable which inputs channel number
+	STANDARD.OUTPUT	System variable which outputs channel number
+	SUBDIR	Outputs a list of subdirectories
+	TEXT	Outputs the list representation of a procedure
+	TIME	Outputs the current time
+	TIMER	Starts a timer
+	TONE	Sounds a tone
+	TYPE	Prints its inputs
+
+
+Variable and procedure management
+	BURIEDNAMES	Outputs a list of all buried names
+	BURIEDPROCS	Outputs a list of all buried procedures
+	BURIEDPROPS	Outputs a list of all buried properties
+	BURY	Buries an object
+	BURYALL	Buries every object
+	BURYNAME	Buries a name
+	BURYPROC	Buries a procedure
+	BURYPROP	Buries a property
+	CONST	Defines a text constant
+	- DELIMITER	System variable; sets the string delimiter
+	(abandoned) EVAL	Evaluates its input
+	FKEY.n	System variables FKEY.2 to FKEY.10 contain strings assigned to function keys
+	LOCAL	Defines a local variable
+	MAKE	Assigns a value to a name
+	NAME	Assigns a value to a name
+	NAME?	Verifies that its input is a Logo name
+	POC	Prints all text constants
+	PONS	Prints all names
+	POPLS	Prints all property lists
+	POPS	Prints all procedures
+	POTS	Prints the names of all procedures
+	PPROP	Stores a property
+	PPROPS	Stores a property list
+	PUBLIC	Defines a public variable
+	(abandoned) RECYCLE	Performs a garbage collection
+	REMPROP	Removes a property
+	SETATTR	Sets the colors attributes of the Listener window
+	THING	Outputs the value associated with its input
+
+
+Flow control
+	CATCH	Catches any error or THROW command
+	CONTINUE	Continues after a PAUSE
+	COPYDEF	Copies a procedure definition
+	DEFEVENT	Defines an event handler
+	DEFINE	Defines a procedure
+	DEFINED?	Checks for a procedure being defined
+	ELSE	Part of the IF command
+	END	Ends a procedure definition
+	ERASE	Erases procedure definitions, names and properties
+	ERROR	System variable that contains the code of the last error
+	FOR	Begins a for...next loop
+	GO	Transfers execution control to a LABEL command
+	HALT	Halts a background procedure
+	IF	Conditional execution
+	(abandoned) IFFALSE	Runs a run list if the preceding TEST command yields FALSE
+	(abandoned) IFTRUE	Runs a run list if the preceding TEST command yields TRUE
+	LABEL	Defines a branch label
+	LAUNCH	Launches a background procedure
+	REPEAT	Repeats execution of a run list the specified number of times
+	RERANDOM	Re-initializes the random number generator
+	RUN	Executes a list
+		(added) EVAL
+		(added) EVALUATE
+	OUTPUT	Outputs a value from a procedure
+		(added) RETURN	Same
+	(abandoned) SINGLE.STEP	System variable which invokes single stepping
+	THEN	Part of the IF command
+	THROW	Throws an object to a CATCH command
+	TO	Starts the definition of a procedure
+	TOPLEVEL	Returns to toplevel
+	WHILE	Repeats execution of a run list while the specified condition is true
+
+
+IDE
+	(abandoned) EDIT	Opens an edit window
+	EDN	Opens an edit window and fills it with all defined Logo names
+	FULLSCREEN	Maximizes the Graphics window
+	GETATTR	Outputs the current color attributes of the Listener window
+	GETMODE	Outputs the number of the current screen mode
+	HELP	Opens the help system
+	.HINST	Outputs the instance handle for PC Logo for Windows
+	.HWND	Outputs the window handle of the PC Logo for Windows frame window
+	PAUSE	Pauses the execution of a procedure
+	SPLITSCREEN	Sets the standard window layout
+	STOP	Halts execution of a procedure
+	(abandoned) TAB	System variable which sets the tab stop position
+	TEXTSCREEN	Maximizes the Listener window
+	TRACE	System variable; enables procedure tracing
+	TRACE.LEVEL	System variable; defines the level of tracing information
+	TRACED	Outputs the list of traced objects
+	TROFF	Turns on tracing for specific objects
+	TRON	Turns off tracing for specific objects
+	UNBURY	Unburies the specified object
+	UNBURYALL	Unburies all objects
+	UNBURYNAME	Unburies the specified name
+	UNBURYPROC	Unburies the specified procedure
+	UNBURYPROP	Unburies the specified property
+	UNGETBYTE	Pushes a byte back into the input stream
+	VERSION	Outputs the version of PC Logo for Windows
+	WINDOW	Sets the Graphics window to window mode
+	.WINDOWPOINT	Converts turtle coordinates to window coordinates
+	.WINDOWS	Calls the Windows API
+	.WINDOWSL	Calls the Windows API
+	WINSIZE	Outputs the physical size of the Graphics window
+	WINVER	Outputs the version of the Windows operating environment
+	.WNDPROC	Calls the default message handler for PC Logo for Windows
+
+
+Misc
+	PICK	Randomly picks an element
+	WAIT	Waits a specified time
+
+
+
+(abandoned) WRAP	Sets the Graphics window to wrap mode
+.WRITE	Writes binary or text data into a file
+
+
+Operators
+
+/	Infix operator; division
+=	Infix operator; equal to
+>	Infix operator; greater than
+>=	Infix operator; greater than or equal to
+<	Infix operator; less than
+<=	Infix operator; less than or equal to
+
+-	Infix operator; subtraction
+*	Infix operator, multiplication
++	Infix operator; addition
+;	Start of a comment
+
+
+
+
+
+
+
+Those with first priority 
+============================================================
+
+Move
+	BACK	Moves the turtles backwards
+	DRAW	Resets all turtles and the Graphics window
+	FORWARD	Moves the turtles forward
+	GETXY	Outputs the coordinates of the first active turtle
+	HEADING	Outputs the heading of the first active turtle
+	HIDETURTLE	Hides all turtles
+	HOME	Moves all turtles home
+	LEFT	Turns the turtles left
+	ORIGIN	Outputs the coordinate system origin for the current turtle(s)
+	PENDOWN	Sets the pen down
+	RIGHT	Turns the turtles right
+	ROUND	Round its input to the nearest integer
+	SETHEADING	Sets the heading of all turtles
+	SETORIGIN	Defines the coordinate system origin for the current turtle(s)
+	SETSPEED	Sets the turtle speed
+	SETX	Sets the X coordinate for all turtles
+	SETXY	Sets both the X and the Y coordinates for all turtles
+	SETY	Sets the Y coordinate for all turtles
+	TOWARDS	Outputs the heading to a given coordinate
+	XCOR	Outputs the X coordinate of the first active turtle
+	YCOR	Outputs the Y coordinate of the first active turtle
+	TURTLEFACTS	Outputs information about the first active turtle
+	.TURTLEPOINT	Converts window coordinates to turtle coordinates
+	TURTLES	Outputs the number of available turtles
+	TURTLETEXT	Prints its inputs at the current turtle location
+
+	Added: 
+		SHIFTX
+		SHIFTY
+		SHIFTXY
+
+Other paint
+	BACKGROUND	Outputs the background color
+	CLEAN	Cleans the graphics screen
+	CLEARSCREEN	Clears the Graphics window
+	DOT	Draws a dot
+	PEN	Outputs the pen state of the first active turtle
+	PENCOLOR	Outputs the pen color of the first active turtle
+	PENERASE	Sets the pen color to the background color
+	PENUP	Lifts the pen up
+	SETBG	Sets the background color of the Graphics window
+	SETBGPATTERN	Sets the background pattern of the Graphics window
+	SETCOLOR	Defines a color
+	SETPC	Sets the pen color
+	SETPEN	Sets pen color and pen state
+	SETWIDTH	Sets the pen width
+	SETSHAPE	Defines the turtle shape
+	WIDTH	Outputs the pen width of the first active turtle
+
+Math and logical
+	ABS	Outputs the absolute value of its input
+	AND	Performs a logical AND on its inputs
+	ARCTAN	Outputs the arc tangent of its input
+	COS	Outputs the cosine of its input
+	EQUAL?	Checks for its inputs being equal
+	EXPN	Outputs the e value of its input
+	INT	Truncates its input to an integer
+	LOG	Outputs the logarithm of its input
+	LOG10	Outputs the base 10 logarithm of its input
+	LOGAND	Performs a bitwise AND on its inputs
+	LOGNOT	Performs a bitwise NOT on its input
+	LOGOR	Performs a bitwise OR on its inputs
+	LOGXOR	Performs a bitwise XOR on its inputs
+	LSH	Performs a bitwise shift operation on its input
+	NOT	Performs a logical NOT on its input
+	OR	Performs a logical OR on its inputs
+	PI	Outputs 
+	PRODUCT	Multiplies its inputs
+	PRODUCT	Multiplies its inputs
+	QUOTIENT	Divides its inputs
+	RANDOM	Outputs a random number
+	REMAINDER	Outputs the remainder of its inputs
+	SIN	Outputs the sine of its input
+	SQRT	Returns the square root of its input
+	SUM	Adds its inputs
+	TEST	Tests its input
+
+IO
+	PRINT	Prints its inputs
+
+Variable
+	MAKE	Assigns a value to a name
+		SET
+	NAME	Assigns a value to a name
+	NAME?	Verifies that its input is a Logo name
+	THING	Outputs the value associated with its input
+
+Flow Control
+	IF Cond THEN ... ELSE ...
+	(add) If cond exp ELSEIF cond exp ELSE exp ENDIF
+
+	WHILE	Repeats execution of a run list while the specified condition is true
+	FOR	Begins a for...next loop
+	REPEAT	Repeats execution of a run list the specified number of times
+
+
+
+
+Planned
+===========================================================
+
+Value processing
+	BUTFIRST	Outputs all but the first element of a list or a word
+	BUTLAST	Outputs all but the last element of a list or a word
+	BUTMEMBER	Removes a member from a list or a word
+	FIRST	Outputs the first element of a list or a word
+	ITEM	Returns a specific element of a list or a word
+	LAST	Returns the last element of a list or a word
+
+Flow control 
+	CATCH	Catches any error or THROW command
+	CONTINUE	Continues after a PAUSE
+
+	DEFINE	Defines a procedure
+	TO
+		DEF The same
+	OUTPUT	Outputs a value from a procedure
+		(added) RETURN	Same
+	ERASE	Erases procedure definitions, names and properties
+	THROW	Throws an object to a CATCH command
+
+
+To be implemented in the future
+==============================================================
+
+Move
+	ASK	Applies a run list to specific turtles
+
+
+
+Other paint
+	DOTCOLOR	Outputs the color of a dot
+	EACH	Sequentially executes a command list for all active turtles
+	EXTENT	Outputs the extents of the Graphics window
+	FONT	Outputs the current turtle font
+	FONTS	Outputs a list of available fonts
+	LOADPIC	Loads a picture into the Graphics window
+	LOADSNAP	Loads a snapped image or a bitmap file
+	PATTERN	Returns the fill pattern number of the first active turtle
+	PENREVERSE	Sets the pen to invert the colors under the pen
+	SETEXTENT	Changes the logical size of the Graphics window
+	SETFONT	Changes the turtle font
+	SETPALLET	Changes the current palette
+	(removed) SETPATTERN	Sets the fill pattern
+	SETTURTLEFACTS	Sets turtle attributes
+	SETTURTLES	Defines the number of turtles
+	SHAPE	Outputs the shape of the first active turtle
+	SHOWTURTLE	Displays all turtles
+	SPEED	Outputs the turtle speed
+	STAMP	Draws a previously saved screen area
+	STAMPOVAL	Draws a circle or ellipse
+	STAMPRECT	Draws a rectangle
+	TELL	Activates turtles
+	TELLALL	Activates a range of turtles
+	TEXTBG	Outputs the background color of the Listener window
+	TEXTFG	Outputs the foreground color of the Listener window
+	WHO	Outputs the number of the first active turtle
+
+Array
+	AGET	Accesses an array element
+	APPLY	Applies a function to a list
+	ARRAY	Defines an array
+	ARRAY?	Checks for its input being an array
+	ARRAYDIMS	Outputs the array dimensions of its input
+	ASET	Stores a value in an array
+	BYTEARRAY	Defines an array of byte values
+	BYTEARRAY?	Checks for its input being a byte array
+	(abandoned) FILLARRAY	Fills an array with values
+	TEXTARRAY	Converts a byte array into a text string
+
+
+List and word processing
+	FPUT	Adds the specified element to the beginning of a list or word
+	FROMMEMBER	Outputs a list where the first elements are removed
+	LIST	Creates a list
+	LIST?	Verifies that its input is a list
+	LISTARRAY	Converts an array into a list
+	LPUT	Adds an element to the end of a word or list
+	MEMBER?	Checks for an element being a member of the specified word or list
+	NODES	Outputs the number of available list elements
+	PLIST	Outputs the proerty list of its input
+	SENTENCE	Combines its inputs
+	WORD	Creates a word
+	WORD?	Verfies that its input is a word
+
+
+
+Utils
+	ASCII	Outputs the ASCII number code of its input
+	COUNT	Counts the size of its input
+	CHAR	Outputs the character for its ASCII input
+
+
+IO
+	BASE	System variable; sets the conversion base for numerical output
+	BGPATTERN	Outputs the background pattern number
+	BUTTON?	Checks if a mouse button is pressed
+	BYE	Leaves PC Logo for Windows
+	CASE	Enables case conversion
+	CASE?	Checks for case conversion
+	CLEARINPUT	Clears the keyboard buffer
+	CLEARTEXT	Clears the Listener window
+	CLOSE	Closes a file
+	COLOR	Outputs the color code of a specific color
+	CONTENTS	Outputs a list of all objects
+	COPYOFF	Turns off the Listener window protocol
+	COPYON	Turns on the Listener window protocol
+	CREATE	Creates a file
+	CURDIR	Outputs the current working directory
+	DATE	Outputs the current date
+	DELETE	Deletes a file
+	DIRECTORY	Outputs a list of files
+	DISK	Outputs the current disk
+	EMPTY?	Checks for its input being an empty list
+	EVENT	Generates an event
+	FILE.INFO	Outputs information about a file
+	FILE?	Verifies the presence of the specified file
+	FILL	Fills an area in the Graphics window
+	(abandioned) .FREEDC	Releases a previously obtained device context
+	GETBYTE	Outputs the next byte of the input stream
+	GETBYTE.NO.ECHO	Outputs the next byte of the input stream without echo
+	.GETDC	Obtains a device context for use within Windows
+	(abandoned) GETPALLET	Outputs the current palette number
+	GPROP	Outputs a property
+	IBASE	System variable specifying the base in which numbers are input
+	IGNORE	Ignores the output of a command
+	KEY?	Checks for the presence of input in the keyboard buffer
+	LOAD	Loads procedure defintions, names and constants into workspace
+	(abandoned) MCI	Provides access to the Windows 3.1 multimedia extensions
+	(abandoned) MCI?	Checks for the presence of the Windows 3.1 multimedia extensions
+	.MESSAGE	Establishes a message processing procedure
+	MOUSE	Outputs the current mouse coordinates
+	.MOUSEON	Checks for mouse presence
+	MOUSESHAPE	Outputs the shape of the mouse cursor
+	NOCASE	Turns off case conversion
+	NUMBER?	Checks if its input is a number
+	OPEN	Opens a file
+	PEEKBYTE	Returns the next byte of an input stream without reading it
+	PLAY	Plays notes or a sound file
+	PRECISION	System variable; sets the numerical output precision
+	PRINTER	Outputs information about the printer
+	PRINTLINE	Prints numerical input as ASCII
+	PRINTOUT	Prints procedures, names, properties and constants
+	PRINTSCREEN	Prints the Graphics window
+	PROCLIST	Outputs a list of all user-defined procedures
+	PROMPT	System variable; sets the prompt string
+	PRTRACE	Prints to the Trace window
+	PUTBYTE	Writes a byte to the output stream
+	READ	Reads a Logo object
+	.READ	Reads binary or text data from a file
+	READCHAR	Reads a character
+	READLINE	Reads a line as a list of numbers
+
+	READLIST	Reads a Logo list
+	READQUOTE	Reads a line as a Logo word
+	RENAME	Renames a file
+	SAVE	Saves the workspace into a file
+	SAVEPIC	Saves the contents of the Graphics window
+	SAVESNAP	Saves a snapped image to disk
+	SCREENFACTS	Outputs information about the Listener and Graphics windows
+	.SEEK	Moves the read/write pointer in a file
+	SETCURDIR	Defines the current working directory
+	SETDISK	Changes the current disk
+	SETMOUSESHAPE	Defines the shape of the mouse cursor
+	SETPRINTER	Defines a printer
+	SETWINSIZE	Sets the physical size of the Graphics window
+	SHOW	Prints its inputs
+	SHOWN?	Checks the visible state of the first active turtle
+	SNAP	Saves an area of the Graphics window
+	SNAPSIZE	Outputs the size of a snapped image
+	STANDARD.INPUT	System variable which inputs channel number
+	STANDARD.OUTPUT	System variable which outputs channel number
+	SUBDIR	Outputs a list of subdirectories
+	TEXT	Outputs the list representation of a procedure
+	TIME	Outputs the current time
+	TIMER	Starts a timer
+	TONE	Sounds a tone
+	TYPE	Prints its inputs
+
+
+Variable and procedure management
+	BURIEDNAMES	Outputs a list of all buried names
+	BURIEDPROCS	Outputs a list of all buried procedures
+	BURIEDPROPS	Outputs a list of all buried properties
+	BURY	Buries an object
+	BURYALL	Buries every object
+	BURYNAME	Buries a name
+	BURYPROC	Buries a procedure
+	BURYPROP	Buries a property
+	CONST	Defines a text constant
+	- DELIMITER	System variable; sets the string delimiter
+	(abandoned) EVAL	Evaluates its input
+	FKEY.n	System variables FKEY.2 to FKEY.10 contain strings assigned to function keys
+	LOCAL	Defines a local variable
+	POC	Prints all text constants
+	PONS	Prints all names
+	POPLS	Prints all property lists
+	POPS	Prints all procedures
+	POTS	Prints the names of all procedures
+	PPROP	Stores a property
+	PPROPS	Stores a property list
+	PUBLIC	Defines a public variable
+	(abandoned) RECYCLE	Performs a garbage collection
+	REMPROP	Removes a property
+	SETATTR	Sets the colors attributes of the Listener window
+
+
+Flow control
+	COPYDEF	Copies a procedure definition
+	DEFEVENT	Defines an event handler
+	DEFINED?	Checks for a procedure being defined
+	END	Ends a procedure definition
+	ERROR	System variable that contains the code of the last error
+	GO	Transfers execution control to a LABEL command
+	HALT	Halts a background procedure
+	(abandoned) IFFALSE	Runs a run list if the preceding TEST command yields FALSE
+	(abandoned) IFTRUE	Runs a run list if the preceding TEST command yields TRUE
+	LABEL	Defines a branch label
+	LAUNCH	Launches a background procedure
+	RERANDOM	Re-initializes the random number generator
+	RUN	Executes a list
+		(added) EVAL
+		(added) EVALUATE
+	(abandoned) SINGLE.STEP	System variable which invokes single stepping
+	TOPLEVEL	Returns to toplevel
+
+
+IDE
+	(abandoned) EDIT	Opens an edit window
+	EDN	Opens an edit window and fills it with all defined Logo names
+	FULLSCREEN	Maximizes the Graphics window
+	GETATTR	Outputs the current color attributes of the Listener window
+	GETMODE	Outputs the number of the current screen mode
+	HELP	Opens the help system
+	.HINST	Outputs the instance handle for PC Logo for Windows
+	.HWND	Outputs the window handle of the PC Logo for Windows frame window
+	PAUSE	Pauses the execution of a procedure
+	SPLITSCREEN	Sets the standard window layout
+	STOP	Halts execution of a procedure
+	(abandoned) TAB	System variable which sets the tab stop position
+	TEXTSCREEN	Maximizes the Listener window
+	TRACE	System variable; enables procedure tracing
+	TRACE.LEVEL	System variable; defines the level of tracing information
+	TRACED	Outputs the list of traced objects
+	TROFF	Turns on tracing for specific objects
+	TRON	Turns off tracing for specific objects
+	UNBURY	Unburies the specified object
+	UNBURYALL	Unburies all objects
+	UNBURYNAME	Unburies the specified name
+	UNBURYPROC	Unburies the specified procedure
+	UNBURYPROP	Unburies the specified property
+	UNGETBYTE	Pushes a byte back into the input stream
+	VERSION	Outputs the version of PC Logo for Windows
+	WINDOW	Sets the Graphics window to window mode
+	.WINDOWPOINT	Converts turtle coordinates to window coordinates
+	.WINDOWS	Calls the Windows API
+	.WINDOWSL	Calls the Windows API
+	WINSIZE	Outputs the physical size of the Graphics window
+	WINVER	Outputs the version of the Windows operating environment
+	.WNDPROC	Calls the default message handler for PC Logo for Windows
+
+
+Misc
+	PICK	Randomly picks an element
+	WAIT	Waits a specified time
+
+
+
+(abandoned) WRAP	Sets the Graphics window to wrap mode
+.WRITE	Writes binary or text data into a file
+
+
+Operators
+
+/	Infix operator; division
+=	Infix operator; equal to
+>	Infix operator; greater than
+>=	Infix operator; greater than or equal to
+<	Infix operator; less than
+<=	Infix operator; less than or equal to
+
+-	Infix operator; subtraction
+*	Infix operator, multiplication
++	Infix operator; addition
+;	Start of a comment
+
+
+

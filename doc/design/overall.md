@@ -18,21 +18,38 @@ The following has cross-module reference:
 skinparam linetype ortho
 
 package ctlogo.processing {
-    interface Tokenizer {
-    }
-
-    interface TokenStream {
+    interface TokenStream  {
         + pushBack(parameter)
         + pushFront(parameter)
         + getBack() : String
         + popBack() : String
+        + getNextLine() : List<String> 
+        + getRow() : int
+        + getColumn() : int
         + etc.()
     }
-
-    TokenStream --> Tokenizer
 }
 
 package ctlogo.execute {
+    class ExpressionUtility {
+        + {static} isInteger(s : String) : Boolean
+        + {static} isFloat(s : String) : Boolean
+        + {static} isString(s : String) : Boolean
+        + {static} isFunctionName(s : String) : Boolean
+        + {static} isVariableName(s : String) : Boolean
+        + {static} isBinaryOperator(s : String) : Boolean
+        + {static} isUnaryOperator(s : String) : Boolean
+    }
+    interface Expression {
+        + evaluate() : CTValue
+    }
+
+    interface ExpressionStream {
+        + getNextExpression() : Expression  // Evaluate [ ] to value list, {} to block
+        + getNextBlock() : List<Expression> // for {} and []
+        + getNextString() : Expression   // variable, literal or function result, [] to string
+    }
+
     class ExpressionEvaluator {
         + ExpressionEvaluator(s : String) 
         + ExpressionEvaluator(s : InStream)
@@ -40,24 +57,28 @@ package ctlogo.execute {
         + execute()
         + getNextExpressionValue() : CTValue // evaluate [] to CTList
         + getNextString() : CTString
-        + getNextBlock() : List<Command>   // evaluate [ ] to block
+        + getNextBlock() : List<Function>   // evaluate [ ] to block
         + getNextLiteralValue()    // evaluate [] to string
-        # getNextCommand() : Command
+        # getNextFunction() : Function
     }
 
-    class CommandGetter {
-        // This is the factory of Command objects
+    class FunctionGetter {
+        // This is the factory of Function objects
         + register(name : String, command: Class)
-        + getCommand(command : String, 
-            ts : TokenStream) : Command
+        + getFunction(functionName : String, 
+            ts : TokenStream) : Function
         + etc.()
     }
 
-    CommandGetter -> CommandGetter
+    FunctionGetter -> FunctionGetter
 
-    interface Command {
-        // a factory method looks like Command(TokenStream) shall be used
+    interface Function {
+        // a factory method looks like Function(TokenStream) shall be used
+        // a factory method looks like Function(is_in_TokenStream) shall also be used
         + execute(context : Context)
+        + getDefaultParameterNumber() : int
+        + getMinParameterNumber() : int
+        + getMaxParameterNumber() : int
     }
 
     interface Context {
@@ -72,20 +93,29 @@ package ctlogo.execute {
         + getNextValue() : CTValue
     }
 
-    ExpressionEvaluator --> CommandGetter
-    ExpressionEvaluator -- Command 
+    ExpressionEvaluator --> FunctionGetter
+    ExpressionEvaluator -- Function 
     ExpressionEvaluator -- Context
 
-    CommandGetter --> Command
-    Command --> Context
+    FunctionGetter --> Function
+    Function --> Context
+
+    Expression <|.. Function
+    Expression <|.. LiteralExpression
+    LiteralExpression <|.. ListLiteralExpression
+    Expression <|.. VariableExpression
+    Expression <|.. UnaryOperation
+    Expression <|.. BinaryOperation
+
+    ExpressionStream -- Expression
 }
 
-CommandGetter --> TokenStream
+FunctionGetter --> TokenStream
 ExpressionEvaluator --> TokenStream
-Command --> TokenStream
+Function --> TokenStream
 
-ctlogo.data.VariableManager <- Command 
-ctlogo.data.CTValue <- Command 
+ctlogo.data.VariableManager <- Function 
+ctlogo.data.CTValue <- Function 
 
 package ctlogo.graphic {
     interface Screen {
@@ -144,7 +174,7 @@ package ctlogo.graphic {
 
 
 Context --> Screen
-Command --> Screen
+Function --> Screen
 
 
 ctlogo.processing -[hidden]- ctlogo.data
@@ -162,6 +192,8 @@ package ctlogo.exception {
     }
 
     class CTSyntaxException {
+        + getRow() : int
+        + getColumn() : int
     }
 
     class CTLogicException {
