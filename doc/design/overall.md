@@ -1,7 +1,8 @@
 ## Desc
 
-The following classes/interfaces are used nearly everywhere, which needs
+The following classes/interfaces are used nearly everywhere, which need
 very careful design
+
 - `Screen`
 - `CTValue`
 - `CTValuable`
@@ -13,6 +14,8 @@ The following has cross-module reference:
 ## Main modules
 
 @startuml
+
+skinparam linetype ortho
 
 package ctlogo.processing {
     interface Tokenizer {
@@ -30,10 +33,20 @@ package ctlogo.processing {
 }
 
 package ctlogo.execute {
-    class CommandExecutor {
+    class ExpressionEvaluator {
+        + ExpressionEvaluator(s : String) 
+        + ExpressionEvaluator(s : InStream)
+        + ExpressionEvaluator(s : TokenStream)
+        + execute()
+        + getNextExpressionValue() : CTValue // evaluate [] to CTList
+        + getNextString() : CTString
+        + getNextBlock() : List<Command>   // evaluate [ ] to block
+        + getNextLiteralValue()    // evaluate [] to string
+        # getNextCommand() : Command
     }
 
     class CommandGetter {
+        // This is the factory of Command objects
         + register(name : String, command: Class)
         + getCommand(command : String, 
             ts : TokenStream) : Command
@@ -52,20 +65,23 @@ package ctlogo.execute {
         + getInputStream() : InStream
         + getOutputStream() : OutStream
         + getScreen() : ctlogo.graphic.Screen
-        + getValuableManager() : ctlogo.data.VariableManager
+        + getVariableManager() : ctlogo.data.VariableManager
         + getValue(token : String) : ctlogo.data.CTValue
             // getValue method turn a token to CTValue. the token may be 
             // literal or variable name 
+        + getNextValue() : CTValue
     }
 
-    CommandExecutor --> CommandGetter
-    CommandExecutor --> Command 
+    ExpressionEvaluator --> CommandGetter
+    ExpressionEvaluator -- Command 
+    ExpressionEvaluator -- Context
 
     CommandGetter --> Command
     Command --> Context
 }
 
-CommandExecutor --> TokenStream
+CommandGetter --> TokenStream
+ExpressionEvaluator --> TokenStream
 Command --> TokenStream
 
 ctlogo.data.VariableManager <- Command 
@@ -77,6 +93,7 @@ package ctlogo.graphic {
         + drawRectangle(x1 : double, y1 : double, x2 : double, y2 : double)
         + drawEllipse(cx : double, cy : double, a : double, b : double)
         + drawBlaBla()
+        + clean() 
         + setWidth(w : double)
         + setHeight(h : double)
     }
@@ -98,6 +115,21 @@ package ctlogo.graphic {
         // this has limited "PE" support 
         + getShapeList() : Iterable<VectorShape>
     }
+
+    class Tutle {
+        + getX()
+        + getY()
+        + setX()
+        + setY()
+        + setXY()
+    }
+
+    class TutleManager {
+        + newTutle(idx : int, t : Tutle)
+        + getTutle(idx) 
+    }
+
+    TutleManager --> Tutle
 
     Screen <|.. VectorScreen
 
@@ -248,3 +280,10 @@ package ctlogo.config {
 The correlations due to throwing exception are not drawn.
 
 
+## Logo objects
+
+An object may be 
+
+- a value
+- a user-defined object
+- a command
