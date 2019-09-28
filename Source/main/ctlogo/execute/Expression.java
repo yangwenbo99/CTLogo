@@ -1,5 +1,7 @@
 package ctlogo.execute;
 
-public interface Expression {
+import ctlogo.data.CTValue;
 
+public interface Expression {
+	public CTValue execute(Context context);
 }
