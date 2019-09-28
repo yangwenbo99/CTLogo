@@ -7,8 +7,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<build>
-		<sourceDirectory>Source/ctlogo</sourceDirectory>
+		<sourceDirectory>Source/main</sourceDirectory>
 		<testSourceDirectory>Source/test</testSourceDirectory>
+		<scriptSourceDirectory>Source/scripts</scriptSourceDirectory>
 		<plugins>
 		</plugins>
 	</build>
