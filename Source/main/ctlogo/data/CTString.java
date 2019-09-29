@@ -79,14 +79,35 @@ public class CTString implements CTValue {
 
 	@Override
 	public CTValue add(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
+		return new CTString(toString() + another.toString());
 	}
 
 	@Override
-	public CTValue subtract(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
+	public CTValue subtract(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
+		if(another.getTypeName()=="boolean") {
+			try {
+				return ((CTInteger) this.convertTo("integer")).subtract(another);
+			} catch (CTConversionNotSupportedException e) {
+				return ((CTDouble) this.convertTo("double")).subtract(another);
+			}
+		}
+		if(another.getTypeName()=="integer") {
+			try {
+				return ((CTInteger) this.convertTo("integer")).subtract(another);
+			} catch (CTConversionNotSupportedException e) {
+				return ((CTDouble) this.convertTo("double")).subtract(another);
+			}
+		}
+		if(another.getTypeName()=="double") 
+			return ((CTDouble) this.convertTo("double")).subtract(another);
+		if(another.getTypeName()=="string") {
+			try {
+				return another.subtract(((CTInteger) this.convertTo("integer"))).negate();
+			} catch (CTConversionNotSupportedException e) {
+				return another.subtract(((CTInteger) this.convertTo("double"))).negate();
+			}
+		}
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
@@ -94,8 +115,8 @@ public class CTString implements CTValue {
 		try {
 			return this.convertTo("integer").negate().convertTo("string");
 		} catch (CTConversionNotSupportedException e) {
+			return this.convertTo("double").negate().convertTo("string");
 		}
-		return this.convertTo("double").negate().convertTo("string");
 	}
 
 	@Override

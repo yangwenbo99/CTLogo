@@ -10,8 +10,8 @@ public interface CTValue {
 	public String getTypeName();
 	public CTValue convertTo(String newType) throws CTDataUndefinedException, CTConversionNotSupportedException;
 	
-	public CTValue add(CTValue another) throws CTDataUndefinedException;
-	public CTValue subtract(CTValue another) throws CTDataUndefinedException;
+	public CTValue add(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException;
+	public CTValue subtract(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException;
 	public CTValue negate() throws CTDataUndefinedException, CTConversionNotSupportedException;
 	public CTValue multiply(CTValue another) throws CTDataUndefinedException;
 	public CTValue divide(CTValue another) throws CTDataUndefinedException;

@@ -70,15 +70,30 @@ public class CTInteger implements CTValue {
 	}
 
 	@Override
-	public CTValue add(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
+	public CTValue add(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
+		// TODO overflow exception
+		if(another.getTypeName()=="boolean")
+			return new CTInteger(value + ((CTInteger) another.convertTo("integer")).getValue());
+		if(another.getTypeName()=="integer")
+			return new CTInteger(value + ((CTInteger) another).getValue());
+		if(another.getTypeName()=="double")
+			return another.add(this);
+		if(another.getTypeName()=="string")
+			return this.convertTo("string").add(another);
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue subtract(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
+	public CTValue subtract(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
+		if(another.getTypeName()=="boolean")
+			return new CTInteger(value - ((CTInteger) another.convertTo("integer")).getValue());
+		if(another.getTypeName()=="integer")
+			return new CTInteger(value - ((CTInteger) another).getValue());
+		if(another.getTypeName()=="double")
+			return another.subtract(this).negate();
+		if(another.getTypeName()=="string")
+			return another.subtract(this).negate();
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
@@ -124,7 +139,7 @@ public class CTInteger implements CTValue {
 
 	@Override
 	public CTValue shiftRightArithmetic(CTValue another) throws Exception {
-		// FIXME I don't know the functionality of this function 
+		// FIXME I don't know the functionality of this function
 		throw new Exception("Functionality unknown");
 	}
 

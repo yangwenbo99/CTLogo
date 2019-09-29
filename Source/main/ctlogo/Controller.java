@@ -21,68 +21,56 @@ public class Controller {
 			String inputData = "";
 //			inputData = sc.nextLine();
 			String outputData = "";
-			// Testing area
-//			TurtleManager tm = TurtleManager.getInstance();
-//			tm.newTurtle(new Turtle());
-//			System.out.println(tm.getTurtleByIndex(0).getX());			
 			try {
 				CTValue bool1 = new CTBoolean(true);
 				CTValue undefined1 = new CTUndefined();
-				CTValue string1 = new CTString("2");
-				CTValue int1 = new CTInteger(2);
-				CTValue double1 = new CTDouble(2.2);
+				CTValue string1 = new CTString("-2.3a");
+				CTValue string2 = new CTString("-0.3b");
+				CTValue string3 = new CTString("0.0");
+				CTValue string4 = new CTString("+1.3");
+				CTValue int1 = new CTInteger(-2);
+				CTValue int2 = new CTInteger(-1);
+				CTValue int3 = new CTInteger(0);
+				CTValue int4 = new CTInteger(1);
+				CTValue double1 = new CTDouble(2.3);
+				CTValue double2 = new CTDouble(1.3);
+				CTValue double3 = new CTDouble(0.0);
+				CTValue double4 = new CTDouble(-1.2);
 
 				System.out.println("bool1 " + bool1);
 				System.out.println("undefined1 " + undefined1);
 				System.out.println("string1 " + string1);
+				System.out.println("string2 " + string2);
+				System.out.println("string3 " + string3);
+				System.out.println("string4 " + string4);
 				System.out.println("int1 " + int1);
+				System.out.println("int2 " + int2);
+				System.out.println("int3 " + int3);
+				System.out.println("int4 " + int4);
 				System.out.println("double1 " + double1);
-
-				System.out.println("string1.convertTo(\"boolean\") " + string1.convertTo("boolean"));
-//				System.out.println("string1.convertTo(\"integer\") "+string1.convertTo("integer"));
-				System.out.println("string1.convertTo(\"double\") " + string1.convertTo("double"));
-//				System.out.println("string1.convertTo(\"undefined\") "+string1.convertTo("undefined"));
-				System.out.println("double1.convertTo(\"boolean\") " + double1.convertTo("boolean"));
+				System.out.println("double2 " + double2);
+				System.out.println("double3 " + double3);
+				System.out.println("double4 " + double4);
 
 				System.out.println("Start");
-				System.out.println("string1.negate() " + string1.negate());
+				
+//				System.out.println("double1.add(double2) " + (double1.add(double2)));
+				
+//				System.out.println("double1.add(string2) " + (double1.add(string2)));
+//				System.out.println("string2.add(double1) " + (string2.add(double1)));
+//				System.out.println("double1.subtract(string2) " + (double1.subtract(string2)));	
+//				System.out.println("string2.subtract(double1) " + (string2.subtract(double1)));	
+//				
+				System.out.println("int1.add(string2) " + (int1.add(string2)));
+				System.out.println("string2.add(int1) " + (string2.add(int1)));
+				System.out.println("int1.subtract(string2) " + (int1.subtract(string2)));	
+				System.out.println("string2.subtract(int1) " + (string2.subtract(int1)));	
 
-//				System.out.println(double1.compareTo(string1));
-//				System.out.println(double1.compareTo(double1));
-//				System.out.println(double1.compareTo(bool1));
-//				System.out.println(string1.compareTo(double1));
-//				System.out.println(double1.compareTo(double1));
-//				System.out.println(bool1.compareTo(double1));
-
-//				System.out.println(bool1.equals(undefined1));
-//				System.out.println(bool1.compareTo(undefined1));
-//				System.out.println(undefined1.equals(bool1));
-//				System.out.println(undefined1.compareTo(bool1));
-//				
-//				System.out.println(bool1.equals(string1));
-//				System.out.println(bool1.compareTo(string1));
-//				System.out.println(string1.equals(bool1));
-//				System.out.println(string1.compareTo(bool1));
-//				
-//				System.out.println(bool1.equals(int1));
-//				System.out.println(bool1.compareTo(int1));
-//				
-//				System.out.println(bool1.equals(double1));
-//				System.out.println(bool1.compareTo(double1));
-//				
-//				System.out.println(bool1.equals(undefined1));
-//				System.out.println(bool1.compareTo(undefined1));
-//				
-//				System.out.println(bool1.equals(undefined1));
-//				System.out.println(bool1.compareTo(undefined1));				
-
-//				System.out.println(bool1.convertTo("string")+"2");	
-//				System.out.println(bool1.convertTo("string")+"2");	
+				System.out.println("End");				
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-//			// End of testing area
 			System.out.println("input: " + inputData);
 			System.out.println("output: " + outputData);
 		}

@@ -68,15 +68,29 @@ public class CTBoolean implements CTValue {
 	}
 
 	@Override
-	public CTValue add(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
+	public CTValue add(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
+		if(another.getTypeName()=="boolean")
+			return this.convertTo("integer").add(another);
+		if(another.getTypeName()=="integer")
+			return another.add(this);
+		if(another.getTypeName()=="double")
+			return another.add(this);
+		if(another.getTypeName()=="string")
+			return this.convertTo("string").add(another);
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue subtract(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
+	public CTValue subtract(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
+		if(another.getTypeName()=="boolean")
+			return this.convertTo("integer").subtract(another);
+		if(another.getTypeName()=="integer")
+			return another.subtract(this).negate();
+		if(another.getTypeName()=="double")
+			return another.subtract(this).negate();
+		if(another.getTypeName()=="string")
+			return another.subtract(this).negate();
+		throw new CTDataUndefinedException();
 	}
 
 	@Override

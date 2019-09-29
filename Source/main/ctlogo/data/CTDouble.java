@@ -69,15 +69,29 @@ public class CTDouble implements CTValue {
 	}
 
 	@Override
-	public CTValue add(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
+	public CTValue add(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
+		if(another.getTypeName()=="boolean")
+			return new CTDouble(value + ((CTDouble) another.convertTo("double")).getValue());
+		if(another.getTypeName()=="integer")
+			return new CTDouble(value + ((CTDouble) another.convertTo("double")).getValue());
+		if(another.getTypeName()=="double")
+			return new CTDouble(value + ((CTDouble) another).getValue());
+		if(another.getTypeName()=="string")
+			return this.convertTo("string").add(another);
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue subtract(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
+	public CTValue subtract(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
+		if(another.getTypeName()=="boolean")
+			return new CTDouble(value - ((CTDouble) another.convertTo("double")).getValue());
+		if(another.getTypeName()=="integer")
+			return new CTDouble(value - ((CTDouble) another.convertTo("double")).getValue());
+		if(another.getTypeName()=="double")
+			return new CTDouble(value - ((CTDouble) another).getValue());
+		if(another.getTypeName()=="string")
+			return another.subtract(this).negate();
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
