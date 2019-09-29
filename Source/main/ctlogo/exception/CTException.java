@@ -1,5 +1,12 @@
 package ctlogo.exception;
 
-public class CTException {
+@SuppressWarnings("serial")
+public class CTException extends Exception {
+	public CTException(String message) {
+		super(message);
+	}
 
+	public CTException(String message, Throwable throwable) {
+		super(message, throwable);
+	}
 }

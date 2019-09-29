@@ -1,25 +1,28 @@
 package ctlogo.data;
 
-public interface CTValue {
-	public CTValue equals(CTValue another) throws Exception;
-	public CTValue compareTo(CTValue another);
-	public String toString();
-	public String getTypeName(CTValue another);
-	public CTValue convertTo(String newType);
-	
-	public CTValue add(CTValue another);
-	public CTValue subtract(CTValue another);
-	public CTValue negate(CTValue another);
-	public CTValue multiply(CTValue another);
-	public CTValue divide(CTValue another);
-	public CTValue mod(CTValue another);
-	public CTValue pow(CTValue another);
-	
-	public CTValue shiftLeft(CTValue another);
-	public CTValue shiftRight(CTValue another);
-	public CTValue shiftRightArithmetic(CTValue another);
+import ctlogo.exception.CTConversionNotSupportedException;
+import ctlogo.exception.CTDataUndefinedException;
 
-	public CTValue and(CTValue another);
-	public CTValue or(CTValue another);
-	public CTValue not(CTValue another);
+public interface CTValue {
+	public CTBoolean equals(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException;
+	public CTInteger compareTo(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException;
+	public String toString();
+	public String getTypeName();
+	public CTValue convertTo(String newType) throws CTDataUndefinedException, CTConversionNotSupportedException;
+	
+	public CTValue add(CTValue another) throws CTDataUndefinedException;
+	public CTValue subtract(CTValue another) throws CTDataUndefinedException;
+	public CTValue negate() throws CTDataUndefinedException, CTConversionNotSupportedException;
+	public CTValue multiply(CTValue another) throws CTDataUndefinedException;
+	public CTValue divide(CTValue another) throws CTDataUndefinedException;
+	public CTValue mod(CTValue another) throws CTDataUndefinedException;
+	public CTValue pow(CTValue another) throws CTDataUndefinedException;
+	
+	public CTValue shiftLeft(CTValue another) throws CTDataUndefinedException;
+	public CTValue shiftRight(CTValue another) throws CTDataUndefinedException;
+	public CTValue shiftRightArithmetic(CTValue another) throws Exception;
+
+	public CTValue and(CTValue another) throws CTDataUndefinedException;
+	public CTValue or(CTValue another) throws CTDataUndefinedException;
+	public CTValue not() throws CTDataUndefinedException;
 }

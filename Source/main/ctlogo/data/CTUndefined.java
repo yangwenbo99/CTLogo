@@ -1,15 +1,19 @@
 package ctlogo.data;
 
-public class CTUndefined implements CTValue{
-	
+import ctlogo.exception.CTDataUndefinedException;
+
+public class CTUndefined implements CTValue {
+
 	@Override
-	public CTValue equals(CTValue another) {
-		return new CTUndefined();
+	public CTBoolean equals(CTValue another) throws CTDataUndefinedException {
+//		TODO make exception message specific by mentioning which data is undefined
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue compareTo(CTValue another) {
-		return new CTUndefined();
+	public CTInteger compareTo(CTValue another) throws CTDataUndefinedException {
+//		TODO make exception message specific by mentioning which data is undefined
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
@@ -18,78 +22,92 @@ public class CTUndefined implements CTValue{
 	}
 
 	@Override
-	public String getTypeName(CTValue another) {
+	public String getTypeName() {
 		return "undefined";
 	}
 
 	@Override
-	public CTValue convertTo(String newType) {
-		return new CTUndefined();
+	public CTValue convertTo(String newType) throws CTDataUndefinedException {
+//		TODO make exception message specific by mentioning which data is undefined
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue add(CTValue another) {
-		return new CTUndefined();
+	public CTValue add(CTValue another) throws CTDataUndefinedException {
+//		TODO make exception message specific by mentioning which data is undefined
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue subtract(CTValue another) {
-		return new CTUndefined();
+	public CTValue subtract(CTValue another) throws CTDataUndefinedException {
+//		TODO make exception message specific by mentioning which data is undefined
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue negate(CTValue another) {
-		return new CTUndefined();
+	public CTValue negate() throws CTDataUndefinedException {
+//		TODO make exception message specific by mentioning which data is undefined
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue multiply(CTValue another) {
-		return new CTUndefined();
+	public CTValue multiply(CTValue another) throws CTDataUndefinedException {
+//		TODO make exception message specific by mentioning which data is undefined
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue divide(CTValue another) {
-		return new CTUndefined();
+	public CTValue divide(CTValue another) throws CTDataUndefinedException {
+//		TODO make exception message specific by mentioning which data is undefined
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue mod(CTValue another) {
-		return new CTUndefined();
+	public CTValue mod(CTValue another) throws CTDataUndefinedException {
+//		TODO make exception message specific by mentioning which data is undefined
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue pow(CTValue another) {
-		return new CTUndefined();
+	public CTValue pow(CTValue another) throws CTDataUndefinedException {
+//		TODO make exception message specific by mentioning which data is undefined
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue shiftLeft(CTValue another) {
-		return new CTUndefined();
+	public CTValue shiftLeft(CTValue another) throws CTDataUndefinedException {
+//		TODO make exception message specific by mentioning which data is undefined
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue shiftRight(CTValue another) {
-		return new CTUndefined();
+	public CTValue shiftRight(CTValue another) throws CTDataUndefinedException {
+//		TODO make exception message specific by mentioning which data is undefined
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue shiftRightArithmetic(CTValue another) {
-		return new CTUndefined();
+	public CTValue shiftRightArithmetic(CTValue another) throws CTDataUndefinedException {
+//		TODO make exception message specific by mentioning which data is undefined
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue and(CTValue another) {
-		return new CTUndefined();
+	public CTValue and(CTValue another) throws CTDataUndefinedException {
+//		TODO make exception message specific by mentioning which data is undefined
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue or(CTValue another) {
-		return new CTUndefined();
+	public CTValue or(CTValue another) throws CTDataUndefinedException {
+//		TODO make exception message specific by mentioning which data is undefined
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue not(CTValue another) {
-		return new CTUndefined();
+	public CTValue not() throws CTDataUndefinedException {
+//		TODO make exception message specific by mentioning which data is undefined
+		throw new CTDataUndefinedException();
 	}
 
 }

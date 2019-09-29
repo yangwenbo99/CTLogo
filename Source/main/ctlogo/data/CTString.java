@@ -1,5 +1,8 @@
 package ctlogo.data;
 
+import ctlogo.exception.CTConversionNotSupportedException;
+import ctlogo.exception.CTDataUndefinedException;
+
 public class CTString implements CTValue {
 	private String value;
 
@@ -7,50 +10,71 @@ public class CTString implements CTValue {
 		this.value = string;
 	}
 
-	public String getValue() {
+	private String getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	private void setValue(String value) {
 		this.value = value;
 	}
 
 	@Override
-	public CTValue equals(CTValue another) throws Exception {
-		// TODO Auto-generated method stub
-		throw new Exception("Undefined cannot equal");
+	public CTBoolean equals(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
+		if (another.getTypeName() == "boolean")
+			return another.equals(this);
+		if (another.getTypeName() == "integer")
+			return another.equals(this);
+		if (another.getTypeName() == "double")
+			return another.equals(this);
+		if (another.getTypeName() == "string")
+			return new CTBoolean(this.value.equals(((CTString) another).getValue()));
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue compareTo(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
+	public CTInteger compareTo(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
+		if (another.getTypeName() == "boolean")
+			return (CTInteger) another.compareTo(this).negate();
+		if (another.getTypeName() == "integer")
+			return (CTInteger) another.compareTo(this).negate();
+		if (another.getTypeName() == "double")
+			return (CTInteger) another.compareTo(this).negate();
+		if (another.getTypeName() == "string")
+			return new CTInteger(this.value.compareTo(((CTString) another).getValue()));
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return value;
 	}
 
 	@Override
-	public String getTypeName(CTValue another) {
-		// TODO Auto-generated method stub
+	public String getTypeName() {
 		return "string";
 	}
 
 	@Override
-	public CTValue convertTo(String newType) {
+	public CTValue convertTo(String newType) throws CTConversionNotSupportedException {
 		if (newType == "boolean")
 			return new CTBoolean(!(value.equals("")));
-		if (newType == "integer")
-//			TODO parseInt
-//			return new CTInteger((int)value);
-		if (newType == "double")
-//			return new CTDouble(value);
+		if (newType == "integer") {
+			try {
+				return new CTInteger(Integer.parseInt(value));
+			} catch (NumberFormatException e) {
+				throw new CTConversionNotSupportedException(getTypeName(), newType);
+			}
+		}
+		if (newType == "double") {
+			try {
+				return new CTDouble(Double.parseDouble(value));
+			} catch (NumberFormatException e) {
+				throw new CTConversionNotSupportedException(getTypeName(), newType);
+			}
+		}
 		if (newType == "string")
 			return new CTString(toString());
-		return new CTUndefined();
+		throw new CTConversionNotSupportedException(getTypeName(), newType);
 	}
 
 	@Override
@@ -66,39 +90,42 @@ public class CTString implements CTValue {
 	}
 
 	@Override
-	public CTValue negate(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
+	public CTValue negate() throws CTDataUndefinedException, CTConversionNotSupportedException {
+		try {
+			return this.convertTo("integer").negate().convertTo("string");
+		} catch (CTConversionNotSupportedException e) {
+		}
+		return this.convertTo("double").negate().convertTo("string");
 	}
 
 	@Override
 	public CTValue multiply(CTValue another) {
 		// TODO Auto-generated method stub
-		return null;
+		return new CTUndefined();
 	}
 
 	@Override
 	public CTValue divide(CTValue another) {
 		// TODO Auto-generated method stub
-		return null;
+		return new CTUndefined();
 	}
 
 	@Override
 	public CTValue mod(CTValue another) {
 		// TODO Auto-generated method stub
-		return null;
+		return new CTUndefined();
 	}
 
 	@Override
 	public CTValue pow(CTValue another) {
 		// TODO Auto-generated method stub
-		return null;
+		return new CTUndefined();
 	}
 
 	@Override
 	public CTValue shiftLeft(CTValue another) {
 		// TODO Auto-generated method stub
-		return null;
+		return new CTUndefined();
 	}
 
 	@Override
@@ -108,9 +135,9 @@ public class CTString implements CTValue {
 	}
 
 	@Override
-	public CTValue shiftRightArithmetic(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
+	public CTValue shiftRightArithmetic(CTValue another) throws Exception {
+		// FIXME I don't know the functionality of this function
+		throw new Exception("Functionality unknown");
 	}
 
 	@Override
@@ -126,7 +153,7 @@ public class CTString implements CTValue {
 	}
 
 	@Override
-	public CTValue not(CTValue another) {
+	public CTValue not() {
 		// TODO Auto-generated method stub
 		return null;
 	}

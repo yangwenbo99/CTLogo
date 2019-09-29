@@ -1,30 +1,47 @@
 package ctlogo.data;
 
-public class CTDouble implements CTValue {
-	private double value;
+import ctlogo.exception.CTConversionNotSupportedException;
+import ctlogo.exception.CTDataUndefinedException;
 
-	public CTDouble(double d) {
+public class CTDouble implements CTValue {
+	private Double value;
+
+	public CTDouble(Double d) {
 		this.value = d;
 	}
 
-	public double getValue() {
+	private Double getValue() {
 		return value;
 	}
 
-	public void setValue(double value) {
+	private void setValue(Double value) {
 		this.value = value;
 	}
 
 	@Override
-	public CTValue equals(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
+	public CTBoolean equals(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
+		if (another.getTypeName() == "boolean")
+		return another.equals(this);
+		if (another.getTypeName() == "integer")
+			return new CTBoolean(this.value.equals(((CTDouble) another.convertTo("double")).getValue()));
+		if (another.getTypeName() == "double")
+			return new CTBoolean(this.value.equals(((CTDouble) another).getValue()));
+		if (another.getTypeName() == "string")
+			return new CTBoolean(this.value.equals(((CTDouble) another.convertTo("double")).getValue()));
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
-	public CTValue compareTo(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
+	public CTInteger compareTo(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
+		if (another.getTypeName() == "boolean")
+			return (CTInteger) another.compareTo(this).negate();
+		if (another.getTypeName() == "integer")
+			return new CTInteger(this.value.compareTo(((CTDouble) another.convertTo("double")).getValue()));
+		if (another.getTypeName() == "double")
+			return new CTInteger(this.value.compareTo(((CTDouble) another).getValue()));
+		if (another.getTypeName() == "string")
+			return new CTInteger(this.value.compareTo(((CTDouble) another.convertTo("double")).getValue()));
+		throw new CTDataUndefinedException();
 	}
 
 	@Override
@@ -33,22 +50,22 @@ public class CTDouble implements CTValue {
 	}
 
 	@Override
-	public String getTypeName(CTValue another) {
+	public String getTypeName() {
 		// TODO Auto-generated method stub
 		return "double";
 	}
 
 	@Override
-	public CTValue convertTo(String newType) {
+	public CTValue convertTo(String newType) throws CTConversionNotSupportedException {
 		if (newType == "boolean")
-			return new CTBoolean(value > 0);
+			return new CTBoolean(new Boolean(value > 0));
 		if (newType == "integer")
-			return new CTInteger((int)value);
+			return new CTInteger(value.intValue());
 		if (newType == "double")
-			return new CTDouble(value);
+			return new CTDouble(new Double(value));
 		if (newType == "string")
 			return new CTString(toString());
-		return new CTUndefined();
+		throw new CTConversionNotSupportedException(getTypeName(), newType);
 	}
 
 	@Override
@@ -64,9 +81,8 @@ public class CTDouble implements CTValue {
 	}
 
 	@Override
-	public CTValue negate(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
+	public CTValue negate() {
+		return new CTDouble(-value);
 	}
 
 	@Override
@@ -106,9 +122,9 @@ public class CTDouble implements CTValue {
 	}
 
 	@Override
-	public CTValue shiftRightArithmetic(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
+	public CTValue shiftRightArithmetic(CTValue another) throws Exception {
+		// FIXME I don't know the functionality of this function
+		throw new Exception("Functionality unknown");
 	}
 
 	@Override
@@ -124,7 +140,7 @@ public class CTDouble implements CTValue {
 	}
 
 	@Override
-	public CTValue not(CTValue another) {
+	public CTValue not() {
 		// TODO Auto-generated method stub
 		return null;
 	}
