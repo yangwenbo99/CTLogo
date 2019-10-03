@@ -1,6 +1,7 @@
 package ctlogo.processing;
 
 import java.util.List;
+import java.util.Iterator;
 
 /**
  * Stream-like objects for reading Logo tokens
@@ -11,19 +12,7 @@ import java.util.List;
  * NoSuchElementException if nessisary
  *
  */
-public interface TokenStream {
-	/**
-	 * Push a string to the end of the stream (the last to be popped)
-	 * 
-	 * @param s the content to push
-	 * 
-	 * @return whether the push is success
-	 * 
-	 * @note if the stream does not support push, the return value will
-	 *       always be false.
-	 */
-	boolean pushBack(String s);
-
+public interface TokenStream extends Iterator<String> {
 	/**
 	 * Push a string to the front of the stream (the first to be popped)
 	 * 
@@ -38,24 +27,32 @@ public interface TokenStream {
 	 * 
 	 * @return if there is any pending elements 
 	 */
-	boolean hasBack();
+	boolean hasNext();
 	
 	/**
-	 * Get the next token from the stream
+	 * Get the next token from the stream.
+     *
+     * In case of new line, "\n" will be returned by default.
 	 * 
 	 * @return: the next token
 	 */
-	String getBack();
+	String getNext();
+
+    default String next() { return popNext(); }
 	
 	/**
-	 * Get the next token from the stream and remove it from stram
+	 * Get the next token from the stream and remove it from stram.
 	 * 
+     * In case of new line, "\n" will be returned by default.
+     *
 	 * @return: the next token
 	 */
-	String popBack();
+	String popNext();
 	
 	/**
-	 * Check whether there is any lines
+	 * Check whether there is any lines.
+     *
+     * "\n" will not be included.
 	 * 
 	 * @return if there is any pending lines
 	 */
