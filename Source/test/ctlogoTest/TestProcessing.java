@@ -109,4 +109,21 @@ public class TestProcessing {
         }
         Assertions.assertFalse(ts.hasNext());
     }
+
+    @Test 
+    void testStringTrivial2 () {
+        String testS = 
+        		"PR \"this is a string\" FD 1 PR \"this is a string\"";
+        String [] expected = new String [] {
+        		"PR", "\"this is a string\"", "FD", "1",
+        		"PR", "\"this is a string\"", "\n"
+        };
+
+        Scanner sc = new Scanner(testS);
+        TokenStream ts = new BasicTokenStream(sc);
+        for (String s : expected) {
+            Assertions.assertEquals(s, ts.popNext());
+        }
+        Assertions.assertFalse(ts.hasNext());
+    }
 }

@@ -1,72 +1,131 @@
 package ctlogo.turtle;
 
+import javax.naming.OperationNotSupportedException;
+
+import java.util.Stack;
+import java.util.Deque;
+import java.util.ArrayDeque;
+
 public class Turtle {
-	private double x;
-	private double y;
 	private double orientation;
 	private double penWidth;
 //	TODO set down definition
-	private boolean down;
+	private boolean isDown;
+	
+	public static final int DEFAULT_MAX_HISTORY_LENGTH = 100;
+	
+	private int maxHistoryLength;
+	private Deque<Coordinate> history;
+	
+	public Turtle() {
+		this(DEFAULT_MAX_HISTORY_LENGTH);
+	}
 
-	public Turtle(){}
+	public Turtle(int maxHistoryLength){
+		history = new ArrayDeque<Coordinate>();
+		this.maxHistoryLength = maxHistoryLength;
+	}
+	
+	private void setCoordinate(Coordinate c) {
+		history.addLast(c);
+		if (history.size() > maxHistoryLength) 
+			history.removeFirst();
+	}
+	
+	private Coordinate getCoordinate() {
+		return history.getLast();
+	}
 	
 	public double getX() {
-		return x;
+		return getCoordinate().getX();
 	}
 	public void setX(double x) {
-		this.x = x;
+		setCoordinate(new Coordinate(x, getCoordinate().getY()));
 	}
+
 	public void shiftX(double sx) {
-//		TODO revise shift definition
-		this.x += sx;
+		setCoordinate(getCoordinate().add(new Coordinate(sx, 0)));
 	}
 	public double getY() {
-		return y;
+		return getCoordinate().getY();
 	}
 	public void setY(double y) {
-		this.y = y;
+		setCoordinate(new Coordinate(getCoordinate().getX(), y));
 	}
 	public void shiftY(double sy) {
-//		TODO revise shift definition
-		this.y += sy;
+		setCoordinate(getCoordinate().add(new Coordinate(0, sy)));
 	}
 	public void shiftXY(double sx, double sy) {
-//		TODO revise shift definition
-		this.x += sx;
-		this.y += sy;
+		setCoordinate(getCoordinate().add(new Coordinate(sx, sy)));
 	}
 	
 	public double getOrientation() {
 		return orientation;
 	}
+	
+	/**
+	 * Set the orientation of the turtle.
+	 * 
+	 * @param orientation the orientation to be set, should between -pi to pi. 
+	 * 
+	 * @throws IllegalArgumentException if orientation is not between -pi and pi
+	 */
 	public void setOrientation(double orientation) {
+		if (orientation > Math.PI || orientation < Math.PI)
+			throw new IllegalArgumentException(
+					"Orientation should between -pi and pi");
 		this.orientation = orientation;
 	}
-	public void offsetOrientation(double offOrientation) throws Exception {
-//		TODO add offsetOrientation definition		
-		throw new Exception("Function not defined yet.");
+
+	/**
+	 * Set the orientation of the tutle. 
+	 * 
+	 * @param offOrientation offset
+	 * 
+	 * If the orientation is not between -pi and pi after offsetting,
+	 * it will be shifted to between -pi and pi.
+	 */
+	public void offsetOrientation(double offOrientation) {
+		orientation += offOrientation;
+		while (orientation < - Math.PI)
+			orientation += 2 * Math.PI;
+		while (orientation > - Math.PI)
+			orientation -= 2 * Math.PI;
 	}
 
-	public void popLocation() throws Exception {
-//		TODO add popLocation definition		
-		throw new Exception("Function not defined yet.");
+	/**
+	 * @throws NoSuchElementException if no history
+	 */
+	public void popLocation() {
+		history.removeLast();
 	}
-	public void hasLastLocation() throws Exception {
+	public boolean hasLastLocation() {
 //		TODO add hasLastLocation definition	
-		throw new Exception("Function not defined yet.");
+		return !history.isEmpty();
 	}	
 	
 	public boolean isDown() {
-		return down;
+		return isDown;
 	}
+
 	public void setDown(boolean down) {
-		this.down = down;
+		this.isDown = down;
 	}
 	
 	public double getPenWidth() {
 		return penWidth;
 	}
+
+	/**
+	 * Set the pen width of current turtle.
+	 * 
+	 * @param penWidth the width of pen
+	 * 
+	 * @throws IllegalArgumentException if penwidth < 0
+	 */
 	public void setPenWidth(double penWidth) {
+		if (penWidth < 0)
+			throw new IllegalArgumentException("Pen width cannot be negative");
 		this.penWidth = penWidth;
 	}
 }

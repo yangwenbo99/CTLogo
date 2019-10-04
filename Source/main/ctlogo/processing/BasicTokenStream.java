@@ -16,20 +16,20 @@ public class BasicTokenStream implements TokenStream {
     private Scanner sc;
     private int currentRow = -1;
 
-    static final String delimiters = 
+    static private final String delimiters = 
         "[\\[\\](){}]";
-    static final String operators = "[+\\-\\*/%^'~#\\\\_<>=!]";
-    static final String notOnLeft = "[<>!&|]";
-    static final String notOnRight = "[<>=&|]";
+    static private final String operators = "[+\\-\\*/%^'~#\\\\_<>=!]";
+    static private final String notOnLeft = "[<>!&|]";
+    static private final String notOnRight = "[<>=&|]";
 
-    static final Pattern splitPattern = Pattern.compile(
+    static private final Pattern splitPattern = Pattern.compile(
             "(?=" + delimiters + ")" +
             "|(?<=" + delimiters + ")" + 
             "|((?<!" + notOnLeft + ")" + "(?=" + operators + "))" +
             "|((?<=" + operators + ")" + "(?!" + notOnRight + "))" + 
             "|\\s+"
             );
-    static final Pattern stringPattern = Pattern.compile(
+    static private final Pattern stringPattern = Pattern.compile(
     		"\".*?(?<!\\\\)(\\\\\\\\)*(\"|$)");
 
     public BasicTokenStream(Scanner sc) {
