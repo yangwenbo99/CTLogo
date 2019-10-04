@@ -18,7 +18,7 @@ public class BasicTokenStream implements TokenStream {
 
     static final String delimiters = 
         "[\\[\\](){}]";
-    static final String operators = "[+\\-\\*/%^\"'~#\\\\_<>=!]";
+    static final String operators = "[+\\-\\*/%^'~#\\\\_<>=!]";
     static final String notOnLeft = "[<>!&|]";
     static final String notOnRight = "[<>=&|]";
 
@@ -29,14 +29,16 @@ public class BasicTokenStream implements TokenStream {
             "|((?<=" + operators + ")" + "(?!" + notOnRight + "))" + 
             "|\\s+"
             );
+    static final Pattern stringPattern = Pattern.compile(
+    		"\".*?(?<!\\\\)(\\\\\\\\)*(\"|$)");
 
     public BasicTokenStream(Scanner sc) {
         this.sc = sc;
     }
+    
+    private void parse(String input) {
+        String [] currentArray = splitPattern.split(input);
 
-    private void parseNextLine() {
-        String lineString = sc.nextLine();
-        String [] currentArray = splitPattern.split(lineString);
         // TODO: columns
         for (String s : currentArray) {
             if (!s.trim().equals("")) {
@@ -44,6 +46,24 @@ public class BasicTokenStream implements TokenStream {
                 currentColumns.addLast(0);
             }
         }
+    }
+
+    private void parseNextLine() {
+        String lineString = sc.nextLine();
+        
+        Matcher stringMatcher = stringPattern.matcher(lineString);
+        
+        int currentLoc = 0;
+        while (stringMatcher.find(currentLoc)) {
+        	int nonStringStart = currentLoc;
+        	parse(lineString.substring(nonStringStart, stringMatcher.start()));
+        	currentLine.addLast(lineString.substring(
+        			stringMatcher.start(), stringMatcher.end()));
+        	currentColumns.addLast(stringMatcher.start());
+        	currentLoc = stringMatcher.end();
+        }
+        
+        parse(lineString.substring(currentLoc));
 
         if (currentLine.getLast().equals("_")) {
             currentLine.removeLast();
