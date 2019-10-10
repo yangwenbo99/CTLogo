@@ -9,7 +9,6 @@ import java.util.ArrayDeque;
 public class Turtle {
 	private double orientation;
 	private double penWidth;
-//	TODO set down definition
 	private boolean isDown;
 	
 	public static final int DEFAULT_MAX_HISTORY_LENGTH = 100;
