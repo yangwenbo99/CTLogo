@@ -3,6 +3,8 @@
  */
 package ctlogo.execute;
 
+import ctlogo.execute.expression.Expression;
+
 /**
  * @author Paul Yang
  *

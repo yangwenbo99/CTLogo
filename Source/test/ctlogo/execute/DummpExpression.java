@@ -4,6 +4,7 @@ import java.util.List;
 
 import ctlogo.data.CTUndefined;
 import ctlogo.data.CTValue;
+import ctlogo.execute.expression.Expression;
 
 public class DummpExpression implements Expression {
 	

@@ -5,6 +5,8 @@ package ctlogo.execute;
 
 import java.util.List;
 
+import ctlogo.execute.expression.Expression;
+
 /**
  * @author Paul Yang
  *

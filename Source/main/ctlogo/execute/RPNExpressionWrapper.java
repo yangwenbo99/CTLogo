@@ -1,5 +1,7 @@
 package ctlogo.execute;
 
+import ctlogo.execute.expression.Expression;
+
 class RPNExpressionWrapper implements RPNEvaluable {
 	
 	private Expression exp;

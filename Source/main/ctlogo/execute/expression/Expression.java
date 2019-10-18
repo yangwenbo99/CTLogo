@@ -1,6 +1,8 @@
-package ctlogo.execute;
+package ctlogo.execute.expression;
 
 import ctlogo.data.CTValue;
+import ctlogo.exception.*;
+import ctlogo.execute.Context;
 
 /**
  * 
@@ -12,5 +14,6 @@ import ctlogo.data.CTValue;
  *
  */
 public interface Expression {
-	public CTValue execute(Context context);
+	public CTValue execute(Context context) 
+			throws CTDataUndefinedException, CTConversionNotSupportedException;;
 }
