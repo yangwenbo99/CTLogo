@@ -9,7 +9,7 @@ import ctlogo.exception.CTCodeNotEvaluableException;
  *
  * @author Paul Yang
  */
-interface RPNOperable extends RPNObject {
+public interface RPNOperable extends RPNObject {
     /**
      * Get the number of parameter.
      *

@@ -82,4 +82,12 @@ public class OperatorManager {
 			throw new NoSuchElementException();
 	}
 
+    public boolean hasUnaryOperator(String token) {
+        return unaryOperators.containsKey(token);
+    }
+
+    public boolean hasBinaryOperator(String token) {
+        return binaryOperators.containsKey(token);
+    }
+
 }

@@ -4,6 +4,9 @@ import ctlogo.exception.CTConversionNotSupportedException;
 import ctlogo.exception.CTDataUndefinedException;
 
 public class CTBoolean implements CTValue {
+    public final static CTBoolean TRUE = new CTBoolean(true);
+    public final static CTBoolean FALSE = new CTBoolean(false);
+
 	private Boolean value;
 
 	public CTBoolean(Boolean value) {
@@ -30,6 +33,20 @@ public class CTBoolean implements CTValue {
 			return new CTBoolean(this.value.equals(((CTBoolean) another.convertTo("boolean")).isValue()));
 		throw new CTDataUndefinedException();
 	}
+
+    @Override
+	public boolean equals(Object other) {
+        try {
+            if (!(other instanceof CTValue)) {
+                return false;
+            }
+
+            CTValue vOther = (CTValue) other;
+            return this.equals(vOther).isValue();
+        } catch (CTDataUndefinedException | CTConversionNotSupportedException e) {
+            return false;
+        }
+    }
 
 	@Override
 	public CTInteger compareTo(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {

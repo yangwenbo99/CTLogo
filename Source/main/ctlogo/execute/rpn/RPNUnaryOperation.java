@@ -19,7 +19,6 @@ class RPNUnaryOperation extends RPNOperation {
 
 	@Override
 	public int getParameterNumber() {
-		// TODO Auto-generated method stub
 		return 1;
 	}
 }
