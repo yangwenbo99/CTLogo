@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ctlogo.execute;
+package ctlogo.exception;
 
 /**
  * @author yang

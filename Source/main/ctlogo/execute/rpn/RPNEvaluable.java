@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ctlogo.execute;
+package ctlogo.execute.rpn;
 
 import ctlogo.execute.expression.Expression;
 
@@ -9,7 +9,7 @@ import ctlogo.execute.expression.Expression;
  * @author Paul Yang
  *
  */
-interface RPNEvaluable extends RPNObject {
+public interface RPNEvaluable extends RPNObject {
     /**
      * Get the expression that this RPNObject should be evaluated to. 
      *

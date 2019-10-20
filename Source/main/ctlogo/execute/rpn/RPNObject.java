@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ctlogo.execute;
+package ctlogo.execute.rpn;
 
 /**
  * @author Paul Yang
@@ -11,7 +11,7 @@ package ctlogo.execute;
  * terminating variable sized argument list.</remark>
  *
  */
-interface RPNObject {
+public interface RPNObject {
     boolean isEvaluable();
     boolean isOperable();
     boolean isTerminator();

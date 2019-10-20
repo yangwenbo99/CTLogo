@@ -1,4 +1,4 @@
-package ctlogo.execute;
+package ctlogo.execute.rpn;
 
 import ctlogo.execute.expression.Expression;
 
@@ -10,7 +10,6 @@ class RPNBinaryOperation extends RPNOperation {
 
 	@Override
 	public int getParameterNumber() {
-		// TODO Auto-generated method stub
 		return 2;
 	}
 

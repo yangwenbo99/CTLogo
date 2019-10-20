@@ -1,9 +1,7 @@
 /**
  * 
  */
-package ctlogo.execute;
-
-import ctlogo.exception.CTSyntaxException;
+package ctlogo.exception;
 
 /**
  * @author yang

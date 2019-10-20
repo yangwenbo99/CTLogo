@@ -1,6 +1,6 @@
-package ctlogo.execute;
+package ctlogo.exception;
 
-class CTUnexpectedExpressionException extends CTCodeNotEvaluableException {
+public class CTUnexpectedExpressionException extends CTCodeNotEvaluableException {
 
 	/**
 	 * 

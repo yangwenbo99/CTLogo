@@ -1,4 +1,4 @@
-package ctlogo.execute;
+package ctlogo.execute.rpn;
 
 import ctlogo.execute.expression.Expression;
 
