@@ -5,6 +5,7 @@ import java.util.List;
 import ctlogo.data.CTValue;
 import ctlogo.exception.CTConversionNotSupportedException;
 import ctlogo.exception.CTDataUndefinedException;
+import ctlogo.exception.CTException;
 import ctlogo.execute.Context;
 
 public abstract class AbstractUnaryOperator implements Expression {
@@ -29,8 +30,7 @@ public abstract class AbstractUnaryOperator implements Expression {
 	}
 
 	@Override
-	public CTValue execute(Context context) 
-			throws CTDataUndefinedException, CTConversionNotSupportedException {
+	public CTValue execute(Context context) throws CTException {
 		return operate(operand.execute(context));
 	}
 

@@ -5,6 +5,7 @@ import java.util.List;
 import ctlogo.data.CTValue;
 import ctlogo.exception.CTConversionNotSupportedException;
 import ctlogo.exception.CTDataUndefinedException;
+import ctlogo.exception.CTException;
 import ctlogo.execute.Context;
 
 public abstract class AbstractBinaryOperator implements Expression {
@@ -33,7 +34,7 @@ public abstract class AbstractBinaryOperator implements Expression {
 	}
 
 	@Override
-	public CTValue execute(Context context) throws CTDataUndefinedException, CTConversionNotSupportedException {
+	public CTValue execute(Context context) throws CTException {
 		// TODO Auto-generated method stub
 		return operate(
 				operand1.execute(context),

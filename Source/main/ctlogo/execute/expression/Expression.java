@@ -14,6 +14,5 @@ import ctlogo.execute.Context;
  *
  */
 public interface Expression {
-	public CTValue execute(Context context) 
-			throws CTDataUndefinedException, CTConversionNotSupportedException;;
+	public CTValue execute(Context context) throws CTException;
 }
