@@ -2,6 +2,7 @@ package ctlogo.data;
 
 import ctlogo.exception.CTConversionNotSupportedException;
 import ctlogo.exception.CTDataUndefinedException;
+import ctlogo.exception.CTOperationUndefinedException;
 
 public class CTBoolean implements CTValue {
     public final static CTBoolean TRUE = new CTBoolean(true);
@@ -22,7 +23,7 @@ public class CTBoolean implements CTValue {
 	}
 
 	@Override
-	public CTBoolean equals(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
+	public CTBoolean equals(CTValue another) {
 		if (another.getTypeName() == "boolean")
 			return new CTBoolean(this.value.equals(((CTBoolean) another).isValue()));
 		if (another.getTypeName() == "integer")
@@ -31,7 +32,8 @@ public class CTBoolean implements CTValue {
 			return new CTBoolean(this.value.equals(((CTBoolean) another.convertTo("boolean")).isValue()));
 		if (another.getTypeName() == "string")
 			return new CTBoolean(this.value.equals(((CTBoolean) another.convertTo("boolean")).isValue()));
-		throw new CTDataUndefinedException();
+		
+		return FALSE;
 	}
 
     @Override
@@ -43,13 +45,13 @@ public class CTBoolean implements CTValue {
 
             CTValue vOther = (CTValue) other;
             return this.equals(vOther).isValue();
-        } catch (CTDataUndefinedException | CTConversionNotSupportedException e) {
+        } catch (CTConversionNotSupportedException e) {
             return false;
         }
     }
 
 	@Override
-	public CTInteger compareTo(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
+	public CTInteger compareTo(CTValue another) {
 		if (another.getTypeName() == "boolean")
 			return new CTInteger(this.value.compareTo(((CTBoolean) another).isValue()));
 		if (another.getTypeName() == "integer")
@@ -58,7 +60,7 @@ public class CTBoolean implements CTValue {
 			return new CTInteger(this.value.compareTo(((CTBoolean) another.convertTo("boolean")).isValue()));
 		if (another.getTypeName() == "string")
 			return new CTInteger(this.value.compareTo(((CTBoolean) another.convertTo("boolean")).isValue()));
-		throw new CTDataUndefinedException();
+		throw new CTOperationUndefinedException("Not comparable");
 	}
 
 	@Override
@@ -85,7 +87,7 @@ public class CTBoolean implements CTValue {
 	}
 
 	@Override
-	public CTValue add(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
+	public CTValue add(CTValue another) {
 		if(another.getTypeName()=="boolean")
 			return this.convertTo("integer").add(another);
 		if(another.getTypeName()=="integer")
@@ -94,11 +96,11 @@ public class CTBoolean implements CTValue {
 			return another.add(this);
 		if(another.getTypeName()=="string")
 			return this.convertTo("string").add(another);
-		throw new CTDataUndefinedException();
+		return CTUndefined.UNDEFINED;
 	}
 
 	@Override
-	public CTValue subtract(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
+	public CTValue subtract(CTValue another) {
 		if(another.getTypeName()=="boolean")
 			return this.convertTo("integer").subtract(another);
 		if(another.getTypeName()=="integer")
@@ -107,7 +109,7 @@ public class CTBoolean implements CTValue {
 			return another.subtract(this).negate();
 		if(another.getTypeName()=="string")
 			return another.subtract(this).negate();
-		throw new CTDataUndefinedException();
+		return CTUndefined.UNDEFINED;
 	}
 
 	@Override

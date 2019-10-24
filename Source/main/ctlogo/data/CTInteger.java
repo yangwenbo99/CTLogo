@@ -19,7 +19,7 @@ public class CTInteger implements CTValue {
 	}
 
 	@Override
-	public CTBoolean equals(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
+	public CTBoolean equals(CTValue another) {
 		if (another.getTypeName() == "boolean")
 			return another.equals(this);
 		if (another.getTypeName() == "integer")

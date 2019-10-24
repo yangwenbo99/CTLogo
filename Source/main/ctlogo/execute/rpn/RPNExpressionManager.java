@@ -17,7 +17,7 @@ public class RPNExpressionManager {
      *
      *
      * @param token token of the operator
-     * @return the oeprator
+     * @return the operator
      *
      * @throws NoSuchElementException if no such token
      */
@@ -31,7 +31,7 @@ public class RPNExpressionManager {
      *
      *
      * @param token token of the operator
-     * @return the oeprator
+     * @return the operator
      *
      * @throws NoSuchElementException if no such token
      */

@@ -3,6 +3,7 @@ package ctlogo.data;
 import ctlogo.exception.CTDataUndefinedException;
 
 public class CTUndefined implements CTValue {
+	public final static CTUndefined UNDEFINED = new CTUndefined();
 
 	@Override
 	public CTBoolean equals(CTValue another) throws CTDataUndefinedException {
