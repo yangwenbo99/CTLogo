@@ -20,11 +20,16 @@ class CTValueConverterManager {
 	}
 	
 	public boolean isConvertible(CTValue fromValue, TypeMarker toType) {
-		return map.containsKey(
-				new TypeConversionDirection(fromValue.getTypeMarker(), toType));
+        if (fromValue.getTypeMarker().equals(toType))
+                return true;
+        TypeConversionDirection key = new TypeConversionDirection(fromValue.getTypeMarker(), toType);
+        return map.containsKey(key) && map.get(key).isConvertible(fromValue);
 	}
 
 	public CTValue convert(CTValue fromValue, TypeMarker toType) {
+        if (fromValue.getTypeMarker().equals(toType))
+                return fromValue;
+
 		CTValueConverter converter = 
 				map.get(new TypeConversionDirection(fromValue.getTypeMarker(), toType));
 		if (converter == null)

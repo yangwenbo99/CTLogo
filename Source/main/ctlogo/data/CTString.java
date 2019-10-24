@@ -3,180 +3,134 @@ package ctlogo.data;
 import ctlogo.exception.CTConversionNotSupportedException;
 import ctlogo.exception.CTDataUndefinedException;
 
-public class CTString implements CTValue {
-	private String value;
+public class CTString extends AbstractCTValue {
+    private final static TypeMarker typeMarker = new TypeMarker("double");
 
-	public CTString(String string) {
-		this.value = string;
-	}
+    private String value;
 
-	private String getValue() {
-		return value;
-	}
+    public CTString(String string) {
+        this.value = string;
+    }
 
-	private void setValue(String value) {
-		this.value = value;
-	}
+    public static TypeMarker getTypeMarkerStatic() {
+        return typeMarker;
+    }
 
-	@Override
-	public CTBoolean equals(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
-		if (another.getTypeName() == "boolean")
-			return another.equals(this);
-		if (another.getTypeName() == "integer")
-			return another.equals(this);
-		if (another.getTypeName() == "double")
-			return another.equals(this);
-		if (another.getTypeName() == "string")
-			return new CTBoolean(this.value.equals(((CTString) another).getValue()));
-		throw new CTDataUndefinedException();
-	}
+    public TypeMarker getTypeMarker() {
+        return typeMarker;
+    }
 
-	@Override
-	public CTInteger compareTo(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
-		if (another.getTypeName() == "boolean")
-			return (CTInteger) another.compareTo(this).negate();
-		if (another.getTypeName() == "integer")
-			return (CTInteger) another.compareTo(this).negate();
-		if (another.getTypeName() == "double")
-			return (CTInteger) another.compareTo(this).negate();
-		if (another.getTypeName() == "string")
-			return new CTInteger(this.value.compareTo(((CTString) another).getValue()));
-		throw new CTDataUndefinedException();
-	}
+    private String getValue() {
+        return value;
+    }
 
-	@Override
-	public String toString() {
-		return value;
-	}
+    @Override
+    public CTBoolean equals(CTValue another) {
+        if (another instanceof CTString)
+            return new CTBoolean(this.toString().equals(another.toString()));
 
-	@Override
-	public String getTypeName() {
-		return "string";
-	}
+        if (this.isConvertibleTo(another.getTypeMarker())) {
+            return this.convertTo(another.getTypeMarker()).equals(another);
+        } else {
+            return new CTBoolean(this.toString().equals(another.toString()));
+        }
+    }
 
-	@Override
-	public CTValue convertTo(String newType) throws CTConversionNotSupportedException {
-		if (newType == "boolean")
-			return new CTBoolean(!(value.equals("")));
-		if (newType == "integer") {
-			try {
-				return new CTInteger(Integer.parseInt(value));
-			} catch (NumberFormatException e) {
-				throw new CTConversionNotSupportedException(getTypeName(), newType);
-			}
-		}
-		if (newType == "double") {
-			try {
-				return new CTDouble(Double.parseDouble(value));
-			} catch (NumberFormatException e) {
-				throw new CTConversionNotSupportedException(getTypeName(), newType);
-			}
-		}
-		if (newType == "string")
-			return new CTString(toString());
-		throw new CTConversionNotSupportedException(getTypeName(), newType);
-	}
+    private CTValue convertToNum() {
+        if (this.isConvertibleTo(CTInteger.getTypeMarkerStatic()))
+            return this.convertTo(CTInteger.getTypeMarkerStatic());
+        else if (this.isConvertibleTo(CTDouble.getTypeMarkerStatic()))
+            return this.convertTo(CTDouble.getTypeMarkerStatic());
+        else
+            return CTDouble.NaN;
+    }
 
-	@Override
-	public CTValue add(CTValue another) {
-		return new CTString(toString() + another.toString());
-	}
+    @Override
+    public String toString() {
+        return value;
+    }
 
-	@Override
-	public CTValue subtract(CTValue another) throws CTDataUndefinedException, CTConversionNotSupportedException {
-		if(another.getTypeName()=="boolean") {
-			try {
-				return ((CTInteger) this.convertTo("integer")).subtract(another);
-			} catch (CTConversionNotSupportedException e) {
-				return ((CTDouble) this.convertTo("double")).subtract(another);
-			}
-		}
-		if(another.getTypeName()=="integer") {
-			try {
-				return ((CTInteger) this.convertTo("integer")).subtract(another);
-			} catch (CTConversionNotSupportedException e) {
-				return ((CTDouble) this.convertTo("double")).subtract(another);
-			}
-		}
-		if(another.getTypeName()=="double") 
-			return ((CTDouble) this.convertTo("double")).subtract(another);
-		if(another.getTypeName()=="string") {
-			try {
-				return another.subtract(((CTInteger) this.convertTo("integer"))).negate();
-			} catch (CTConversionNotSupportedException e) {
-				return another.subtract(((CTInteger) this.convertTo("double"))).negate();
-			}
-		}
-		throw new CTDataUndefinedException();
-	}
+    @Override
+    public CTValue add(CTValue another) {
+        return new CTString(toString() + another.toString());
+    }
 
-	@Override
-	public CTValue negate() throws CTDataUndefinedException, CTConversionNotSupportedException {
-		try {
-			return this.convertTo("integer").negate().convertTo("string");
-		} catch (CTConversionNotSupportedException e) {
-			return this.convertTo("double").negate().convertTo("string");
-		}
-	}
+    @Override
+    public CTValue subtract(CTValue another) {
+        return this.convertToNum().subtract(another);
+    }
 
-	@Override
-	public CTValue multiply(CTValue another) {
-		// TODO Auto-generated method stub
-		return new CTUndefined();
-	}
+    @Override
+    public CTValue negate() {
+        return this.convertToNum().negate();
+    }
 
-	@Override
-	public CTValue divide(CTValue another) {
-		// TODO Auto-generated method stub
-		return new CTUndefined();
-	}
+    @Override
+    public CTValue multiply(CTValue another) {
+        return this.convertToNum().multiply(another);
+    }
 
-	@Override
-	public CTValue mod(CTValue another) {
-		// TODO Auto-generated method stub
-		return new CTUndefined();
-	}
+    @Override
+    public CTValue divide(CTValue another) {
+        return this.convertToNum().divide(another);
+    }
 
-	@Override
-	public CTValue pow(CTValue another) {
-		// TODO Auto-generated method stub
-		return new CTUndefined();
-	}
+    @Override
+    public CTValue mod(CTValue another) {
+        return new CTUndefined();
+    }
 
-	@Override
-	public CTValue shiftLeft(CTValue another) {
-		// TODO Auto-generated method stub
-		return new CTUndefined();
-	}
+    @Override
+    public CTValue pow(CTValue another) {
+        return this.convertToNum().pow(another);
+    }
 
-	@Override
-	public CTValue shiftRight(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public CTValue shiftLeft(CTValue another) {
+        return this.convertToNum().shiftLeft(another);
+    }
 
-	@Override
-	public CTValue shiftRightArithmetic(CTValue another) throws Exception {
-		// FIXME I don't know the functionality of this function
-		throw new Exception("Functionality unknown");
-	}
+    @Override
+    public CTValue shiftRight(CTValue another) {
+        return this.convertToNum().shiftRight(another);
+    }
 
-	@Override
-	public CTValue and(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public CTValue shiftRightArithmetic(CTValue another) {
+        return this.convertToNum().shiftRightArithmetic(another);
+    }
 
-	@Override
-	public CTValue or(CTValue another) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public CTValue and(CTValue another) {
+        return this.convertTo(CTBoolean.getTypeMarkerStatic()).and(another);
+    }
 
-	@Override
-	public CTValue not() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public CTValue or(CTValue another) {
+        return this.convertTo(CTBoolean.getTypeMarkerStatic()).or(another);
+    }
+
+    @Override
+    public CTValue not() {
+        return this.convertTo(CTBoolean.getTypeMarkerStatic()).not();
+    }
+
+    @Override
+    public CTInteger compareTo(CTValue another) {
+        if (another instanceof CTString)
+            return new CTInteger(this.toString().compareTo(another.toString()));
+
+        if (this.isConvertibleTo(another.getTypeMarker())) {
+            return this.convertTo(another.getTypeMarker()).compareTo(another);
+        } else {
+            return new CTInteger(this.toString().compareTo(another.toString()));
+        }
+    }
+
+    @Override
+    public boolean isCompareableTo(CTValue another) {
+        return true;
+    }
+
 
 }

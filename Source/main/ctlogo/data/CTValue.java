@@ -24,26 +24,54 @@ public interface CTValue {
 		return this.equals(other);
 	}
 	
-	public TypeMarker getTypeMarker();
 
 	public CTInteger compareTo(CTValue another);
 	public boolean isCompareableTo(CTValue another);
 	public String toString();
-	public String getTypeName();
-	public CTValue convertTo(String newType);
-	public boolean isConvertibleTo(String newType);
+	public TypeMarker getTypeMarker();
+	public CTValue convertTo(TypeMarker newType);
+	public boolean isConvertibleTo(TypeMarker newType);
 	
-	public CTValue add(CTValue another);
-	public CTValue subtract(CTValue another);
-	public CTValue negate();
-	public CTValue multiply(CTValue another);
-	public CTValue divide(CTValue another);
-	public CTValue mod(CTValue another);
-	public CTValue pow(CTValue another);
+	public default CTValue add(CTValue another) {
+        return CTUndefined.UNDEFINED;
+    }
+	public default CTValue subtract(CTValue another) {
+        return CTUndefined.UNDEFINED;
+    }
+	public default CTValue negate() {
+        return CTUndefined.UNDEFINED;
+    }
+	public default CTValue multiply(CTValue another) {
+        return CTUndefined.UNDEFINED;
+    }
+	public default CTValue divide(CTValue another) {
+        return CTUndefined.UNDEFINED;
+    }
+	public default CTValue mod(CTValue another) {
+        return CTUndefined.UNDEFINED;
+    }
+	public default CTValue pow(CTValue another) {
+        return CTUndefined.UNDEFINED;
+    }
 	
-	public CTValue shiftLeft(CTValue another);
-	public CTValue shiftRight(CTValue another);
-	public CTValue shiftRightArithmetic(CTValue another);
+	public default CTValue shiftLeft(CTValue another) {
+        return CTUndefined.UNDEFINED;
+    }
+	public default CTValue shiftRight(CTValue another) {
+        return CTUndefined.UNDEFINED;
+    }
+	public default CTValue shiftRightArithmetic(CTValue another) {
+        return CTUndefined.UNDEFINED;
+    }
+    public default CTValue bitwiseAnd(CTValue another) {
+        return CTUndefined.UNDEFINED;
+    }
+    public default CTValue bitwiseOr(CTValue another) {
+        return CTUndefined.UNDEFINED;
+    }
+    public default CTValue bitwiseNot() {
+        return CTUndefined.UNDEFINED;
+    }
 
 	public CTValue and(CTValue another);
 	public CTValue or(CTValue another);

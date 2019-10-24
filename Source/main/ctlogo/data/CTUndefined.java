@@ -1,114 +1,53 @@
 package ctlogo.data;
 
 import ctlogo.exception.CTDataUndefinedException;
+import ctlogo.exception.CTOperationUndefinedException;
 
-public class CTUndefined implements CTValue {
-	public final static CTUndefined UNDEFINED = new CTUndefined();
+public class CTUndefined extends AbstractCTValue {
+    private final static TypeMarker typeMarker = new TypeMarker("string");
 
-	@Override
-	public CTBoolean equals(CTValue another) throws CTDataUndefinedException {
-//		TODO make exception message specific by mentioning which data is undefined
-		throw new CTDataUndefinedException();
-	}
+    public static TypeMarker getTypeMarkerStatic() {
+        return typeMarker;
+    }
 
-	@Override
-	public CTInteger compareTo(CTValue another) throws CTDataUndefinedException {
-//		TODO make exception message specific by mentioning which data is undefined
-		throw new CTDataUndefinedException();
-	}
+    public TypeMarker getTypeMarker() {
+        return typeMarker;
+    }
 
-	@Override
-	public String toString() {
-		return "undefined";
-	}
+    public final static CTUndefined UNDEFINED = new CTUndefined();
 
-	@Override
-	public String getTypeName() {
-		return "undefined";
-	}
+    @Override
+    public CTBoolean equals(CTValue another) {
+        return CTBoolean.FALSE;
+    }
 
-	@Override
-	public CTValue convertTo(String newType) throws CTDataUndefinedException {
-//		TODO make exception message specific by mentioning which data is undefined
-		throw new CTDataUndefinedException();
-	}
+    @Override
+    public CTInteger compareTo(CTValue another) {
+        throw new CTOperationUndefinedException("Do not try to compare undeined in Java");
+    }
 
-	@Override
-	public CTValue add(CTValue another) throws CTDataUndefinedException {
-//		TODO make exception message specific by mentioning which data is undefined
-		throw new CTDataUndefinedException();
-	}
+    @Override
+    public boolean isCompareableTo(CTValue another) {
+       return false;
+    }
 
-	@Override
-	public CTValue subtract(CTValue another) throws CTDataUndefinedException {
-//		TODO make exception message specific by mentioning which data is undefined
-		throw new CTDataUndefinedException();
-	}
+    @Override
+    public CTValue and(CTValue another) {
+        if (another.equals((Object) CTBoolean.FALSE))
+            return CTBoolean.FALSE;
+        return UNDEFINED;
+    }
 
-	@Override
-	public CTValue negate() throws CTDataUndefinedException {
-//		TODO make exception message specific by mentioning which data is undefined
-		throw new CTDataUndefinedException();
-	}
+    @Override
+    public CTValue or(CTValue another) {
+        if (another.equals((Object) CTBoolean.TRUE))
+            return CTBoolean.TRUE;
+        return UNDEFINED;
+    }
 
-	@Override
-	public CTValue multiply(CTValue another) throws CTDataUndefinedException {
-//		TODO make exception message specific by mentioning which data is undefined
-		throw new CTDataUndefinedException();
-	}
-
-	@Override
-	public CTValue divide(CTValue another) throws CTDataUndefinedException {
-//		TODO make exception message specific by mentioning which data is undefined
-		throw new CTDataUndefinedException();
-	}
-
-	@Override
-	public CTValue mod(CTValue another) throws CTDataUndefinedException {
-//		TODO make exception message specific by mentioning which data is undefined
-		throw new CTDataUndefinedException();
-	}
-
-	@Override
-	public CTValue pow(CTValue another) throws CTDataUndefinedException {
-//		TODO make exception message specific by mentioning which data is undefined
-		throw new CTDataUndefinedException();
-	}
-
-	@Override
-	public CTValue shiftLeft(CTValue another) throws CTDataUndefinedException {
-//		TODO make exception message specific by mentioning which data is undefined
-		throw new CTDataUndefinedException();
-	}
-
-	@Override
-	public CTValue shiftRight(CTValue another) throws CTDataUndefinedException {
-//		TODO make exception message specific by mentioning which data is undefined
-		throw new CTDataUndefinedException();
-	}
-
-	@Override
-	public CTValue shiftRightArithmetic(CTValue another) throws CTDataUndefinedException {
-//		TODO make exception message specific by mentioning which data is undefined
-		throw new CTDataUndefinedException();
-	}
-
-	@Override
-	public CTValue and(CTValue another) throws CTDataUndefinedException {
-//		TODO make exception message specific by mentioning which data is undefined
-		throw new CTDataUndefinedException();
-	}
-
-	@Override
-	public CTValue or(CTValue another) throws CTDataUndefinedException {
-//		TODO make exception message specific by mentioning which data is undefined
-		throw new CTDataUndefinedException();
-	}
-
-	@Override
-	public CTValue not() throws CTDataUndefinedException {
-//		TODO make exception message specific by mentioning which data is undefined
-		throw new CTDataUndefinedException();
-	}
+    @Override
+    public CTValue not() {
+        return UNDEFINED;
+    }
 
 }

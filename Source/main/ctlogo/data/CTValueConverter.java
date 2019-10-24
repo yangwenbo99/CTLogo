@@ -24,5 +24,7 @@ abstract class CTValueConverter {
 	}
 	
 	abstract public CTValue convert(CTValue from);
+
+    abstract boolean isConvertible(CTValue from);
 	
 }
