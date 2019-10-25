@@ -39,7 +39,13 @@ public class CTBoolean extends AbstractNumericalCTValue {
 
     @Override
     public CTValue add(CTValue another) {
-        return this.convertTo(CTInteger.getTypeMarkerStatic()).add(another);
+    	if (another instanceof CTString)
+    		return this.convertTo(CTString.getTypeMarkerStatic()).add(another);
+    	if (another instanceof AbstractNumericalCTValue) 
+			return this.convertTo(CTInteger.getTypeMarkerStatic()).add(another);
+    	if (another.isConvertibleTo(CTString.getTypeMarkerStatic()))
+    		return this.convertTo(CTString.getTypeMarkerStatic()).add(another);
+    	return CTUndefined.UNDEFINED;
     }
 
     @Override

@@ -42,10 +42,18 @@ class CTValueConverterManager {
 		return converter.convert(fromValue);
 	}
 	
+	static {
+		ConvertInitilizer.registerAll();
+	}
+	
 	public void register(CTValueConverter converter) {
-		if (this.map.containsKey(converter.getTcd()))
+		if (this.map.containsKey(converter.getDirection()))
 			throw new IllegalArgumentException(
 					"Registerring an converter twice not allowed.");
-		this.map.put(converter.getTcd(), converter);
+		this.map.put(converter.getDirection(), converter);
+	}
+	
+	public static void main(String [] args) {
+		System.out.println(getInstance().map.size());
 	}
 }

@@ -7,6 +7,9 @@ public class CTInteger extends AbstractNumericalCTValue {
     private final static TypeMarker typeMarker = new TypeMarker("integer");
 
     private Long value;
+    
+    public final static CTInteger ZERO = new CTInteger(0);
+    public final static CTInteger ONE = new CTInteger(1);
 
     public CTInteger(long i) {
         value = i;

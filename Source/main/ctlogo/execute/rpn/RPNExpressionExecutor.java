@@ -42,7 +42,7 @@ public class RPNExpressionExecutor {
                     List<RPNObject> operands;
 
                     if (operandNum >= 0) {
-                        operands = new ArrayList(
+                        operands = new ArrayList<>(
                                 rpnStack.subList(rpnStack.size()-operandNum, rpnStack.size()));
                         for (int i=0; i<operandNum; i++) {
                             rpnStack.pop();

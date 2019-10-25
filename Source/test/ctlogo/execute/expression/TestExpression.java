@@ -25,5 +25,4 @@ public class TestExpression {
     void testExpressionTrival() throws CTException {
         Assertions.assertEquals(SIX.execute(null), (new PlusOperator(ONE, FIVE)).execute(null));
     }
-
 }

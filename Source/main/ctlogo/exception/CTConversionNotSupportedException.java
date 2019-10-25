@@ -1,7 +1,10 @@
 package ctlogo.exception;
 
-@SuppressWarnings("serial")
 public class CTConversionNotSupportedException extends UnsupportedOperationException {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7681222632738005940L;
 
 	public CTConversionNotSupportedException() {
 		super("Conversion is not supported.");
