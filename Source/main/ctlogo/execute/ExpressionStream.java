@@ -50,9 +50,31 @@ import ctlogo.execute.expression.Expression;
  * - 
  */
 public interface ExpressionStream {
-	public Expression getNextExpression();// Evaluate [ ] to value list, {} to block
 
-	public List<Expression> geNextBlock();// for {} and []
+    /**
+     * Get the next expression from the stream. 
+     *
+     * Evaluate [ ] to value list, {} to block
+     *
+     * @return the next expression. 
+     */
+    public Expression getNextExpression();
 
-	public Expression getNextString(); // variable, literal or function result, [] to string
+    /**
+     * Get the next code block from the stream.
+     *
+     * Evaluate { } and { } to block.
+     *
+     * @return the expressions in the block.
+     */
+    public List<Expression> geNextBlock();// 
+
+    /**
+     * Get the next string from the stream.
+     *
+     * Evaluate [ ] and 'string' and "str to string.
+     *
+     * @return the next string in the stream. 
+     */
+    public Expression getNextString(); 
 }
