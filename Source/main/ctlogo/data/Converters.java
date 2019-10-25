@@ -128,8 +128,9 @@ class DoubleBooleanConverter extends CTValueConverter {
 		}
 		
 		CTDouble dblFrom = (CTDouble) from;
+		double dbVaue = dblFrom.getNumericalValue().doubleValue();
 		
-		return dblFrom.getNumericalValue().doubleValue() == 0 ? 
+		return dbVaue == 0 || Double.isNaN(dbVaue) ? 
 				CTBoolean.FALSE : CTBoolean.TRUE;
 	}
 
@@ -190,15 +191,19 @@ class StringBooleanConverter extends CTValueConverter {
 
 	@Override
 	public CTValue convert(CTValue from) {
-		if (from.isConvertibleTo(CTDouble.getTypeMarkerStatic()))
-			return from.convertTo(CTDouble.getTypeMarkerStatic()).
-				convertTo(CTBoolean.getTypeMarkerStatic());
+        String froms = from.toString();
+        if (froms.length() == 0)
+            return CTBoolean.FALSE;
+        if (froms.toUpperCase().equals("FALSE"))
+            return CTBoolean.FALSE;
 
-		String froms = from.toString();
-		
-		boolean resv = froms.length() > 0 && froms.toUpperCase() != "FALSE";
-		
-		return new CTBoolean(resv);
+        if (from.isConvertibleTo(CTDouble.getTypeMarkerStatic()))
+            return from.convertTo(CTDouble.getTypeMarkerStatic()).
+                convertTo(CTBoolean.getTypeMarkerStatic());
+        
+        boolean resv = froms.length() > 0;
+        
+        return new CTBoolean(resv);
 	}
 
 	@Override
@@ -272,19 +277,22 @@ class StringDoubleConverter extends CTValueConverter {
 class ConvertInitilizer {
 	public static void registerAll() {
 
-		CTValueConverterManager.getInstance().register(new BooleanIntegerConverter());
-		CTValueConverterManager.getInstance().register(new DoubleIntegerConverter());
-		CTValueConverterManager.getInstance().register(new BooleanStringConverter());
-		CTValueConverterManager.getInstance().register(new IntegerBooleanConverter());
-		CTValueConverterManager.getInstance().register(new IntegerDoubleConverter());
-		CTValueConverterManager.getInstance().register(new BooleanDoubleConverter());
-		CTValueConverterManager.getInstance().register(new DoubleBooleanConverter());
+        CTValueConverterManager.getInstance().register(new BooleanIntegerConverter());
+        CTValueConverterManager.getInstance().register(new BooleanStringConverter());
+        CTValueConverterManager.getInstance().register(new BooleanDoubleConverter());
+        CTValueConverterManager.getInstance().register(new DoubleBooleanConverter());
+        CTValueConverterManager.getInstance().register(new DoubleIntegerConverter());
+        CTValueConverterManager.getInstance().register(new IntegerBooleanConverter());
+        CTValueConverterManager.getInstance().register(new IntegerDoubleConverter());
+        CTValueConverterManager.getInstance().register(new StringIntegerConverter());
+        CTValueConverterManager.getInstance().register(new StringDoubleConverter());
+        CTValueConverterManager.getInstance().register(new StringBooleanConverter());
 
-		CTValueConverterManager.getInstance().register(
-				new ToStringConverter(CTInteger.getTypeMarkerStatic()));
-		CTValueConverterManager.getInstance().register(
-				new ToStringConverter(CTDouble.getTypeMarkerStatic()));
-		CTValueConverterManager.getInstance().register(
-				new ToStringConverter(CTUndefined.getTypeMarkerStatic()));
+        CTValueConverterManager.getInstance().register(
+                new ToStringConverter(CTInteger.getTypeMarkerStatic()));
+        CTValueConverterManager.getInstance().register(
+                new ToStringConverter(CTDouble.getTypeMarkerStatic()));
+        CTValueConverterManager.getInstance().register(
+                new ToStringConverter(CTUndefined.getTypeMarkerStatic()));
 	}
 }

@@ -32,7 +32,7 @@ class CTValueConverterManager {
 
 		CTValueConverter converter = 
 				map.get(new TypeConversionDirection(fromValue.getTypeMarker(), toType));
-		if (converter == null)
+		if (converter == null || !converter.isConvertible(fromValue))
 			throw new CTOperationUndefinedException(
 					String.format(
 							"Cannot convert from %s to %s", 
@@ -54,6 +54,9 @@ class CTValueConverterManager {
 	}
 	
 	public static void main(String [] args) {
-		System.out.println(getInstance().map.size());
+        System.out.println(getInstance().map.size());
+        for (TypeConversionDirection tm : getInstance().map.keySet()) {
+            System.out.println(tm.toString());
+        }
 	}
 }

@@ -6,7 +6,7 @@ import ctlogo.exception.CTConversionNotSupportedException;
 import ctlogo.exception.CTDataUndefinedException;
 
 public class CTDouble extends AbstractNumericalCTValue {
-    private final static TypeMarker typeMarker = new TypeMarker("double");
+    private final static TypeMarker typeMarker = new TypeMarker("string");
     public final static CTDouble ZERO = new CTDouble(0.);
     public final static CTDouble NaN = new CTDouble(Double.NaN);
 

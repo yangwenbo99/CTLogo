@@ -3,6 +3,8 @@
  */
 package ctlogo.data;
 
+import java.util.Objects;
+
 /**
  * @author Paul Yang
  *
@@ -17,7 +19,7 @@ class TypeMarker {
 	
 	@Override
 	public String toString() {
-		return String.format("Type marker for %s", s);
+		return String.format("<Type marker for %s at %x>", s, Objects.hashCode(this));
 	}
 
 }

@@ -29,7 +29,7 @@ public class BasicTokenStream implements TokenStream {
             "|\\s+"
             );
     static private final Pattern stringPattern = Pattern.compile(
-    		"\".*?(?<!\\\\)(\\\\\\\\)*(\"|$)");
+            "\".*?(?<!\\\\)(\\\\\\\\)*(\"|$)");
 
     public BasicTokenStream(Scanner sc) {
         this.sc = sc;
@@ -54,12 +54,12 @@ public class BasicTokenStream implements TokenStream {
         
         int currentLoc = 0;
         while (stringMatcher.find(currentLoc)) {
-        	int nonStringStart = currentLoc;
-        	parse(lineString.substring(nonStringStart, stringMatcher.start()));
-        	currentLine.addLast(lineString.substring(
-        			stringMatcher.start(), stringMatcher.end()));
-        	currentColumns.addLast(stringMatcher.start());
-        	currentLoc = stringMatcher.end();
+            int nonStringStart = currentLoc;
+            parse(lineString.substring(nonStringStart, stringMatcher.start()));
+            currentLine.addLast(lineString.substring(
+                    stringMatcher.start(), stringMatcher.end()));
+            currentColumns.addLast(stringMatcher.start());
+            currentLoc = stringMatcher.end();
         }
         
         parse(lineString.substring(currentLoc));
@@ -75,43 +75,63 @@ public class BasicTokenStream implements TokenStream {
         }
     }
 
-	@Override
-	public boolean pushFront(String s) {
-        return currentLine.offerFirst(s);
-	}
+	/**
+	 * Push a string to the front of the stream (the first to be popped)
+	 * 
+	 * @param s: the content to push
+	 * 
+	 * @return whether the push is success
+     *
+     * This shall only be allowed when hasNext() is true. 
+	 */
+    @Override
+    public boolean pushFront(String s) {
+        if (currentLine.isEmpty()) {
+            if (!hasNext())
+                return false;
+            parseNextLine();
+        }
+        if (!currentColumns.offerFirst(-1))
+            return false;
+        if (!currentLine.offerFirst(s)) {
+            currentColumns.removeFirst();
+            return false;
+        }
 
-	@Override
-	public boolean hasNext() {
+        return true;
+    }
+
+    @Override
+    public boolean hasNext() {
         return !currentLine.isEmpty() || sc.hasNext();
-	}
+    }
 
-	@Override
-	public String getNext() {
+    @Override
+    public String getNext() {
         if (currentLine.isEmpty()) {
             parseNextLine();
         }
-        currentColumns.removeFirst();
         return currentLine.getFirst();
-	}
+    }
 
-	@Override
-	public String popNext() {
+    @Override
+    public String popNext() {
         if (currentLine.isEmpty()) {
             parseNextLine();
         }
         currentColumns.removeFirst();
         return currentLine.removeFirst();
-	}
+    }
 
-	@Override
-	public boolean hasNextLine() {
+    @Override
+    public boolean hasNextLine() {
         return !currentLine.isEmpty() || sc.hasNextLine();
-	}
+    }
 
-	@Override
-	public List<String> getNextLine() {
+    @Override
+    public List<String> getNextLine() {
         if (currentLine.isEmpty())
-            return Collections.emptyList();
+            parseNextLine();
 
         List<String> res = new ArrayList<>(currentLine);
 
@@ -120,30 +140,20 @@ public class BasicTokenStream implements TokenStream {
             currentColumns.remove();
         }
         return res;
-	}
+    }
 
-	@Override
-	public int getCurrentRow() {
+    @Override
+    public int getCurrentRow() {
         if (currentLine.isEmpty())
             parseNextLine();
         return currentRow;
-	}
+    }
 
-	@Override
-	public int getCurrentColumn() {
+    @Override
+    public int getCurrentColumn() {
         if (currentLine.isEmpty())
             parseNextLine();
         return currentColumns.getFirst();
-	}
-
-    public static void main(String [] args) {
-        Scanner sc = new Scanner(System.in);
-        TokenStream ts = new BasicTokenStream(sc);
-
-        while (ts.hasNext()) {
-            System.out.println(">>> " + ts.popNext().replace("\n", "(new line)"));
-        }
-
     }
 
 }

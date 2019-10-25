@@ -6,22 +6,9 @@ import org.junit.jupiter.api.Test;
 import ctlogo.data.*;
 import ctlogo.exception.CTException;
 
+import static ctlogo.data.TestDataUtility.*;
+
 public class TestData {
-	private CTInteger cint(long i) {
-		return new CTInteger(i);
-	}
-
-	private CTDouble cdbl(double v) {
-		return new CTDouble(v);
-	}
-
-	private CTString cstr(String v) {
-		return new CTString(v);
-	}
-
-	private CTBoolean cbol(boolean v) {
-		return new CTBoolean(v);
-	}
    
     @Test
     void testStupidBoolean() {

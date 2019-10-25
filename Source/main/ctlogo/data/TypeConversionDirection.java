@@ -1,6 +1,6 @@
 package ctlogo.data;
 
-class TypeConversionDirection {
+public class TypeConversionDirection {
 	
 	private TypeMarker from;
 	private TypeMarker to;
@@ -33,4 +33,10 @@ class TypeConversionDirection {
 	public int hashCode() {
 		return from.hashCode() * 7 + to.hashCode() * 13;
 	}
+
+    @Override 
+    public String toString() {
+        return String.format("<ctlogo.data.TypeConversionDirection from %s to %s>",
+                from, to);
+    }
 }

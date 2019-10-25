@@ -73,6 +73,9 @@ public interface TokenStream extends Iterator<String> {
 	/**
 	 * Get current column being processed
 	 * @return column number of current row
+     *
+     * Return a negative number if not supported for this token, eg. it 
+     * is pushed manaully into the stream.
 	 */
 	int getCurrentColumn();
 }

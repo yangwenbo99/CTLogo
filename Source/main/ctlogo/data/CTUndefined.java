@@ -4,7 +4,7 @@ import ctlogo.exception.CTDataUndefinedException;
 import ctlogo.exception.CTOperationUndefinedException;
 
 public class CTUndefined extends AbstractCTValue {
-    private final static TypeMarker typeMarker = new TypeMarker("string");
+    private final static TypeMarker typeMarker = new TypeMarker("undefined");
 
     public static TypeMarker getTypeMarkerStatic() {
         return typeMarker;
