@@ -18,6 +18,14 @@ import java.util.Collections;
  */
 public class RPNExpressionExecutor {
 
+    private static final RPNExpressionExecutor instance = new RPNExpressionExecutor();
+
+    private RPNExpressionExecutor () { }
+
+    public static RPNExpressionExecutor getInstance() {
+        return instance;
+    }
+
     /**
      *
      *

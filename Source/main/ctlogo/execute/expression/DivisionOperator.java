@@ -6,17 +6,17 @@ import ctlogo.data.CTValue;
 import ctlogo.exception.CTConversionNotSupportedException;
 import ctlogo.exception.CTDataUndefinedException;
 
-public class DivisionOperation extends AbstractBinaryOperator {
+public class DivisionOperator extends AbstractBinaryOperator {
 	
 	static {
-		OperatorManager.getInstance().registerBinaryOperator("/", DivisionOperation.class);
+		OperatorManager.getInstance().registerBinaryOperator("/", DivisionOperator.class);
 	}
 
-	public DivisionOperation(Expression operand1, Expression operand2) {
+	public DivisionOperator(Expression operand1, Expression operand2) {
 		super(operand1, operand2);
 	}
 
-	public DivisionOperation(List<Expression> operands) {
+	public DivisionOperator(List<Expression> operands) {
 		super(operands);
 	}
 

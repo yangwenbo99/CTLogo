@@ -44,25 +44,25 @@ public class TestExpression {
 
     @Test
     void testMultiplyTrival() throws CTException {
-        Assertions.assertEquals(cint(119), (new MultiplyOperation(SEVEN, SEVENTEEN)).execute(null));
-        Assertions.assertEquals(cint(7), (new MultiplyOperation(TRUE, SEVEN)).execute(null));
+        Assertions.assertEquals(cint(119), (new MultiplyOperator(SEVEN, SEVENTEEN)).execute(null));
+        Assertions.assertEquals(cint(7), (new MultiplyOperator(TRUE, SEVEN)).execute(null));
     }
 
     @Test
     void testDivisionTrival() throws CTException {
-        Assertions.assertEquals(cint(2), (new DivisionOperation(SEVENTEEN, SEVEN)).execute(null));
-        Assertions.assertEquals(cint(2), (new DivisionOperation(FIVE, TWO)).execute(null));
-        Assertions.assertEquals(cdbl(2.5), (new DivisionOperation(DFIVE, TWO)).execute(null));
-        Assertions.assertEquals(cdbl(2.5), (new DivisionOperation(FIVE, DTWO)).execute(null));
-        Assertions.assertEquals(cdbl(2.5), (new DivisionOperation(DFIVE, DTWO)).execute(null));
+        Assertions.assertEquals(cint(2), (new DivisionOperator(SEVENTEEN, SEVEN)).execute(null));
+        Assertions.assertEquals(cint(2), (new DivisionOperator(FIVE, TWO)).execute(null));
+        Assertions.assertEquals(cdbl(2.5), (new DivisionOperator(DFIVE, TWO)).execute(null));
+        Assertions.assertEquals(cdbl(2.5), (new DivisionOperator(FIVE, DTWO)).execute(null));
+        Assertions.assertEquals(cdbl(2.5), (new DivisionOperator(DFIVE, DTWO)).execute(null));
     }
 
     @Test
     void testModuloTrival() throws CTException {
-        Assertions.assertEquals(cint(3), (new ModuloOperation(SEVENTEEN, SEVEN)).execute(null));
-        Assertions.assertEquals(cint(1), (new ModuloOperation(FIVE, TWO)).execute(null));
-        Assertions.assertEquals(cdbl(1), (new ModuloOperation(DFIVE, TWO)).execute(null));
-        Assertions.assertEquals(cdbl(1), (new ModuloOperation(FIVE, DTWO)).execute(null));
-        Assertions.assertEquals(cdbl(1), (new ModuloOperation(DFIVE, DTWO)).execute(null));
+        Assertions.assertEquals(cint(3), (new ModuloOperator(SEVENTEEN, SEVEN)).execute(null));
+        Assertions.assertEquals(cint(1), (new ModuloOperator(FIVE, TWO)).execute(null));
+        Assertions.assertEquals(cdbl(1), (new ModuloOperator(DFIVE, TWO)).execute(null));
+        Assertions.assertEquals(cdbl(1), (new ModuloOperator(FIVE, DTWO)).execute(null));
+        Assertions.assertEquals(cdbl(1), (new ModuloOperator(DFIVE, DTWO)).execute(null));
     }
 }
