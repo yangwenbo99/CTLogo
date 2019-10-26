@@ -3,6 +3,8 @@ package ctlogo.data;
 import javax.swing.text.html.FormSubmitEvent;
 
 import ctlogo.exception.CTConversionNotSupportedException;
+import ctlogo.execute.util.DoubleParser;
+import ctlogo.execute.util.LongParser;
 
 class BooleanIntegerConverter extends CTValueConverter {
 	
@@ -219,29 +221,23 @@ class StringIntegerConverter extends CTValueConverter {
 		super(CTString.getTypeMarkerStatic(), CTInteger.getTypeMarkerStatic());
 	}
 
-	@Override
-	public CTValue convert(CTValue from) {
-		String froms = from.toString();
-		if (isConvertible(from)) {
-			double resv = Double.parseDouble(froms);
-			return new CTInteger((long) resv);
-		} else {
-			throw new CTConversionNotSupportedException("Conversion not supported for this string");
-		}
-		
-	}
+    @Override
+    public CTValue convert(CTValue from) {
+        String froms = from.toString();
+        if (!isConvertible(from)) {
+            throw new CTConversionNotSupportedException("Conversion not supported for this string");
+        }
+        if (LongParser.isParseable(froms))
+            return new CTInteger(LongParser.parseLong(froms));
+        else 
+            return new CTInteger((long) DoubleParser.ParseDouble(froms));
+    }
 
-	@Override
-	boolean isConvertible(CTValue from) {
-		String froms = from.toString();
-		try {
-			@SuppressWarnings("unused")
-			double resv = Double.parseDouble(froms);
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
-	}
+    @Override
+    boolean isConvertible(CTValue from) {
+        String froms = from.toString();
+        return LongParser.isParseable(froms) || DoubleParser.isParseable(froms);
+    }
 }
 
 class StringDoubleConverter extends CTValueConverter {
@@ -250,28 +246,22 @@ class StringDoubleConverter extends CTValueConverter {
 		super(CTString.getTypeMarkerStatic(), CTDouble.getTypeMarkerStatic());
 	}
 
-	@Override
-	public CTValue convert(CTValue from) {
-		String froms = from.toString();
-		
-		try {
-			double resv = Double.parseDouble(froms);
-			return new CTDouble(resv);
-		} catch (NumberFormatException e) {
-			return CTDouble.NaN;
-		}
-	}
+    @Override
+    public CTValue convert(CTValue from) {
+        String froms = from.toString();
 
-	@Override
-	boolean isConvertible(CTValue from) {
-		String froms = from.toString();
-		try {
-			double resv = Double.parseDouble(froms);
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
-	}
+        if (!isConvertible(from)) {
+            throw new CTConversionNotSupportedException("Conversion not supported for this string");
+        }
+        
+        return new CTDouble(DoubleParser.ParseDouble(froms));
+    }
+
+    @Override
+    boolean isConvertible(CTValue from) {
+        String froms = from.toString();
+        return LongParser.isParseable(froms) || DoubleParser.isParseable(froms);
+    }
 }
 
 class ConvertInitilizer {
