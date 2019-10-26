@@ -6,11 +6,11 @@ public class ExpressionIntializer {
         OperatorManager.getInstance().registerUnaryOperator("+", PositiveOperator.class);
         OperatorManager.getInstance().registerUnaryOperator("-", NegativeOperator.class);
 
-        OperatorManager.getInstance().registerBinaryOperator("+", PlusOperator.class);
-        OperatorManager.getInstance().registerBinaryOperator("-", MinusOperator.class);
-        OperatorManager.getInstance().registerBinaryOperator("*", MultiplyOperator.class);
-        OperatorManager.getInstance().registerBinaryOperator("/", DivisionOperator.class);
-        OperatorManager.getInstance().registerBinaryOperator("%", ModuloOperator.class);
+        OperatorManager.getInstance().registerBinaryOperator("+", PlusOperator.class, 0);
+        OperatorManager.getInstance().registerBinaryOperator("-", MinusOperator.class, 0);
+        OperatorManager.getInstance().registerBinaryOperator("*", MultiplyOperator.class, 10);
+        OperatorManager.getInstance().registerBinaryOperator("/", DivisionOperator.class, 10);
+        OperatorManager.getInstance().registerBinaryOperator("%", ModuloOperator.class, 10);
 	}
 
 }
