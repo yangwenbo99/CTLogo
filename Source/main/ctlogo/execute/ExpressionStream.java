@@ -3,51 +3,36 @@ package ctlogo.execute;
 import java.util.List;
 
 import ctlogo.execute.expression.Expression;
+import ctlogo.exception.CTSyntaxException;
 
 /**
  * 
  * @author Paul Yang
  *
  *
- * Implementation details:
- *     The class shall firstly translate the program to Reverse Polish 
- *     notation (RPN), then generate expression object based on the RPN 
- *     representation. 
- *     
- * To RPN: 
- * - Need to track on where is boundary of expression
- * - Need to put additional function call terminator RPN object
- * - A block and list shall be (recursively) parsed, and represented as an RPN 
- *   object
- *   
  * For each token: 
+ *
  * - Check whether it is an literal.
- *   If so, wrap it with RPNObject for Literal
+ *   If so, regard it as an literal.
+ *
  * - Check whether it is an operator.
- *   If so, check whether it is uniry or binary. 
+ *   If so, check whether it is unary or binary. 
  *     - If the last token is an operator or (begin of expression), it unary
  *     - Otherwise, its binary
- *   Construct a proper RPN object wrapper for UnaryOperator or 
- *   BinaryOperator respectively. 
  *   
  * - Check whether it looks like a variable
- *   If so, create a wrapper for variable expression 
+ *   If so, regard it a variable. 
+ *
  * - Check whether it is a function name.
- *   If so, create a RPNFunctionCall
+ *   If so, create a {@code: RPNFunctionCall}
+ *
  * - Check whether it is begin / end of list or block
  *   If so, (recursively) call and construct.
+ *
+ * - Otherwise, {@link: CTSyntaxException} shall be thrown.
  * 
- * From RPN to Expression object:
- * - An uniry operator will eat one RPN object and put one RPN object 
- *   back to stack
- * - A binary operator will eat two and push two
- * - A function call will eat all RPN objects until function terminator 
- *   object eaten.
- * - The final RPN object possesses the final expression
- *     
  * These imply: 
  * - we need to distinguish between unary and binary '-'
- * - 
  */
 public interface ExpressionStream {
 
@@ -58,7 +43,7 @@ public interface ExpressionStream {
      *
      * @return the next expression. 
      */
-    public Expression getNextExpression();
+    public Expression getNextExpression() throws CTSyntaxException;
 
     /**
      * Get the next code block from the stream.
@@ -67,7 +52,7 @@ public interface ExpressionStream {
      *
      * @return the expressions in the block.
      */
-    public List<Expression> geNextBlock();// 
+    public List<Expression> geNextBlock() throws CTSyntaxException;
 
     /**
      * Get the next string from the stream.
@@ -76,5 +61,5 @@ public interface ExpressionStream {
      *
      * @return the next string in the stream. 
      */
-    public Expression getNextString(); 
+    public Expression getNextString() throws CTSyntaxException; 
 }
