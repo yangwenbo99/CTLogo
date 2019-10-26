@@ -58,8 +58,13 @@ Block of commands
 #(n)    #n        ; index operator
 ```
 
+#### Evaluation rules
+
 Evaluation is greedy
 
+#### Precedence
+
+The precedence of are well defined for binary operators, in a way similar to java. For unary operator, the one who is closest to the operand shall be evaluated first. 
 
 ### Names
 
