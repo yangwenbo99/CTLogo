@@ -61,7 +61,7 @@ public class OperatorManager {
 	public void registerUnaryOperator(
 			String token, Class<? extends AbstractUnaryOperator> cls) 
 					throws IllegalArgumentException {
-		if (binaryOperators.containsKey(token))
+		if (unaryOperators.containsKey(token))
 			throw new IllegalArgumentException(
 					"Registerring an operator twice not allowed.");
 		
@@ -88,6 +88,10 @@ public class OperatorManager {
 
     public boolean hasBinaryOperator(String token) {
         return binaryOperators.containsKey(token);
+    }
+
+    static {
+        ExpressionIntializer.registerAll();
     }
 
 }

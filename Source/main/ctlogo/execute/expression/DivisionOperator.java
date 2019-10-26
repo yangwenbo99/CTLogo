@@ -8,10 +8,6 @@ import ctlogo.exception.CTDataUndefinedException;
 
 public class DivisionOperator extends AbstractBinaryOperator {
 	
-	static {
-		OperatorManager.getInstance().registerBinaryOperator("/", DivisionOperator.class);
-	}
-
 	public DivisionOperator(Expression operand1, Expression operand2) {
 		super(operand1, operand2);
 	}

@@ -13,6 +13,12 @@ import ctlogo.execute.expression.*;
  */
 public class RPNExpressionManager {
 
+    private static final RPNExpressionManager thisInstance = new RPNExpressionManager();
+
+    public static RPNExpressionManager getInstance() {
+        return thisInstance;
+    }
+
     /**
      *
      *

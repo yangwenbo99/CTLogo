@@ -7,9 +7,6 @@ import ctlogo.exception.CTConversionNotSupportedException;
 import ctlogo.exception.CTDataUndefinedException;
 
 public class ModuloOperator extends AbstractBinaryOperator {
-	static {
-		OperatorManager.getInstance().registerBinaryOperator("%", DivisionOperator.class);
-	}
 
 	public ModuloOperator(Expression operand1, Expression operand2) {
 		super(operand1, operand2);

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ctlogo.execute.expression;
 
 import org.junit.jupiter.api.Assertions;
