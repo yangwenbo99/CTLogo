@@ -4,9 +4,12 @@
 package ctlogo.execute;
 
 import java.util.List;
+import java.util.Stack;
 
 import ctlogo.execute.expression.Expression;
 import ctlogo.exception.CTSyntaxException;
+import ctlogo.processing.TokenStream;
+import ctlogo.execute.rpn.*;
 
 /**
  * @author Paul Yang
@@ -22,7 +25,7 @@ import ctlogo.exception.CTSyntaxException;
  * - A block and list shall be (recursively) parsed, and represented as an RPN 
  *   object
  *   
- * The strategy of converting a string of token to Expression is as defined 
+ * The strategy of converting a stream of tokens to Expression is as defined 
  * in the {@link: ExpressionStream}.
  *
  * For each token: 
@@ -51,9 +54,22 @@ import ctlogo.exception.CTSyntaxException;
  */
 public class BasicExpressionStream implements ExpressionStream {
 
+    private TokenStream tokenStream;
+
+    public BasicExpressionStream(TokenStream ts) {
+        this.tokenStream = ts;
+    }
+
 	@Override
 	public Expression getNextExpression() throws CTSyntaxException {
-		// TODO Auto-generated method stub
+        int numExpectedExpression = 1;     // number of expressions to be processed
+        boolean isLastOperator = false;    // is the last token operator
+        Stack<RPNObject> workingStack = new Stack<>();
+
+        while (numExpectedExpression > 0) {
+            numExpectedExpression--;
+            // String token = 
+        }
 		return null;
 	}
 
