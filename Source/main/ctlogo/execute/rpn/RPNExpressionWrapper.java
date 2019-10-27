@@ -2,7 +2,7 @@ package ctlogo.execute.rpn;
 
 import ctlogo.execute.expression.Expression;
 
-class RPNExpressionWrapper implements RPNEvaluable {
+public class RPNExpressionWrapper implements RPNEvaluable {
 	
 	private Expression exp;
 

@@ -22,6 +22,7 @@ public class OperatorManager {
     private OperatorManager() {
         binaryOperators = new HashMap<>();
         unaryOperators = new HashMap<>();
+        binaryOperatorPrecedences = new HashMap<>();
     }
     
     /**
