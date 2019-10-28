@@ -1,6 +1,6 @@
 package ctlogo.exception;
 
-public class CTConversionNotSupportedException extends UnsupportedOperationException {
+public class CTConversionNotSupportedException extends CTRuntimeException {
 	/**
 	 * 
 	 */
