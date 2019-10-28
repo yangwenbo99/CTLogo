@@ -89,11 +89,14 @@ public class FunctionManager {
 	public Expression getFunctionExpression(
 			String name, 
 			List<Expression> params) throws CTSyntaxException {
-		if (functions.containsKey(name.toUpperCase()))
-			return functions.get(name).getFunctionExpression(params);
+		if (hasFunction(name))
+			return functions.get(name.toUpperCase()).getFunctionExpression(params);
 		else
 			throw new NoSuchElementException(String.format(
 					"Function %s not registered", name.toUpperCase()));
-
+	}
+	
+	static {
+		BuildInFunctionRegistrator.registerAll();
 	}
 }
