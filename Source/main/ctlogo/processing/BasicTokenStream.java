@@ -18,7 +18,7 @@ public class BasicTokenStream implements TokenStream {
     static private final String delimiters = 
         "[\\[\\](){}]";
     static private final String operators = "[+\\-\\*/%^'~#\\\\_<>=!]";
-    static private final String notOnLeft = "[<>!&|]";
+    static private final String notOnLeft = "[<>!&|:]";
     static private final String notOnRight = "[<>=&|]";
 
     static private final Pattern splitPattern = Pattern.compile(

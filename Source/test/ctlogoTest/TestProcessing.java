@@ -189,4 +189,38 @@ public class TestProcessing {
             Assertions.assertFalse(ts.hasNext());
         }
     }
+    
+    @Test
+    void testVariable() {
+        String testS = 
+        		"PR 1 + :abc :m\n";
+        String [] expected = new String [] {
+        		"PR", "1", "+", ":abc", ":m", "\n"
+        };
+
+        try (Scanner sc = new Scanner(testS)) {
+            TokenStream ts = new BasicTokenStream(sc);
+            Assertions.assertArrayEquals(
+                    expected, 
+                    ts.getNextLine().toArray(expected));
+            Assertions.assertFalse(ts.hasNext());
+        }
+    }
+
+    @Test
+    void testAssignment() {
+        String testS = 
+        		"s := 1 + :abc :m\n";
+        String [] expected = new String [] {
+        		"s", ":=", "1", "+", ":abc", ":m", "\n"
+        };
+
+        try (Scanner sc = new Scanner(testS)) {
+            TokenStream ts = new BasicTokenStream(sc);
+            Assertions.assertArrayEquals(
+                    expected, 
+                    ts.getNextLine().toArray(expected));
+            Assertions.assertFalse(ts.hasNext());
+        }
+    }
 }
