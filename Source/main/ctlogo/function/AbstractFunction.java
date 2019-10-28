@@ -6,6 +6,7 @@ package ctlogo.function;
 import java.util.List;
 
 import ctlogo.data.CTValue;
+import ctlogo.exception.CTException;
 import ctlogo.exception.CTSyntaxException;
 import ctlogo.execute.Context;
 import ctlogo.execute.expression.Expression;
@@ -21,8 +22,9 @@ public abstract class AbstractFunction implements Function {
 	 * 
 	 * @param ctx
 	 * @return the return value of the function
+	 * @throws CTException 
 	 */
-	abstract CTValue execute(Context ctx, List<Expression> params);
+	abstract CTValue execute(Context ctx, List<Expression> params) throws CTException;
 	
 	@Override
 	public Expression getFunctionExpression(List<Expression> params) 
