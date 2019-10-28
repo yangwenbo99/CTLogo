@@ -95,6 +95,30 @@ public class FunctionManager {
 			throw new NoSuchElementException(String.format(
 					"Function %s not registered", name.toUpperCase()));
 	}
+
+    public int getDefaultParameterNum(String name) {
+        if (hasFunction(name))
+            return functions.get(name.toUpperCase()).getDefaultParameterNum();
+        else
+            throw new NoSuchElementException(String.format(
+                    "Function %s not registered", name.toUpperCase()));
+    }
+
+    public int getMinParameterNum(String name) {
+        if (hasFunction(name))
+            return functions.get(name.toUpperCase()).getMinParameterNum();
+        else
+            throw new NoSuchElementException(String.format(
+                    "Function %s not registered", name.toUpperCase()));
+    }
+
+    public int getMaxParameterNum(String name) {
+        if (hasFunction(name))
+            return functions.get(name.toUpperCase()).getMaxParameterNum();
+        else
+            throw new NoSuchElementException(String.format(
+                    "Function %s not registered", name.toUpperCase()));
+    }
 	
 	static {
 		BuildInFunctionRegistrator.registerAll();

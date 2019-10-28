@@ -3,11 +3,15 @@
  */
 package ctlogo.execute;
 
+import java.util.List;
+
 import ctlogo.execute.util.*;
 import ctlogo.data.*;
+import ctlogo.exception.CTSyntaxException;
 import ctlogo.execute.rpn.*;
 import ctlogo.execute.expression.*;
 import ctlogo.execute.rpn.RPNExpressionManager;
+import ctlogo.function.FunctionManager;
 
 /**
  * @author Paul Yang
@@ -89,6 +93,20 @@ public class BasicExpressionHelper {
 
     static OperatorTokenMark constructLeftParenthesisMarker() {
         return OperatorTokenMark.forLeftParenthesis();
+    }
+
+    static boolean isFunction(String token) {
+        return FunctionManager.getInstace().hasFunction(token);
+    }
+
+    static int getDefaultParamNum(String token) {
+        return FunctionManager.getInstace().getDefaultParameterNum(token);
+    }
+
+    static Expression constructFunctionExpression(
+            String token, List<Expression> exps) throws CTSyntaxException {
+        return FunctionManager.getInstace().getFunctionExpression(
+                token, exps);
     }
 
 }

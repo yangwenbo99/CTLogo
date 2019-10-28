@@ -4,6 +4,7 @@
 package ctlogo.execute;
 
 import java.util.List;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Scanner;
@@ -11,11 +12,13 @@ import java.util.Scanner;
 import ctlogo.execute.expression.Expression;
 import ctlogo.exception.CTSyntaxException;
 import ctlogo.data.CTValue;
+import ctlogo.data.VariableManager;
 import ctlogo.exception.CTException;
 import ctlogo.exception.CTLogicException;
 import ctlogo.processing.TokenStream;
 import ctlogo.processing.BasicTokenStream;
 import ctlogo.execute.rpn.*;
+import ctlogo.graphic.Screen;
 
 /**
  * @author Paul Yang
@@ -66,9 +69,26 @@ public class BasicExpressionStream implements ExpressionStream {
         this.tokenStream = ts;
     }
 
+    private List<Expression> getNextNExpressions(int n) throws CTSyntaxException {
+        List<Expression> res = new ArrayList<>();
+        for (int i=0; i<n; i++) {
+            res.add(getNextExpression());
+        }
+        return res;
+    }
+
+    private List<RPNObject> wrap(Iterable<Expression> exps) {
+        List<RPNObject> res = new ArrayList<>();
+        for (Expression exp : exps) {
+            res.add(new RPNExpressionWrapper(exp));
+        }
+        return res;
+    }
+    
     @Override
     public Expression getNextExpression() throws CTSyntaxException {
         int numExpectedExpression = 1;     // number of expressions to be processed
+        int numOpenParenthesis = 0;
         boolean isLastOperator = true;    // is the last token just process operator?
         Stack<OperatorTokenMark> workingStack = new Stack<>();
         ArrayList<RPNObject> resList = new ArrayList<>();
@@ -78,8 +98,14 @@ public class BasicExpressionStream implements ExpressionStream {
             // System.out.printf("(%s) ", token.replace("\n", "-Space-"));
 
             if (numExpectedExpression == 0 && 
-                    BasicExpressionHelper.isLiteral(token)) {
+                    (BasicExpressionHelper.isLiteral(token) || 
+                     token.equals("(") || 
+                     token.equals("\n")
+                     )) {
+                // tailing "\n" shall be pushed back as a mark
+                // System.out.printf("(pushback)");
                 tokenStream.pushFront(token);
+                // System.out.printf("(PUSHBACK)");
                 break;
             }
 
@@ -112,9 +138,22 @@ public class BasicExpressionStream implements ExpressionStream {
                 }
                 workingStack.push(mark);
                 isLastOperator = true;
-            } else if (token.equals("(")) {
+            } else if (
+                    token.equals("(") && 
+                    !BasicExpressionHelper.isFunction(tokenStream.getNext())) {
                 workingStack.push(BasicExpressionHelper.constructLeftParenthesisMarker());
+                numOpenParenthesis++;
             } else if (token.equals(")")) {
+                if (numOpenParenthesis == 0) {
+                    tokenStream.pushFront(")");
+                    if (numExpectedExpression != 0) {
+                        throw new CTSyntaxException("Unexpected closing paranthesis");
+                    } else {
+                        break;
+                    }
+                }
+                numOpenParenthesis--;
+
                 while (!workingStack.isEmpty() && 
                         !workingStack.peek().isLeftParenthesis()) {
                     resList.add(workingStack.pop().getRpnOperable());
@@ -127,20 +166,42 @@ public class BasicExpressionStream implements ExpressionStream {
             } else if (false) {
                 // check for variable (not supported yet) 
                 // TODO: implement this part.
-            } else if (false) {
-                // check for function
-                // TODO: implement this part
+            } else if (
+                    token.equals("(") && 
+                    BasicExpressionHelper.isFunction(tokenStream.getNext())) {
+                String fname = tokenStream.popNext();
+                List<Expression> params = new ArrayList<>();
+                while (!tokenStream.getNext().equals(")")) {
+                    params.add(getNextExpression());
+                }
+                tokenStream.popNext();
+                Expression fexp = 
+                    BasicExpressionHelper.constructFunctionExpression(fname, params);
+                resList.add(new RPNExpressionWrapper(fexp));
+                numExpectedExpression--;
+                isLastOperator = false;
+            } else if (BasicExpressionHelper.isFunction(token)) {
+                List<Expression> params = getNextNExpressions(
+                        BasicExpressionHelper.getDefaultParamNum(token));
+                Expression fexp = 
+                    BasicExpressionHelper.constructFunctionExpression(token, params);
+                resList.add(new RPNExpressionWrapper(fexp));
+                numExpectedExpression--;
+                isLastOperator = false;
             } else if (false) {
                 // check for begin/end of list or block
             } else if (token.equals("\n")) {
-                numExpectedExpression = 0;
-                break;
+                // System.out.printf(" -Cont- ");
+                continue;
             }
+            // System.out.printf("<%d>", numExpectedExpression);
         }
+
         while (!workingStack.isEmpty()) {
             resList.add(workingStack.pop().getRpnOperable());
         }
 
+        // System.out.printf(" -Return- ");
         try {
             List<Expression> resExpression = RPNExpressionExecutor.getInstance().execute(resList);
             if (resExpression.size() != 1) {
@@ -168,12 +229,40 @@ public class BasicExpressionStream implements ExpressionStream {
     }
 
     public static void main(String [] args) {
+
+        /*
+         * Try the following input, they should not trigger any error. 
+         * 1 
+         * 1 1
+         * 1 + 2
+         * 1 + (2 * 3)
+         * 1 + (+2 * 3)
+         * (-2 * 5) + 2
+         * PR 1 + 2
+         * PR 32 + 34
+         * PR 32 + 34 6
+         * (PR 1 + 2 4) * 7
+         */
+
+        class StubContext extends AbstractContext {
+            public StubContext(
+                    Scanner scanner, 
+                    PrintStream outputStream, 
+                    Screen screen, 
+                    VariableManager variableManager) {
+                super(scanner, outputStream, screen, variableManager);
+            }
+        }
+
+        Context stubContext = new StubContext(
+                null, System.out, null, null);
+
         try (Scanner sc = new Scanner(System.in)) {
             TokenStream ts = new BasicTokenStream(sc);
             ExpressionStream es = new BasicExpressionStream(ts);
             while (true) {
                 System.out.print(">>> ");
-                CTValue res = es.getNextExpression().execute(null);
+                CTValue res = es.getNextExpression().execute(stubContext);
                 System.out.printf("Executed to: %s, type %s\n",
                         res.toString(), 
                         res.getClass().toString());

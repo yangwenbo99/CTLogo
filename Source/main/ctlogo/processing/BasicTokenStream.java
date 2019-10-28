@@ -64,7 +64,7 @@ public class BasicTokenStream implements TokenStream {
         
         parse(lineString.substring(currentLoc));
 
-        if (currentLine.getLast().equals("_")) {
+        if (currentLine.size() > 0 && currentLine.getLast().equals("_")) {
             currentLine.removeLast();
             currentColumns.removeLast();
             currentRow++;
@@ -86,11 +86,13 @@ public class BasicTokenStream implements TokenStream {
 	 */
     @Override
     public boolean pushFront(String s) {
+        /*
         if (currentLine.isEmpty()) {
             if (!hasNext())
                 return false;
             parseNextLine();
         }
+        */
         if (!currentColumns.offerFirst(-1))
             return false;
         if (!currentLine.offerFirst(s)) {
