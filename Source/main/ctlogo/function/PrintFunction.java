@@ -16,6 +16,13 @@ import ctlogo.execute.expression.Expression;
  *
  */
 public class PrintFunction extends AbstractFunction {
+	
+	private PrintFunction() { }
+	
+	private static PrintFunction theInstance = new PrintFunction();
+	public static PrintFunction getInstance() {
+		return theInstance;
+	}
 
 	@Override
 	public int getDefaultParameterNum() {
