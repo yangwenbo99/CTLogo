@@ -34,8 +34,7 @@ public interface Context {
 	 * @param vname name of variable
 	 * @return the value of the variable in the context
 	 * 
-	 * @throws NoSuchElementException (optional) if such variable is not 
-	 *         found in current context
+	 * @throws CTVariableNotDefinedException if the variable name is not defined.
 	 */
 	CTValue         getValueOf(String vname);
 }

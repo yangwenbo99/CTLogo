@@ -42,10 +42,14 @@ public abstract class AbstractContext implements Context {
 		return variableManager;
 	}
 
+	/**
+	 * 
+	 * @throws CTVariableNotDefinedException if the variable name is not defined.
+	 *
+	 */
 	@Override
 	public CTValue getValueOf(String vname) {
-		return null;
-		// return variableManager.
+		return variableManager.getVariable(vname).getValue();
 	}
 
 }

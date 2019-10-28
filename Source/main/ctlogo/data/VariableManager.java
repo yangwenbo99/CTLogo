@@ -1,5 +1,7 @@
 package ctlogo.data;
 
+import ctlogo.exception.CTVariableNotDefinedException;
+
 /**
  * Variable manager used in context
  * 
@@ -21,6 +23,7 @@ public interface VariableManager {
 
 	/**
 	 * @param name
+	 * @throws CTVariableNotDefinedException if the variable name is not defined.
 	 * @return the variable
 	 * 
 	 * If this {@code: VariableManager} has enclosed some other 
@@ -44,13 +47,13 @@ public interface VariableManager {
 	/**
 	 * @param name
 	 * @param variable
+	 * 
 	 * @return the variable be replaced. If there is no variable being 
 	 *         replace, then {@code: null} shall be returned. 
 	 * 
 	 * Remark: if a variable is to be hidden, then it is not considered as 
 	 * replaced. 
 	 * 
-	 * If 
 	 */
 	CTVariable setVariable(String name, CTVariable variable);
 }
