@@ -43,7 +43,7 @@ public class TestPrintFunction {
     private PrintStream ptStream;    
     private ByteArrayOutputStream baoStream;
     private Context stubContext;
-
+    
     TestPrintFunction() {
         baoStream = new ByteArrayOutputStream();
         ptStream  = new PrintStream(baoStream);
@@ -56,18 +56,22 @@ public class TestPrintFunction {
         return pfe.execute(stubContext);
     }
     
+    private static String getContent(ByteArrayOutputStream baos) {
+    	return baos.toString().replace("\r\n", "\n");
+    }
+    
     @Test
     void test1() throws CTException {
         Assertions.assertEquals(
                 cint(-1), executeTest(List.<Expression>of(w(cint(-1)))));
-        Assertions.assertEquals("-1\n", baoStream.toString());
+        Assertions.assertEquals("-1\n", getContent(baoStream));
     }
     
     @Test
     void test2() throws CTException {
         Assertions.assertEquals(
                 cstr("String"), executeTest(List.<Expression>of(w(cstr("String")))));
-        Assertions.assertEquals("String\n", baoStream.toString());
+        Assertions.assertEquals("String\n", getContent(baoStream));
     }
     
 }
