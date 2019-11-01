@@ -57,7 +57,7 @@ public class RPNExpressionExecutor {
                             rpnStack.pop();
                         }
                     } else {
-                        operands = new ArrayList();
+                        operands = new ArrayList<>();
                         while (!rpnStack.isEmpty()) {
                             RPNObject operand = rpnStack.pop();
                             if (!operand.isTerminator())
