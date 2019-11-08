@@ -1,10 +1,8 @@
 package ctlogo.turtle;
 
-import javax.naming.OperationNotSupportedException;
-
-import java.util.Stack;
-import java.util.Deque;
 import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.NoSuchElementException;
 
 public class Turtle {
 	private double orientation;

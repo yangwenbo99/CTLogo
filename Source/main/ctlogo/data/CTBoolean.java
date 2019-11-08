@@ -1,9 +1,5 @@
 package ctlogo.data;
 
-import ctlogo.exception.CTConversionNotSupportedException;
-import ctlogo.exception.CTDataUndefinedException;
-import ctlogo.exception.CTOperationUndefinedException;
-
 public class CTBoolean extends AbstractNumericalCTValue {
     public final static CTBoolean TRUE = new CTBoolean(true);
     public final static CTBoolean FALSE = new CTBoolean(false);
@@ -26,10 +22,6 @@ public class CTBoolean extends AbstractNumericalCTValue {
 
     public TypeMarker getTypeMarker() {
         return typeMarker;
-    }
-
-    private Boolean isValue() {
-        return value;
     }
 
     @Override

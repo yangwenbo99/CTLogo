@@ -1,8 +1,5 @@
 package ctlogo.data;
 
-import ctlogo.exception.CTConversionNotSupportedException;
-import ctlogo.exception.CTDataUndefinedException;
-
 public class CTString extends AbstractCTValue {
     private final static TypeMarker typeMarker = new TypeMarker("double");
 
@@ -18,10 +15,6 @@ public class CTString extends AbstractCTValue {
 
     public TypeMarker getTypeMarker() {
         return typeMarker;
-    }
-
-    private String getValue() {
-        return value;
     }
 
     @Override

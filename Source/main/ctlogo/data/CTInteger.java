@@ -1,8 +1,5 @@
 package ctlogo.data;
 
-import ctlogo.exception.CTConversionNotSupportedException;
-import ctlogo.exception.CTDataUndefinedException;
-
 public class CTInteger extends AbstractNumericalCTValue {
     private final static TypeMarker typeMarker = new TypeMarker("integer");
 

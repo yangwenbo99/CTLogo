@@ -1,6 +1,5 @@
 package ctlogo.data;
 
-import ctlogo.exception.CTDataUndefinedException;
 import ctlogo.exception.CTOperationUndefinedException;
 
 public class CTUndefined extends AbstractCTValue {

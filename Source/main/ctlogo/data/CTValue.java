@@ -1,8 +1,5 @@
 package ctlogo.data;
 
-import ctlogo.exception.CTConversionNotSupportedException;
-import ctlogo.exception.CTDataUndefinedException;
-
 public interface CTValue {
 	/**
 	 * Analogue to JS's '==' operator
