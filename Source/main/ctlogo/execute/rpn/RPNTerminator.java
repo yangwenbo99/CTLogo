@@ -7,7 +7,7 @@ package ctlogo.execute.rpn;
  * @author Paul Yang
  *
  */
-class RPNTerminator implements RPNObject {
+public class RPNTerminator implements RPNObject {
     private static RPNTerminator theInstance = new RPNTerminator();
 
     private RPNTerminator() { }

@@ -4,6 +4,7 @@
 package ctlogo.execute.rpn;
 
 import ctlogo.execute.expression.Expression;
+import ctlogo.processing.TokenStream;
 import ctlogo.exception.*;
 
 import java.util.Stack;
@@ -56,7 +57,7 @@ public class RPNExpressionExecutor {
                             rpnStack.pop();
                         }
                     } else {
-                        operands = new ArrayList();
+                        operands = new ArrayList<>();
                         while (!rpnStack.isEmpty()) {
                             RPNObject operand = rpnStack.pop();
                             if (!operand.isTerminator())
@@ -89,4 +90,6 @@ public class RPNExpressionExecutor {
            return resExp;
     }
 
+    public static void main(String [] args) {
+    }
 }

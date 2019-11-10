@@ -43,7 +43,7 @@ public class RPNExpressionManager {
      */
     public RPNOperable getUnaryOperator(String token) {
         Class<? extends Expression> operatorExpressionClass = 
-            OperatorManager.getInstance().getBinaryOperationExpression(token);
+            OperatorManager.getInstance().getUnaryOperationExpression(token);
         return new RPNUnaryOperation(operatorExpressionClass);
     }
 
