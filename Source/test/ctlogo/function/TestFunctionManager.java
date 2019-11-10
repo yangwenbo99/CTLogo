@@ -31,13 +31,12 @@ public class TestFunctionManager {
 		}
 		
 		Function testF = new StubFunction();
-		FunctionManager fm = new FunctionManager();
-		Assertions.assertEquals(false, fm.hasFunction("testF"));
-		fm.add("testF", testF);
-		Assertions.assertEquals(true, fm.hasFunction("testF"));
-		Assertions.assertEquals(testF, fm.getFunction("testF"));
-		fm.delete("testF");
-		Assertions.assertEquals(false, fm.hasFunction("testF"));
+		Assertions.assertEquals(false, FunctionManager.hasFunction("testF"));
+		FunctionManager.add("testF", testF);
+		Assertions.assertEquals(true, FunctionManager.hasFunction("testF"));
+		Assertions.assertEquals(testF, FunctionManager.getFunction("testF"));
+		FunctionManager.delete("testF");
+		Assertions.assertEquals(false, FunctionManager.hasFunction("testF"));
 	}
 
 }
