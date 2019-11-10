@@ -2,7 +2,6 @@ package ctlogo.graphic;
 
 public interface Screen {
 
-<<<<<<< HEAD
 	/**
 	 * @param x1
 	 * @param y1
@@ -41,6 +40,4 @@ public interface Screen {
 	 * @param h
 	 */
 	public void setHeight(double h);
-=======
->>>>>>> dev_general
 }
