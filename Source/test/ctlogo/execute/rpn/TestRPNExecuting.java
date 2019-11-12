@@ -22,9 +22,13 @@ import ctlogo.execute.expression.PlusOperator;
 
 public class TestRPNExecuting {
     private final static RPNOperable PLUS = new RPNBinaryOperation(PlusOperator.class);
+    @SuppressWarnings("unused")
     private final static RPNOperable MINU = new RPNBinaryOperation(MinusOperator.class);
+    @SuppressWarnings("unused")
     private final static RPNOperable MILT = new RPNBinaryOperation(MultiplyOperator.class);
+    @SuppressWarnings("unused")
     private final static RPNOperable DIVS = new RPNBinaryOperation(DivisionOperator.class);
+    @SuppressWarnings("unused")
     private final static RPNOperable MODS = new RPNBinaryOperation(ModuloOperator.class);
 
     private List<CTValue> exec(List<RPNObject> list) throws CTException {

@@ -73,6 +73,7 @@ public class BasicExpressionStream implements ExpressionStream {
 		return res;
 	}
 
+	@SuppressWarnings("unused")
 	private List<RPNObject> wrap(Iterable<Expression> exps) {
 		List<RPNObject> res = new ArrayList<>();
 		for (Expression exp : exps) {
