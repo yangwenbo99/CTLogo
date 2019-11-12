@@ -22,7 +22,7 @@ public class CTUndefined extends AbstractCTValue {
 
     @Override
     public int compareTo(CTValue another) {
-        throw new CTOperationUndefinedException("Do not try to compare undeined in Java");
+        throw new CTOperationUndefinedException("Do not try to compare undefined in Java");
     }
 
     @Override
