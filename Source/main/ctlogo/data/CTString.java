@@ -1,5 +1,8 @@
 package ctlogo.data;
 
+import ctlogo.execute.util.DoubleParser;
+import ctlogo.execute.util.LongParser;
+
 public class CTString extends AbstractCTValue {
     private final static TypeMarker typeMarker = new TypeMarker("double");
 
@@ -30,12 +33,13 @@ public class CTString extends AbstractCTValue {
     }
 
     private CTValue convertToNum() {
-        if (this.isConvertibleTo(CTInteger.getTypeMarkerStatic()))
-            return this.convertTo(CTInteger.getTypeMarkerStatic());
-        else if (this.isConvertibleTo(CTDouble.getTypeMarkerStatic()))
-            return this.convertTo(CTDouble.getTypeMarkerStatic());
-        else
+        if (LongParser.isParseable(this.value)) {
+            return new CTInteger(LongParser.parseLong(this.value));
+        } else if (DoubleParser.isParseable(this.value)) {
+            return new CTDouble(DoubleParser.ParseDouble(this.value));
+        } else {
             return CTDouble.NaN;
+        }
     }
 
     @Override
@@ -70,7 +74,7 @@ public class CTString extends AbstractCTValue {
 
     @Override
     public CTValue mod(CTValue another) {
-        return new CTUndefined();
+        return this.convertToNum().mod(another);
     }
 
     @Override
@@ -109,14 +113,14 @@ public class CTString extends AbstractCTValue {
     }
 
     @Override
-    public CTInteger compareTo(CTValue another) {
+    public int compareTo(CTValue another) {
         if (another instanceof CTString)
-            return new CTInteger(this.toString().compareTo(another.toString()));
+            return this.toString().compareTo(another.toString());
 
         if (this.isConvertibleTo(another.getTypeMarker())) {
             return this.convertTo(another.getTypeMarker()).compareTo(another);
         } else {
-            return new CTInteger(this.toString().compareTo(another.toString()));
+            return this.toString().compareTo(another.toString());
         }
     }
 

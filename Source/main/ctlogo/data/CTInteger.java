@@ -96,7 +96,10 @@ public class CTInteger extends AbstractNumericalCTValue {
 
     @Override
     public CTValue pow(CTValue another) {
-        if (another.isConvertibleTo(CTDouble.getTypeMarkerStatic())) {
+        if (another instanceof CTInteger) {
+            CTInteger otherInt = (CTInteger) another;
+            return new CTInteger((long) Math.pow(this.value, otherInt.value));
+        } else if (another.isConvertibleTo(CTDouble.getTypeMarkerStatic())) {
             return this.convertTo(CTDouble.getTypeMarkerStatic()).pow(another);
         } else {
             return CTUndefined.UNDEFINED;
@@ -106,7 +109,7 @@ public class CTInteger extends AbstractNumericalCTValue {
     @Override
     public CTValue shiftLeft(CTValue another) {
         if (another.isConvertibleTo(this.getTypeMarker())) {
-            CTInteger otherVal = (CTInteger) this.convertTo(this.getTypeMarker());
+            CTInteger otherVal = (CTInteger) another.convertTo(this.getTypeMarker());
             return new CTInteger(this.value << otherVal.value);
         } else {
             return CTUndefined.UNDEFINED;
@@ -116,7 +119,7 @@ public class CTInteger extends AbstractNumericalCTValue {
     @Override
     public CTValue shiftRight(CTValue another) {
         if (another.isConvertibleTo(this.getTypeMarker())) {
-            CTInteger otherVal = (CTInteger) this.convertTo(this.getTypeMarker());
+            CTInteger otherVal = (CTInteger) another.convertTo(this.getTypeMarker());
             return new CTInteger(this.value >>> otherVal.value);
         } else {
             return CTUndefined.UNDEFINED;
@@ -126,7 +129,7 @@ public class CTInteger extends AbstractNumericalCTValue {
     @Override
     public CTValue shiftRightArithmetic(CTValue another) {
         if (another.isConvertibleTo(this.getTypeMarker())) {
-            CTInteger otherVal = (CTInteger) this.convertTo(this.getTypeMarker());
+            CTInteger otherVal = (CTInteger) another.convertTo(this.getTypeMarker());
             return new CTInteger(this.value >> otherVal.value);
         } else {
             return CTUndefined.UNDEFINED;

@@ -74,4 +74,28 @@ public class CTBoolean extends AbstractNumericalCTValue {
     Number getNumericalValue() {
         return value ? 1 : 0;
     }
+
+    @Override 
+    public CTValue and(CTValue other) {
+        if (this.value)
+            return other;
+        else
+            return this;
+    }
+
+    @Override 
+    public CTValue or(CTValue other) {
+        if (this.value)
+            return this;
+        else
+            return other;
+    }
+
+    @Override 
+    public CTValue not() {
+        if (this.value)
+            return FALSE;
+        else
+            return TRUE;
+    }
 }
