@@ -1,12 +1,12 @@
 package ctlogo.processing;
 
-import java.util.List;
-import java.util.Deque;
 import java.util.ArrayDeque;
-import java.util.Scanner;
-import java.util.Collections;
 import java.util.ArrayList;
-import java.util.regex.*;
+import java.util.Deque;
+import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BasicTokenStream implements TokenStream {
 

@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author Paul Yang, Dennis Wang, James Wang
+ * @author Dennis Wang
  *
  */
 package ctlogo.graphic;

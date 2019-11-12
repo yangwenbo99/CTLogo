@@ -1,15 +1,10 @@
 package ctlogo.execute.expression;
 
-import org.junit.jupiter.api.*;
-
-import ctlogo.data.*;
-import ctlogo.exception.CTException;
-
-import static ctlogo.data.TestDataUtility.*;
-
 import java.util.NoSuchElementException;
 
-import ctlogo.execute.DummpExpression;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 public class TestOperatorManager {
     private static final OperatorManager mgr = OperatorManager.getInstance();

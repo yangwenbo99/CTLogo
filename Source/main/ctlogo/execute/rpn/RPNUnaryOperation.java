@@ -3,8 +3,6 @@
  */
 package ctlogo.execute.rpn;
 
-import java.util.List;
-
 import ctlogo.execute.expression.Expression;
 
 /**

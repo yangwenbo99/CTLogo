@@ -1,16 +1,23 @@
 package ctlogo.execute.rpn;
 
-import java.util.List;
+import static ctlogo.data.TestDataUtility.cint;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import ctlogo.data.CTValue;
 import ctlogo.exception.CTException;
 import ctlogo.exception.CTLogicException;
-import ctlogo.execute.expression.*;
-import ctlogo.data.*;
-import static ctlogo.data.TestDataUtility.*;
+import ctlogo.execute.expression.DivisionOperator;
+import ctlogo.execute.expression.Expression;
+import ctlogo.execute.expression.LiteralExpression;
+import ctlogo.execute.expression.MinusOperator;
+import ctlogo.execute.expression.ModuloOperator;
+import ctlogo.execute.expression.MultiplyOperator;
+import ctlogo.execute.expression.PlusOperator;
 
 
 public class TestRPNExecuting {
