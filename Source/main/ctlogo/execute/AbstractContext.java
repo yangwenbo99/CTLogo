@@ -49,7 +49,7 @@ public abstract class AbstractContext implements Context {
 	 */
 	@Override
 	public CTValue getValueOf(String vname) {
-		return variableManager.getVariable(vname).getValue();
+		return variableManager.getValue(vname);
 	}
 
 }

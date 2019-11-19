@@ -7,6 +7,9 @@ import ctlogo.exception.CTVariableNotDefinedException;
  * 
  * @author Paul Yang
  *
+ * A VariableManager is defined for each context at runtime, meaning that
+ * whenever a context is created, a new VariableManager is created. 
+ *
  */
 public interface VariableManager {
 	/**
@@ -30,19 +33,18 @@ public interface VariableManager {
 	 * VariableManager, this method shall return the local variable if 
 	 * found, otherwise, return the variable from higher level.
 	 */
-	CTVariable getVariable(String name);
+	CTValue getValue(String name);
 
 	/**
-	 * Create a variable whose value is undefined. 
-	 * 
 	 * @param name
-	 * @return the original 
+	 * @return the variable is it is already defined, {@code: null} 
+     *         otherwise.
 	 * 
-	 * This shall be equivalent to 
-	 * {@code: setVariable(name, new CTVariable())}.
+	 * If this {@code: VariableManager} has enclosed some other 
+	 * VariableManager, this method shall return the local variable if 
+	 * found, otherwise, return the variable from higher level.
 	 */
-
-	CTVariable createVariable(String name);
+	CTValue tryGetValue(String name);
 
 	/**
 	 * @param name
@@ -50,10 +52,12 @@ public interface VariableManager {
 	 * 
 	 * @return the variable be replaced. If there is no variable being 
 	 *         replace, then {@code: null} shall be returned. 
+     * @throws IllegalArgumentException if trying to set the variable to null (
+     *                                  (in Java)
 	 * 
 	 * Remark: if a variable is to be hidden, then it is not considered as 
 	 * replaced. 
 	 * 
 	 */
-	CTVariable setVariable(String name, CTVariable variable);
+	CTValue setVariable(String name, CTValue value);
 }

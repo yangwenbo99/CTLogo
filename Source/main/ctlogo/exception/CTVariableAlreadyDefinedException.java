@@ -9,27 +9,27 @@ package ctlogo.exception;
  * @author Paul Yang
  *
  */
-public class CTVariableNotDefinedException extends CTRuntimeException {
+public class CTVariableAlreadyDefinedException extends CTRuntimeException {
 
 	private static final long serialVersionUID = 2270036389981757278L;
 
 	/**
 	 * 
 	 */
-	public CTVariableNotDefinedException() {
+	public CTVariableAlreadyDefinedException() {
 	}
 
 	/**
 	 * @param message
 	 */
-	public CTVariableNotDefinedException(String message) {
+	public CTVariableAlreadyDefinedException(String message) {
 		super(message);
 	}
 
 	/**
 	 * @param cause
 	 */
-	public CTVariableNotDefinedException(Throwable cause) {
+	public CTVariableAlreadyDefinedException(Throwable cause) {
 		super(cause);
 	}
 
@@ -37,7 +37,7 @@ public class CTVariableNotDefinedException extends CTRuntimeException {
 	 * @param message
 	 * @param cause
 	 */
-	public CTVariableNotDefinedException(String message, Throwable cause) {
+	public CTVariableAlreadyDefinedException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
@@ -47,7 +47,7 @@ public class CTVariableNotDefinedException extends CTRuntimeException {
 	 * @param enableSuppression
 	 * @param writableStackTrace
 	 */
-	public CTVariableNotDefinedException(String message, Throwable cause, boolean enableSuppression,
+	public CTVariableAlreadyDefinedException(String message, Throwable cause, boolean enableSuppression,
 			boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 	}
