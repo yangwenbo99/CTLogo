@@ -74,7 +74,7 @@ Other paint
 
 
 
-Math and lovgical
+Math and logical
 	ABS	Outputs the absolute value of its input
 	AND	Performs a logical AND on its inputs
 	ARCTAN	Outputs the arc tangent of its input
@@ -447,6 +447,7 @@ IO
 	PRINT	Prints its inputs
 
 Variable
+	LOCAL   Set further reference to variable to local 
 	MAKE	Assigns a value to a name
 		SET
 	NAME	Assigns a value to a name
