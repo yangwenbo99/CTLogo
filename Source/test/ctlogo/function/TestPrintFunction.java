@@ -11,12 +11,14 @@ import org.junit.jupiter.api.*;
 import ctlogo.data.CTInteger;
 import ctlogo.data.CTUndefined;
 import ctlogo.data.CTValue;
+import ctlogo.data.GlobalVariableManager;
 import ctlogo.data.VariableManager;
 import ctlogo.exception.CTException;
 import ctlogo.exception.CTSyntaxException;
 import ctlogo.execute.AbstractContext;
 import ctlogo.execute.Context;
 import ctlogo.execute.DummpExpression;
+import ctlogo.execute.StubScreen;
 import ctlogo.execute.expression.Expression;
 import ctlogo.execute.expression.LiteralExpression;
 import ctlogo.graphic.Screen;
@@ -26,6 +28,11 @@ import static ctlogo.data.TestDataUtility.*;
 
 public class TestPrintFunction {
     
+	private final Scanner sc = new Scanner("Test scanner");
+	private final PrintStream os = System.out;
+	private final VariableManager vm = new GlobalVariableManager();
+	private final Screen sn = StubScreen.theInstance;
+	
     class StubContext extends AbstractContext {
         public StubContext(
                 Scanner scanner, 
@@ -47,7 +54,7 @@ public class TestPrintFunction {
     TestPrintFunction() {
         baoStream = new ByteArrayOutputStream();
         ptStream  = new PrintStream(baoStream);
-        stubContext = new StubContext(null, ptStream, null, null);
+        stubContext = new StubContext(sc, ptStream, sn, vm);
     }
 
     CTValue executeTest(List<Expression> input) throws CTException {
