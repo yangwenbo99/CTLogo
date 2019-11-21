@@ -5,13 +5,17 @@ import ctlogo.exception.CTException;
 import ctlogo.execute.Context;
 
 public class VariableExpression implements Expression {
+	
+	String vname;
 
-	private CTValue value;
+	public VariableExpression(String vname) {
+		super();
+		this.vname = vname;
+	}
 
 	@Override
 	public CTValue execute(Context context) throws CTException {
-		// TODO Auto-generated method stub
-		return value;
+		return context.getValueOf(vname);
 	}
 
 }
