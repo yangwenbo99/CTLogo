@@ -60,4 +60,19 @@ public interface VariableManager {
 	 * 
 	 */
 	CTValue setVariable(String name, CTValue value);
+
+	/**
+	 * @param name
+	 * @param variable
+	 * 
+	 * @return the variable be replaced. If there is no variable being 
+	 *         replace, then {@code: null} shall be returned. 
+     * @throws IllegalArgumentException if trying to set the variable to null (
+     *                                  (in Java)
+	 * 
+	 * Remark: if a variable is to be hidden, then it is not considered as 
+	 * replaced. 
+	 * 
+	 */
+	CTValue setLocalVariable(String name, CTValue value);
 }

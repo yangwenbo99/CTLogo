@@ -6,7 +6,7 @@ package ctlogo.data;
 import ctlogo.exception.CTVariableNotDefinedException;
 
 /**
- * @author Paul
+ * @author Paul Yang
  *
  */
 public class GlobalVariableManager extends AbstractVariableManager implements VariableManager {
@@ -33,12 +33,7 @@ public class GlobalVariableManager extends AbstractVariableManager implements Va
 
     @Override
     public CTValue setVariable(String name, CTValue value) {
-        if (isDefinedLocally(name)) {
-            return setLocalValue(name, value);
-        } else {
-            createLocalVariable(name, value);
-            return null;
-        }
+    	return setLocalVariable(name, value);
     }
 
 }

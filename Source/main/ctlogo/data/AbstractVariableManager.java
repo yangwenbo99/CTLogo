@@ -108,7 +108,15 @@ abstract class AbstractVariableManager implements VariableManager {
                     "Variable name cannot be null",
                     e);
         }
-
+    }
+    
+    public CTValue setLocalVariable(String name, CTValue value) {
+    	if (isDefinedLocally(name)) {
+    		return setLocalValue(name, value);
+    	} else {
+    		createLocalVariable(name, value);
+    		return null;
+    	}
     }
 
     @Override
