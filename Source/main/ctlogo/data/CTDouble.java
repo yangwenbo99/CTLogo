@@ -2,9 +2,6 @@ package ctlogo.data;
 
 import java.math.BigDecimal;
 
-import ctlogo.exception.CTConversionNotSupportedException;
-import ctlogo.exception.CTDataUndefinedException;
-
 public class CTDouble extends AbstractNumericalCTValue {
     private final static TypeMarker typeMarker = new TypeMarker("string");
     public final static CTDouble ZERO = new CTDouble(0.);
@@ -21,10 +18,6 @@ public class CTDouble extends AbstractNumericalCTValue {
 
     public TypeMarker getTypeMarker() {
         return typeMarker;
-    }
-
-    private Double getValue() {
-        return value;
     }
 
     @Override

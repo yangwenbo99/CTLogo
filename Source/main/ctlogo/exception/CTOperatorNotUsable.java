@@ -9,6 +9,8 @@ package ctlogo.exception;
  */
 public class CTOperatorNotUsable extends CTCodeNotEvaluableException {
 
+	private static final long serialVersionUID = -8935296985622778191L;
+
 	/**
 	 * @param message
 	 */

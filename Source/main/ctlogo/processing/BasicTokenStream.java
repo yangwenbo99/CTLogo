@@ -1,12 +1,12 @@
 package ctlogo.processing;
 
-import java.util.List;
-import java.util.Deque;
 import java.util.ArrayDeque;
-import java.util.Scanner;
-import java.util.Collections;
 import java.util.ArrayList;
-import java.util.regex.*;
+import java.util.Deque;
+import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BasicTokenStream implements TokenStream {
 
@@ -18,7 +18,7 @@ public class BasicTokenStream implements TokenStream {
     static private final String delimiters = 
         "[\\[\\](){}]";
     static private final String operators = "[+\\-\\*/%^'~#\\\\_<>=!]";
-    static private final String notOnLeft = "[<>!&|]";
+    static private final String notOnLeft = "[<>!&|:]";
     static private final String notOnRight = "[<>=&|]";
 
     static private final Pattern splitPattern = Pattern.compile(
@@ -64,7 +64,7 @@ public class BasicTokenStream implements TokenStream {
         
         parse(lineString.substring(currentLoc));
 
-        if (currentLine.getLast().equals("_")) {
+        if (currentLine.size() > 0 && currentLine.getLast().equals("_")) {
             currentLine.removeLast();
             currentColumns.removeLast();
             currentRow++;
@@ -86,11 +86,13 @@ public class BasicTokenStream implements TokenStream {
 	 */
     @Override
     public boolean pushFront(String s) {
+        /*
         if (currentLine.isEmpty()) {
             if (!hasNext())
                 return false;
             parseNextLine();
         }
+        */
         if (!currentColumns.offerFirst(-1))
             return false;
         if (!currentLine.offerFirst(s)) {

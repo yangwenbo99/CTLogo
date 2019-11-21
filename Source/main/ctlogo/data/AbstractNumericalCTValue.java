@@ -38,18 +38,18 @@ abstract public class AbstractNumericalCTValue extends AbstractCTValue {
     }
 
     @Override
-    public CTInteger compareTo(CTValue another) {
+    public int compareTo(CTValue another) {
         if (another instanceof AbstractNumericalCTValue) {
             AbstractNumericalCTValue otherVal = (AbstractNumericalCTValue) another;
             double res = 
                 this.getNumericalValue().doubleValue() -
                 otherVal.getNumericalValue().doubleValue();
             if (res > 0)
-                return new CTInteger(1);
+                return 1;
             else if (res < 0)
-                return new CTInteger(-1);
+                return -1;
             else
-                return new CTInteger(0);
+                return 0;
         } else {
             throw new CTOperationUndefinedException("Not comparable");
         }
