@@ -137,7 +137,7 @@ public class CTInteger extends AbstractNumericalCTValue {
     }
 
     @Override
-    Number getNumericalValue() {
+	public Number getNumericalValue() {
         return this.value;
     }
 }

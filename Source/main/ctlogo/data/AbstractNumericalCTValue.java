@@ -22,7 +22,7 @@ abstract public class AbstractNumericalCTValue extends AbstractCTValue {
      *
      * @return numerical representation of the object. 
      */
-    abstract Number getNumericalValue();
+    abstract public Number getNumericalValue();
 
     @Override
     public CTBoolean equals(CTValue other) {

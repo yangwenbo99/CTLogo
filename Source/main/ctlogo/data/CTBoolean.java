@@ -71,7 +71,7 @@ public class CTBoolean extends AbstractNumericalCTValue {
     }
 
     @Override
-    Number getNumericalValue() {
+	public Number getNumericalValue() {
         return value ? 1 : 0;
     }
 

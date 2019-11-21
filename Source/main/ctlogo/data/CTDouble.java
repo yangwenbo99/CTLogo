@@ -99,7 +99,7 @@ public class CTDouble extends AbstractNumericalCTValue {
     }
 
     @Override
-    Number getNumericalValue() {
+	public Number getNumericalValue() {
         return this.value;
     }
 }
