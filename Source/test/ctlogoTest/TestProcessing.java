@@ -104,9 +104,9 @@ public class TestProcessing {
     @Test 
     void testStringTrivial1 () {
         String testS = 
-        		"PR \"AAA\" + \"BBB\"";
+        		"PR \'AAA\' + \'BBB\'";
         String [] expected = new String [] {
-        		"PR", "\"AAA\"", "+", "\"BBB\"", "\n"
+        		"PR", "\'AAA\'", "+", "\'BBB\'", "\n"
         };
 
         try (Scanner sc = new Scanner(testS)) {
@@ -120,10 +120,10 @@ public class TestProcessing {
     @Test 
     void testStringTrivial2 () {
         String testS = 
-        		"PR \"this is a string\" FD 1 PR \"this is a string\"";
+        		"PR \'this is a string\' FD 1 PR \'this is a string\'";
         String [] expected = new String [] {
-        		"PR", "\"this is a string\"", "FD", "1",
-        		"PR", "\"this is a string\"", "\n"
+        		"PR", "\'this is a string\'", "FD", "1",
+        		"PR", "\'this is a string\'", "\n"
         };
 
         try ( Scanner sc = new Scanner(testS))  {
@@ -138,11 +138,11 @@ public class TestProcessing {
     @Test 
     void testMultiLines () {
         String testS = 
-        		"PR \"this is a string\" _\n FD 1 PR \"this is a string\"\n" + 
+        		"PR \'this is a string\' _\n FD 1 PR \'this is a string\'\n" + 
                 "ABSC";
         String [] expected = new String [] {
-        		"PR", "\"this is a string\"", "FD", "1",
-        		"PR", "\"this is a string\"", "\n", "ABSC", "\n"
+        		"PR", "\'this is a string\'", "FD", "1",
+        		"PR", "\'this is a string\'", "\n", "ABSC", "\n"
         };
 
         try ( Scanner sc = new Scanner(testS)) {
@@ -158,9 +158,9 @@ public class TestProcessing {
     @Test 
     void testPushFront () {
         String testS = 
-        		"PR \"this is a string\"";
+        		"PR \'this is a string\'";
         String [] expected = new String [] {
-        		"AAAA", "PR", "\"this is a string\"", "\n"
+        		"AAAA", "PR", "\'this is a string\'", "\n"
         };
 
         try ( Scanner sc = new Scanner(testS)) {
@@ -176,9 +176,9 @@ public class TestProcessing {
     @Test 
     void testWholeLine () {
         String testS = 
-        		"PR \"AAA\" + \"BBB\"";
+        		"PR \'AAA\' + \'BBB\'";
         String [] expected = new String [] {
-        		"PR", "\"AAA\"", "+", "\"BBB\"", "\n"
+        		"PR", "\'AAA\'", "+", "\'BBB\'", "\n"
         };
 
         try (Scanner sc = new Scanner(testS)) {
