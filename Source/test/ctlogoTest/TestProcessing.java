@@ -1,5 +1,6 @@
 package ctlogoTest;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.Assertions;
@@ -11,15 +12,14 @@ import ctlogo.processing.TokenStream;
 public class TestProcessing {
 
     @Test
-    void testTrival1 () {
+	void testTrival1() throws IOException {
         String testS = 
             "REPEAT 100 [ FD 10 RT 10 ]\n";
         String [] expected = new String [] {
             "REPEAT", "100", "[", "FD", "10", "RT", "10", "]", "\n"
         };
 
-        try (Scanner sc = new Scanner(testS)) {
-            TokenStream ts = new BasicTokenStream(sc);
+        try (BasicTokenStream ts = new BasicTokenStream(new Scanner(testS))) {
             for (String s : expected) {
                 Assertions.assertEquals(s, ts.getNext());
                 Assertions.assertEquals(s, ts.popNext());

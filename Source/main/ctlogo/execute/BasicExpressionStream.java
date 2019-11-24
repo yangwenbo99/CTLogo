@@ -84,6 +84,12 @@ public class BasicExpressionStream implements ExpressionStream {
 		return res;
 	}
 
+	/**
+	 * @return The next exception
+	 *
+	 * @throws CTSyntaxException
+	 * @throws NoSuchElementException if no such exp
+	 */
 	@Override
 	public Expression getNextExpression() throws CTSyntaxException {
 		int numExpectedExpression = 1; // number of expressions to be processed
@@ -220,83 +226,6 @@ public class BasicExpressionStream implements ExpressionStream {
 	public Expression getNextString() throws CTSyntaxException {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	public static void main(String[] args) {
-
-		/*
-		 * Try the following input, they should not trigger any error. 1 1 1 1 + 2 1 +
-		 * (2 * 3) 1 + (+2 * 3) (-2 * 5) + 2 PR 1 + 2 PR 32 + 34 PR 32 + 34 6 (PR 1 + 2
-		 * 4) * 7
-		 */
-
-		class StubContext extends AbstractContext {
-			public StubContext(Scanner scanner, PrintStream outputStream, Screen screen,
-					VariableManager variableManager) {
-				super(scanner, outputStream, screen, variableManager);
-			}
-		}
-		
-		class StubScreen implements Screen {
-
-			@Override
-			public void drawLine(double x1, double y1, double x2, double y2) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void drawRectangle(double x1, double y1, double x2, double y2) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void drawEclipse(double cx, double cy, double a, double b) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void clean() {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void setWidth(double w) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void setHeight(double h) {
-				// TODO Auto-generated method stub
-				
-			}
-		}
-
-		Context stubContext = new StubContext(
-				new Scanner("Test scanner"), 
-				System.out, 
-				new StubScreen(), 
-				new GlobalVariableManager());
-
-		try (Scanner sc = new Scanner(System.in)) {
-			TokenStream ts = new BasicTokenStream(sc);
-			ExpressionStream es = new BasicExpressionStream(ts);
-			while (true) {
-				System.out.print(">>> ");
-				CTValue res = es.getNextExpression().execute(stubContext);
-				System.out.printf("Executed to: %s, type %s\n", res.toString(), res.getClass().toString());
-			}
-		} catch (CTSyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CTException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 }
