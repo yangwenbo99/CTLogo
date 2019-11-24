@@ -10,8 +10,10 @@ import java.util.Stack;
 import java.util.Scanner;
 
 import ctlogo.execute.expression.Expression;
+import ctlogo.execute.expression.VariableExpression;
 import ctlogo.exception.CTSyntaxException;
 import ctlogo.data.CTValue;
+import ctlogo.data.GlobalVariableManager;
 import ctlogo.data.VariableManager;
 import ctlogo.exception.CTException;
 import ctlogo.exception.CTLogicException;
@@ -148,9 +150,12 @@ public class BasicExpressionStream implements ExpressionStream {
 				} else {
 					throw new RuntimeException("Error when analysing parenthesis (bug perhaps).");
 				}
-			} else if (false) {
-				// check for variable (not supported yet)
-				// TODO: implement this part.
+			} else if (token.length() > 0 && token.charAt(0) == ':') {
+				// check for variable 
+				resList.add(new RPNExpressionWrapper(new VariableExpression(
+						token.substring(1))));
+				isLastOperator = false;
+				numExpectedExpression--;
 			} else if (token.equals("(") && BasicExpressionHelper.isFunction(tokenStream.getNext())) {
 				String fname = tokenStream.popNext();
 				List<Expression> params = new ArrayList<>();
@@ -226,7 +231,11 @@ public class BasicExpressionStream implements ExpressionStream {
 			}
 		}
 
-		Context stubContext = new StubContext(null, System.out, null, null);
+		Context stubContext = new StubContext(
+				null, 
+				System.out, 
+				null, 
+				new GlobalVariableManager());
 
 		try (Scanner sc = new Scanner(System.in)) {
 			TokenStream ts = new BasicTokenStream(sc);
