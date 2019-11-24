@@ -32,7 +32,6 @@ public class MakeFunction extends AbstractFunction {
 	CTValue execute(Context ctx, List<Expression> params) throws CTException {
 		CTValue value = params.get(1).execute(ctx);
 		CTValue name = params.get(0).execute(ctx);
-		System.out.println(value);
 		ctx.getVariableManager().setVariable(
 				name.toString(),
 				value);
