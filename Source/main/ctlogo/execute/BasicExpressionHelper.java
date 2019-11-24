@@ -107,6 +107,10 @@ public class BasicExpressionHelper {
         return FunctionManager.getInstace().hasFunction(token);
     }
 
+	static boolean isLikeVariable(String token) {
+		return token.length() > 1 && token.charAt(0) == ':';
+	}
+
     static int getDefaultParamNum(String token) {
         return FunctionManager.getInstace().getDefaultParameterNum(token);
     }

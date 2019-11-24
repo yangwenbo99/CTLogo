@@ -91,13 +91,19 @@ public class BasicExpressionStream implements ExpressionStream {
 		boolean isLastOperator = true; // is the last token just process operator?
 		Stack<OperatorTokenMark> workingStack = new Stack<>();
 		ArrayList<RPNObject> resList = new ArrayList<>();
+		// System.out.printf("\nCalled once ");
 
 		while (numExpectedExpression >= 0) {
 			String token = tokenStream.popNext();
-			// System.out.printf("(%s) ", token.replace("\n", "-Space-"));
+			// System.out.printf("(%s - ", token.replace("\n", "-Space-"));
+			// System.out.printf("%d %d) ", numExpectedExpression, numOpenParenthesis);
 
 			if (numExpectedExpression == 0
-					&& (BasicExpressionHelper.isLiteral(token) || token.equals("(") || token.equals("\n"))) {
+					&& (
+						BasicExpressionHelper.isLiteral(token) || 
+						BasicExpressionHelper.isLikeVariable(token) || 
+						token.equals("(") || 
+						token.equals("\n"))) {
 				// tailing "\n" shall be pushed back as a mark
 				// System.out.printf("(pushback)");
 				tokenStream.pushFront(token);
@@ -150,7 +156,7 @@ public class BasicExpressionStream implements ExpressionStream {
 				} else {
 					throw new RuntimeException("Error when analysing parenthesis (bug perhaps).");
 				}
-			} else if (token.length() > 0 && token.charAt(0) == ':') {
+			} else if (BasicExpressionHelper.isLikeVariable(token)) {
 				// check for variable 
 				resList.add(new RPNExpressionWrapper(new VariableExpression(
 						token.substring(1))));
@@ -230,11 +236,50 @@ public class BasicExpressionStream implements ExpressionStream {
 				super(scanner, outputStream, screen, variableManager);
 			}
 		}
+		
+		class StubScreen implements Screen {
+
+			@Override
+			public void drawLine(double x1, double y1, double x2, double y2) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void drawRectangle(double x1, double y1, double x2, double y2) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void drawEclipse(double cx, double cy, double a, double b) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void clean() {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void setWidth(double w) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void setHeight(double h) {
+				// TODO Auto-generated method stub
+				
+			}
+		}
 
 		Context stubContext = new StubContext(
-				null, 
+				new Scanner("Test scanner"), 
 				System.out, 
-				null, 
+				new StubScreen(), 
 				new GlobalVariableManager());
 
 		try (Scanner sc = new Scanner(System.in)) {

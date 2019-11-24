@@ -16,6 +16,13 @@ import ctlogo.execute.expression.Expression;
  */
 public class MakeFunction extends AbstractFunction {
 
+	private MakeFunction() { }
+	
+	private static MakeFunction theInstance = new MakeFunction();
+	public static MakeFunction getInstance() {
+		return theInstance;
+	}
+
 	@Override
 	public int getDefaultParameterNum() {
 		return 2;
@@ -24,10 +31,14 @@ public class MakeFunction extends AbstractFunction {
 	@Override
 	CTValue execute(Context ctx, List<Expression> params) throws CTException {
 		CTValue value = params.get(1).execute(ctx);
+		CTValue name = params.get(0).execute(ctx);
+		System.out.println(value);
 		ctx.getVariableManager().setVariable(
-				params.get(0).toString(),
+				name.toString(),
 				value);
 		return value;
 	}
+
+
 
 }

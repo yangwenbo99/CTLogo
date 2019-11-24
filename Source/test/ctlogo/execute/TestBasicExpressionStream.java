@@ -109,11 +109,36 @@ public class TestBasicExpressionStream {
 
 	@Test
 	void testVariable() throws IOException, CTException {
+		// using controled structure
 		try (BasicTokenStream ts = ts(":testv\n")) {
 			BasicExpressionStream es = new BasicExpressionStream(ts);
 			Expression exp = es.getNextExpression();
 			vm.setLocalVariable("testv", cint(10));
 			Assertions.assertEquals(cint(10), exp.execute(gbl));
+		}
+
+		try (BasicTokenStream ts = ts("PR :testv MAKE \"testv 1 PR :testv\n:testv\n")) {
+			// BasicExpressionStream es = new BasicExpressionStream(ts);
+			// es.getNextExpression();
+			// es.getNextExpression();
+			// es.getNextExpression();
+			// es.getNextExpression();
+		}
+
+		// using MAKE command 
+		try (BasicTokenStream ts = ts("MAKE \"testv 1\n:testv\n")) {
+			BasicExpressionStream es = new BasicExpressionStream(ts);
+			Expression exp = es.getNextExpression();
+			Assertions.assertEquals(cint(1), exp.execute(gbl));
+			exp = es.getNextExpression();
+			Assertions.assertEquals(cint(1), exp.execute(gbl));
+		}
+		try (BasicTokenStream ts = ts("MAKE \"testv2 2\n:testv2\n")) {
+			BasicExpressionStream es = new BasicExpressionStream(ts);
+			Expression exp = es.getNextExpression();
+			Assertions.assertEquals(cint(2), exp.execute(gbl));
+			exp = es.getNextExpression();
+			Assertions.assertEquals(cint(2), exp.execute(gbl));
 		}
 	}
 
