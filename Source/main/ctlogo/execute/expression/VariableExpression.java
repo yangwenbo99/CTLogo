@@ -6,7 +6,7 @@ import ctlogo.execute.Context;
 
 public class VariableExpression implements Expression {
 	
-	String vname;
+	private String vname;
 
 	public VariableExpression(String vname) {
 		super();
