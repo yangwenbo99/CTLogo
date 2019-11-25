@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 public class BasicTokenStream implements TokenStream, Closeable, AutoCloseable {
 
     private Deque<String> currentLine = new ArrayDeque<>();
-    private Deque<Integer> currentColumns = new ArrayDeque<>();
     private Scanner sc;
     private int currentRow = -1;
 
@@ -44,7 +43,6 @@ public class BasicTokenStream implements TokenStream, Closeable, AutoCloseable {
         for (String s : currentArray) {
             if (!s.trim().equals("")) {
                 currentLine.addLast(s.trim());
-                currentColumns.addLast(0);
             }
         }
     }
@@ -60,7 +58,6 @@ public class BasicTokenStream implements TokenStream, Closeable, AutoCloseable {
             parse(lineString.substring(nonStringStart, stringMatcher.start()));
             currentLine.addLast(lineString.substring(
                     stringMatcher.start(), stringMatcher.end()));
-            currentColumns.addLast(stringMatcher.start());
             currentLoc = stringMatcher.end();
         }
         
@@ -68,12 +65,10 @@ public class BasicTokenStream implements TokenStream, Closeable, AutoCloseable {
 
         if (currentLine.size() > 0 && currentLine.getLast().equals("_")) {
             currentLine.removeLast();
-            currentColumns.removeLast();
             currentRow++;
             parseNextLine();
         } else {
             currentLine.addLast("\n");
-            currentColumns.addLast(lineString.length()-1);
         }
     }
 
@@ -95,10 +90,7 @@ public class BasicTokenStream implements TokenStream, Closeable, AutoCloseable {
             parseNextLine();
         }
         */
-        if (!currentColumns.offerFirst(-1))
-            return false;
         if (!currentLine.offerFirst(s)) {
-            currentColumns.removeFirst();
             return false;
         }
 
@@ -123,7 +115,6 @@ public class BasicTokenStream implements TokenStream, Closeable, AutoCloseable {
         if (currentLine.isEmpty()) {
             parseNextLine();
         }
-        currentColumns.removeFirst();
         return currentLine.removeFirst();
     }
 
@@ -141,7 +132,6 @@ public class BasicTokenStream implements TokenStream, Closeable, AutoCloseable {
 
         while (!currentLine.isEmpty()) {
             currentLine.remove();
-            currentColumns.remove();
         }
         return res;
     }
@@ -152,13 +142,6 @@ public class BasicTokenStream implements TokenStream, Closeable, AutoCloseable {
             parseNextLine();
         return currentRow;
     }
-
-    @Override
-    public int getCurrentColumn() {
-        if (currentLine.isEmpty())
-            parseNextLine();
-        return currentColumns.getFirst();
-	}
 
 	@Override
 	public void close() throws IOException {
