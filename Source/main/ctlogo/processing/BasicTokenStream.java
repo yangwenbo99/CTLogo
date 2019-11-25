@@ -48,6 +48,7 @@ public class BasicTokenStream implements TokenStream, Closeable, AutoCloseable {
     }
 
     private void parseNextLine() {
+		currentRow++;
         String lineString = sc.nextLine();
         
         Matcher stringMatcher = stringPattern.matcher(lineString);
@@ -65,7 +66,6 @@ public class BasicTokenStream implements TokenStream, Closeable, AutoCloseable {
 
         if (currentLine.size() > 0 && currentLine.getLast().equals("_")) {
             currentLine.removeLast();
-            currentRow++;
             parseNextLine();
         } else {
             currentLine.addLast("\n");

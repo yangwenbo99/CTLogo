@@ -20,6 +20,7 @@ public class TestProcessing {
         };
 
         try (BasicTokenStream ts = new BasicTokenStream(new Scanner(testS))) {
+			Assertions.assertEquals(0, ts.getCurrentRow());
             for (String s : expected) {
                 Assertions.assertEquals(s, ts.getNext());
                 Assertions.assertEquals(s, ts.popNext());
