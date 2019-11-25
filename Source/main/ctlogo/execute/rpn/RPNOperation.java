@@ -3,15 +3,16 @@
  */
 package ctlogo.execute.rpn;
 
-import java.util.List;
-
-import ctlogo.execute.expression.Expression;
-
-import ctlogo.exception.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
+
+import ctlogo.exception.CTCodeNotEvaluableException;
+import ctlogo.exception.CTOperatorNotAvailable;
+import ctlogo.exception.CTOperatorNotUsable;
+import ctlogo.exception.CTUnexpectedExpressionException;
+import ctlogo.execute.expression.Expression;
 
 /**
  * @author Paul Yang

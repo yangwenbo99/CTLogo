@@ -1,11 +1,12 @@
 package ctlogo.data;
 
+import static ctlogo.data.TestDataUtility.cbol;
+import static ctlogo.data.TestDataUtility.cdbl;
+import static ctlogo.data.TestDataUtility.cint;
+import static ctlogo.data.TestDataUtility.cstr;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import ctlogo.data.*;
-import static ctlogo.data.TestDataUtility.*;
-import ctlogo.exception.CTException;
 
 public class TestConverters {
 	

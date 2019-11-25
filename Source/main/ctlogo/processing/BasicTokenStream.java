@@ -1,14 +1,16 @@
 package ctlogo.processing;
 
-import java.util.List;
-import java.util.Deque;
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.ArrayDeque;
-import java.util.Scanner;
-import java.util.Collections;
 import java.util.ArrayList;
-import java.util.regex.*;
+import java.util.Deque;
+import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class BasicTokenStream implements TokenStream {
+public class BasicTokenStream implements TokenStream, Closeable, AutoCloseable {
 
     private Deque<String> currentLine = new ArrayDeque<>();
     private Deque<Integer> currentColumns = new ArrayDeque<>();
@@ -17,7 +19,7 @@ public class BasicTokenStream implements TokenStream {
 
     static private final String delimiters = 
         "[\\[\\](){}]";
-    static private final String operators = "[+\\-\\*/%^'~#\\\\_<>=!]";
+    static private final String operators = "[+\\-\\*/%^~#\\\\_<>=!]";
     static private final String notOnLeft = "[<>!&|:]";
     static private final String notOnRight = "[<>=&|]";
 
@@ -29,7 +31,7 @@ public class BasicTokenStream implements TokenStream {
             "|\\s+"
             );
     static private final Pattern stringPattern = Pattern.compile(
-            "\".*?(?<!\\\\)(\\\\\\\\)*(\"|$)");
+            "\'.*?(?<!\\\\)(\\\\\\\\)*(\'|$)");
 
     public BasicTokenStream(Scanner sc) {
         this.sc = sc;
@@ -156,6 +158,11 @@ public class BasicTokenStream implements TokenStream {
         if (currentLine.isEmpty())
             parseNextLine();
         return currentColumns.getFirst();
-    }
+	}
+
+	@Override
+	public void close() throws IOException {
+		sc.close();
+	}
 
 }

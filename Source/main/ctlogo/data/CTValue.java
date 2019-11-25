@@ -1,9 +1,6 @@
 package ctlogo.data;
 
-import ctlogo.exception.CTConversionNotSupportedException;
-import ctlogo.exception.CTDataUndefinedException;
-
-public interface CTValue {
+public interface CTValue extends Comparable<CTValue> {
 	/**
 	 * Analogue to JS's '==' operator
 	 * @param another
@@ -25,7 +22,7 @@ public interface CTValue {
 	}
 	
 
-	public CTInteger compareTo(CTValue another);
+	public int compareTo(CTValue another);
 	public boolean isCompareableTo(CTValue another);
 	public String toString();
 	public TypeMarker getTypeMarker();

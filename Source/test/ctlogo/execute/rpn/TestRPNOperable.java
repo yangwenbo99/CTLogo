@@ -1,19 +1,14 @@
 package ctlogo.execute.rpn;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import ctlogo.exception.CTCodeNotEvaluableException;
 import ctlogo.exception.CTUnexpectedExpressionException;
 import ctlogo.execute.DummpExpression;
-import ctlogo.execute.rpn.RPNBinaryOperation;
-import ctlogo.execute.rpn.RPNEvaluable;
-import ctlogo.execute.rpn.RPNExpressionWrapper;
-import ctlogo.execute.rpn.RPNObject;
-import ctlogo.execute.rpn.RPNOperable;
-
-import java.util.List;
-import java.util.Arrays;
 
 public class TestRPNOperable {
 

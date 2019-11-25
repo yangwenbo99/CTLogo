@@ -1,7 +1,5 @@
 package ctlogo;
 
-import java.io.FileNotFoundException;
-import java.util.IllegalFormatException;
 import java.util.Scanner;
 
 import ctlogo.data.CTBoolean;
@@ -10,8 +8,6 @@ import ctlogo.data.CTInteger;
 import ctlogo.data.CTString;
 import ctlogo.data.CTUndefined;
 import ctlogo.data.CTValue;
-import ctlogo.turtle.Turtle;
-import ctlogo.turtle.TurtleManager;
 
 public class Controller {
 	public static void main(String args[]) throws Exception {

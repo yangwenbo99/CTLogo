@@ -1,34 +1,59 @@
 package ctlogo.turtle;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class TurtleManager {
-	private static TurtleManager instance = null;
-	private ArrayList<Turtle> allTurtles;
+    private static TurtleManager instance = null;
+    private ArrayList<Turtle> allTurtles;
+    private Turtle activeTurtle;
 
-	private TurtleManager() {
-		allTurtles = new ArrayList<Turtle>();
-	}
+    private TurtleManager() {
+        allTurtles = new ArrayList<Turtle>();
+        activeTurtle =  new Turtle();
+        allTurtles.add(activeTurtle);
+    }
 
-	public static TurtleManager getInstance() {
-		if (instance == null)
-			instance = new TurtleManager();
-		return instance;
-	}
+    public static TurtleManager getInstance() {
+        if (instance == null)
+            instance = new TurtleManager();
+        return instance;
+    }
 
-	public Turtle newTurtle(Turtle t) {
-		allTurtles.add(t);
-		return t;
-	}
+    public Turtle newTurtle(Turtle t) {
+        allTurtles.add(t);
+        return t;
+    }
 
-	public Turtle getTurtleByIndex(int index) {
-//		FIXME  may be exception		
-		return allTurtles.get(index);
-	}
+    /**
+     *
+     *
+     * @param index the index of turtle
+     * @return the turtle
+     *
+     * @throws NoSuchElementException if no such turtle found
+     */
+    public Turtle getTurtleByIndex(int index) {
+        try {
+            return allTurtles.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new NoSuchElementException(
+                    String.format("No such turtle at index %d", index));
+        }
+    }
 
-	public boolean activateTurtleByIndex(int index) throws Exception {
-//		FIXME  have problem with the design and have no idea why it is designed like this	
-		throw new Exception("Function not defined yet.");
-	}
+    /**
+     *
+     *
+     * @param index the index of turtle
+     * @throws NoSuchElementException if no such turtle found
+     */
+    public void activateTurtleByIndex (int index) {
+        activeTurtle = getTurtleByIndex(index);
+    }
+
+    public Turtle getActiveTurtle() {
+        return activeTurtle;
+    }
 
 }

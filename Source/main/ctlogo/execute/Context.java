@@ -1,12 +1,12 @@
 package ctlogo.execute;
 
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 import java.io.PrintStream;
+import java.util.Scanner;
 
-import ctlogo.graphic.Screen;
-import ctlogo.data.VariableManager;
 import ctlogo.data.CTValue;
+import ctlogo.data.VariableManager;
+import ctlogo.exception.CTVariableNotDefinedException;
+import ctlogo.graphic.Screen;
 
 /**
  * @author Paul Yang

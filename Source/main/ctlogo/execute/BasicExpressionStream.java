@@ -10,8 +10,10 @@ import java.util.Stack;
 import java.util.Scanner;
 
 import ctlogo.execute.expression.Expression;
+import ctlogo.execute.expression.VariableExpression;
 import ctlogo.exception.CTSyntaxException;
 import ctlogo.data.CTValue;
+import ctlogo.data.GlobalVariableManager;
 import ctlogo.data.VariableManager;
 import ctlogo.exception.CTException;
 import ctlogo.exception.CTLogicException;
@@ -73,6 +75,7 @@ public class BasicExpressionStream implements ExpressionStream {
 		return res;
 	}
 
+	@SuppressWarnings("unused")
 	private List<RPNObject> wrap(Iterable<Expression> exps) {
 		List<RPNObject> res = new ArrayList<>();
 		for (Expression exp : exps) {
@@ -81,6 +84,12 @@ public class BasicExpressionStream implements ExpressionStream {
 		return res;
 	}
 
+	/**
+	 * @return The next exception
+	 *
+	 * @throws CTSyntaxException
+	 * @throws NoSuchElementException if no such exp
+	 */
 	@Override
 	public Expression getNextExpression() throws CTSyntaxException {
 		int numExpectedExpression = 1; // number of expressions to be processed
@@ -88,13 +97,19 @@ public class BasicExpressionStream implements ExpressionStream {
 		boolean isLastOperator = true; // is the last token just process operator?
 		Stack<OperatorTokenMark> workingStack = new Stack<>();
 		ArrayList<RPNObject> resList = new ArrayList<>();
+		// System.out.printf("\nCalled once ");
 
 		while (numExpectedExpression >= 0) {
 			String token = tokenStream.popNext();
-			// System.out.printf("(%s) ", token.replace("\n", "-Space-"));
+			// System.out.printf("(%s - ", token.replace("\n", "-Space-"));
+			// System.out.printf("%d %d) ", numExpectedExpression, numOpenParenthesis);
 
 			if (numExpectedExpression == 0
-					&& (BasicExpressionHelper.isLiteral(token) || token.equals("(") || token.equals("\n"))) {
+					&& (
+						BasicExpressionHelper.isLiteral(token) || 
+						BasicExpressionHelper.isLikeVariable(token) || 
+						token.equals("(") || 
+						token.equals("\n"))) {
 				// tailing "\n" shall be pushed back as a mark
 				// System.out.printf("(pushback)");
 				tokenStream.pushFront(token);
@@ -147,9 +162,12 @@ public class BasicExpressionStream implements ExpressionStream {
 				} else {
 					throw new RuntimeException("Error when analysing parenthesis (bug perhaps).");
 				}
-			} else if (false) {
-				// check for variable (not supported yet)
-				// TODO: implement this part.
+			} else if (BasicExpressionHelper.isLikeVariable(token)) {
+				// check for variable 
+				resList.add(new RPNExpressionWrapper(new VariableExpression(
+						token.substring(1))));
+				isLastOperator = false;
+				numExpectedExpression--;
 			} else if (token.equals("(") && BasicExpressionHelper.isFunction(tokenStream.getNext())) {
 				String fname = tokenStream.popNext();
 				List<Expression> params = new ArrayList<>();
@@ -208,40 +226,6 @@ public class BasicExpressionStream implements ExpressionStream {
 	public Expression getNextString() throws CTSyntaxException {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	public static void main(String[] args) {
-
-		/*
-		 * Try the following input, they should not trigger any error. 1 1 1 1 + 2 1 +
-		 * (2 * 3) 1 + (+2 * 3) (-2 * 5) + 2 PR 1 + 2 PR 32 + 34 PR 32 + 34 6 (PR 1 + 2
-		 * 4) * 7
-		 */
-
-		class StubContext extends AbstractContext {
-			public StubContext(Scanner scanner, PrintStream outputStream, Screen screen,
-					VariableManager variableManager) {
-				super(scanner, outputStream, screen, variableManager);
-			}
-		}
-
-		Context stubContext = new StubContext(null, System.out, null, null);
-
-		try (Scanner sc = new Scanner(System.in)) {
-			TokenStream ts = new BasicTokenStream(sc);
-			ExpressionStream es = new BasicExpressionStream(ts);
-			while (true) {
-				System.out.print(">>> ");
-				CTValue res = es.getNextExpression().execute(stubContext);
-				System.out.printf("Executed to: %s, type %s\n", res.toString(), res.getClass().toString());
-			}
-		} catch (CTSyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CTException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 }

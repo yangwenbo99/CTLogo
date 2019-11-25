@@ -29,8 +29,10 @@ public class BasicExpressionHelper {
     private static boolean isStringLitertal(String token) {
         return 
             token.length() >= 2 && 
-            token.charAt(0) == '"' && 
-            token.charAt(token.length()-1) == '"';
+            token.charAt(0) == '\'' && 
+            token.charAt(token.length()-1) == '\'' || 
+            token.length() > 1 && 
+            token.charAt(0) == '"';
     }
 
     private static boolean isDoubleLiteral(String token) {
@@ -42,10 +44,11 @@ public class BasicExpressionHelper {
     }
 
     /**
-     * Parse a literal.
-     */
-    static Expression parseLiteral(String token) {
-        if (isStringLitertal(token)) {
+	 * Parse a literal.
+	 * @throws CTSyntaxException
+	 */
+	static Expression parseLiteral(String token) throws CTSyntaxException {
+		  if (isStringLitertal(token)) {
             return fromStringToken(token);
         } else if (isIntegerLiteral(token)) {
             return fromIntegerToken(token);
@@ -56,8 +59,13 @@ public class BasicExpressionHelper {
         }
     }
 
-    private static LiteralExpression fromStringToken(String token) {
-        return new LiteralExpression(new CTString(token.substring(1, token.length()-1)));
+	private static LiteralExpression fromStringToken(String token) throws CTSyntaxException {
+		if (token.charAt(0) == '\'')
+			return new LiteralExpression(new CTString(token.substring(1, token.length()-1)));
+		else if (token.charAt(0) == '"')
+			return new LiteralExpression(new CTString(token.substring(1)));
+		else 
+			throw new CTSyntaxException("String literal of incorrect format");
     }
 
     private static LiteralExpression fromIntegerToken(String token) {
@@ -98,6 +106,10 @@ public class BasicExpressionHelper {
     static boolean isFunction(String token) {
         return FunctionManager.getInstace().hasFunction(token);
     }
+
+	static boolean isLikeVariable(String token) {
+		return token.length() > 1 && token.charAt(0) == ':';
+	}
 
     static int getDefaultParamNum(String token) {
         return FunctionManager.getInstace().getDefaultParameterNum(token);

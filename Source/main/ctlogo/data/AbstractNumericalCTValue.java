@@ -22,7 +22,7 @@ abstract public class AbstractNumericalCTValue extends AbstractCTValue {
      *
      * @return numerical representation of the object. 
      */
-    abstract Number getNumericalValue();
+    abstract public Number getNumericalValue();
 
     @Override
     public CTBoolean equals(CTValue other) {
@@ -38,18 +38,18 @@ abstract public class AbstractNumericalCTValue extends AbstractCTValue {
     }
 
     @Override
-    public CTInteger compareTo(CTValue another) {
+    public int compareTo(CTValue another) {
         if (another instanceof AbstractNumericalCTValue) {
             AbstractNumericalCTValue otherVal = (AbstractNumericalCTValue) another;
             double res = 
                 this.getNumericalValue().doubleValue() -
                 otherVal.getNumericalValue().doubleValue();
             if (res > 0)
-                return new CTInteger(1);
+                return 1;
             else if (res < 0)
-                return new CTInteger(-1);
+                return -1;
             else
-                return new CTInteger(0);
+                return 0;
         } else {
             throw new CTOperationUndefinedException("Not comparable");
         }

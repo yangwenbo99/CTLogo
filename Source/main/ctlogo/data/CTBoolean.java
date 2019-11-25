@@ -1,9 +1,5 @@
 package ctlogo.data;
 
-import ctlogo.exception.CTConversionNotSupportedException;
-import ctlogo.exception.CTDataUndefinedException;
-import ctlogo.exception.CTOperationUndefinedException;
-
 public class CTBoolean extends AbstractNumericalCTValue {
     public final static CTBoolean TRUE = new CTBoolean(true);
     public final static CTBoolean FALSE = new CTBoolean(false);
@@ -26,10 +22,6 @@ public class CTBoolean extends AbstractNumericalCTValue {
 
     public TypeMarker getTypeMarker() {
         return typeMarker;
-    }
-
-    private Boolean isValue() {
-        return value;
     }
 
     @Override
@@ -79,7 +71,31 @@ public class CTBoolean extends AbstractNumericalCTValue {
     }
 
     @Override
-    Number getNumericalValue() {
+	public Number getNumericalValue() {
         return value ? 1 : 0;
+    }
+
+    @Override 
+    public CTValue and(CTValue other) {
+        if (this.value)
+            return other;
+        else
+            return this;
+    }
+
+    @Override 
+    public CTValue or(CTValue other) {
+        if (this.value)
+            return this;
+        else
+            return other;
+    }
+
+    @Override 
+    public CTValue not() {
+        if (this.value)
+            return FALSE;
+        else
+            return TRUE;
     }
 }

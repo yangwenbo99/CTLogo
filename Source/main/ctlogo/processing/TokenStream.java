@@ -35,6 +35,8 @@ public interface TokenStream extends Iterator<String> {
      * In case of new line, "\n" will be returned by default.
 	 * 
 	 * @return: the next token
+	 *
+	 * @throws NoSuchElementException if no such line
 	 */
 	String getNext();
 

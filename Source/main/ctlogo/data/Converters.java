@@ -1,7 +1,5 @@
 package ctlogo.data;
 
-import javax.swing.text.html.FormSubmitEvent;
-
 import ctlogo.exception.CTConversionNotSupportedException;
 import ctlogo.execute.util.DoubleParser;
 import ctlogo.execute.util.LongParser;

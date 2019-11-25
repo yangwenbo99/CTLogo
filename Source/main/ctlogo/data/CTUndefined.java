@@ -1,6 +1,5 @@
 package ctlogo.data;
 
-import ctlogo.exception.CTDataUndefinedException;
 import ctlogo.exception.CTOperationUndefinedException;
 
 public class CTUndefined extends AbstractCTValue {
@@ -22,8 +21,8 @@ public class CTUndefined extends AbstractCTValue {
     }
 
     @Override
-    public CTInteger compareTo(CTValue another) {
-        throw new CTOperationUndefinedException("Do not try to compare undeined in Java");
+    public int compareTo(CTValue another) {
+        throw new CTOperationUndefinedException("Do not try to compare undefined in Java");
     }
 
     @Override
