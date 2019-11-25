@@ -84,6 +84,17 @@ public class BasicExpressionStream implements ExpressionStream {
 		ArrayList<RPNObject> resList = new ArrayList<>();
 		
 		abstract class State {
+			private String token;
+
+			public State(String token) {
+				super();
+				this.token = token;
+			}
+
+			String getToken() {
+				return token;
+			}
+
 			abstract void enter() throws CTSyntaxException;
 			/**
 			 * @param token the token to be accepted 
@@ -94,7 +105,6 @@ public class BasicExpressionStream implements ExpressionStream {
 		}
 		
 		abstract class OperatorState extends State {
-			private String token;
 			
 			/**
 			 * @param token the token to be accepted 
@@ -109,25 +119,42 @@ public class BasicExpressionStream implements ExpressionStream {
 				if (isOperatorToken(token)) {
 					// This token must be unary operator
 					enterState(new UnaryOperatorState(token));
+				} else if (BasicExpressionHelper.isLiteral(token)) {
+					enterState(new LiteralState(token));
+				} else if (BasicExpressionHelper.isLikeVariable(token)) {
+					enterState(new VariableState(token));
+				} else if (BasicExpressionHelper.isFunction(token)) {
+					enterState(new DefaultFunctionState(token));
+				} else if (token.equals("(")) {
+					enterState(new OpenParenthesisState(token));
+				} else if (token.equals("\n")) {
+					// nothing to do 
+				} else {
+					throw new CTSyntaxException(String.format(
+							"Putting non-operable %s after operator %s",
+							token,
+							getToken()));
 				}
 				return true;
 			}
 
 			public OperatorState(String token) {
-				super();
-				this.token = token;
+				super(token);
 			}
 
 			void enter() throws CTSyntaxException {
-				workingStack.push(getMark());
+				OperatorTokenMark mark = getMark();
+				while (
+						!workingStack.isEmpty() && 
+						workingStack.peek().getPrecedence() >= mark.getPrecedence()) {
+					resList.add(workingStack.pop().getRpnOperable());
+				}
+				workingStack.push(mark);
 				isLastOperator = true;
 			}
 			
 			abstract OperatorTokenMark getMark() throws CTSyntaxException;
 
-			String getToken() {
-				return token;
-			}
 		}
 		
 		class UnaryOperatorState extends OperatorState {
@@ -159,7 +186,171 @@ public class BasicExpressionStream implements ExpressionStream {
 		
 		abstract class OperableState extends State {
 			
-			boolean accept(String token) {
+			public OperableState(String token) {
+				super(token);
+			}
+
+			boolean accept(String token) throws CTSyntaxException {
+				if (numExpectedExpression == 0
+						&& (
+							isOperableToken(token) || 
+							token.equals("(") || 
+							token.equals("\n"))) {
+					// tailing "\n" shall be pushed back as a mark
+					return false;
+				}
+				
+				if (BasicExpressionHelper.isBinaryOperator(token)) {
+					enterState(new BinaryOperatorState(token));
+				} else if (token.equals(")")) {
+					if (numOpenParenthesis == 0) {
+						return false;
+					}
+					enterState(new CloseParemthesisState(token));
+				} else if (token.equals("\n")) {
+					// nothing to do 
+				} else {
+					throw new CTSyntaxException("Unknown token " + token);
+				}
+				
+				return true;
+			}
+
+			void enter() throws CTSyntaxException {
+				resList.add(getRPNObject());
+				isLastOperator = false;
+				numExpectedExpression--;
+				
+			}
+			
+			abstract RPNObject getRPNObject() throws CTSyntaxException;
+				
+		}
+		
+		class LiteralState extends OperableState {
+
+			public LiteralState(String token) {
+				super(token);
+			}
+
+			@Override
+			RPNObject getRPNObject() throws CTSyntaxException {
+				return new RPNExpressionWrapper(BasicExpressionHelper.parseLiteral(getToken()));
+			}
+			
+		}
+
+		class VariableState extends OperableState {
+
+			public VariableState(String token) {
+				super(token);
+			}
+
+			@Override
+			RPNObject getRPNObject() throws CTSyntaxException {
+				return new RPNExpressionWrapper(new VariableExpression(getToken().substring(1)));
+			}
+			
+		}
+		
+		class DefaultFunctionState extends OperableState {
+
+			public DefaultFunctionState(String token) {
+				super(token);
+			}
+
+			@Override
+			RPNObject getRPNObject() throws CTSyntaxException {
+				List<Expression> params = nextn(BasicExpressionHelper.getDefaultParamNum(getToken()));
+				Expression fexp = BasicExpressionHelper.constructFunctionExpression(getToken(), params);
+				return new RPNExpressionWrapper(fexp);
+			}
+			
+		}
+		
+		class ComplexFunctionState extends OperableState {
+
+			public ComplexFunctionState(String token) {
+				super(token);
+			}
+
+			@Override
+			RPNObject getRPNObject() throws CTSyntaxException {
+				List<Expression> params = getUntil(")");
+				tokenStream.popNext();
+				Expression fexp = BasicExpressionHelper.constructFunctionExpression(getToken(), params);
+				return new RPNExpressionWrapper(fexp);
+			}
+			
+		}
+		
+		class OpenParenthesisState extends State {
+
+			public OpenParenthesisState(String token) {
+				super(token);
+			}
+
+			@Override
+			void enter() throws CTSyntaxException {
+				workingStack.push(BasicExpressionHelper.constructLeftParenthesisMarker());
+				numOpenParenthesis++;
+			}
+
+			@Override
+			boolean accept(String token) throws CTSyntaxException {
+				if (BasicExpressionHelper.isFunction(token)) {
+					workingStack.pop();
+					enterState(new ComplexFunctionState(token));
+				} else if (BasicExpressionHelper.isLiteral(token)) {
+					enterState(new LiteralState(token));
+				} else if (BasicExpressionHelper.isLikeVariable(token)) {
+					enterState(new VariableState(token));
+				} else if (BasicExpressionHelper.isFunction(token)) {
+					enterState(new DefaultFunctionState(token));
+				} else if (token.equals("(")) {
+					enterState(new OpenParenthesisState(token));
+				} else {
+					throw new CTSyntaxException("Unknown token " + token);
+				}
+				return true;
+			}
+			
+		}
+		
+		class CloseParemthesisState extends State {
+
+			public CloseParemthesisState(String token) {
+				super(token);
+			}
+
+			@Override
+			void enter() throws CTSyntaxException {
+				if (numOpenParenthesis == 0) {
+					tokenStream.pushFront(")");
+					if (numExpectedExpression != 0) {
+						// TODO: move this part to Operator's place 
+						throw new CTSyntaxException("Unexpected closing paranthesis");
+					} else {
+						// TODO: move this part to Operable's place 
+						// break;
+					}
+				}
+				numOpenParenthesis--;
+
+				while (!workingStack.isEmpty() && !workingStack.peek().isLeftParenthesis()) {
+					resList.add(workingStack.pop().getRpnOperable());
+				}
+				if (workingStack.peek().isLeftParenthesis()) {
+					workingStack.pop();
+				} else {
+					throw new RuntimeException("Error when analysing parenthesis (bug perhaps).");
+				}
+				
+			}
+
+			@Override
+			boolean accept(String token) throws CTSyntaxException {
+				// FIXME: this part is the same as another method 
 				if (numExpectedExpression == 0
 						&& (
 							isOperableToken(token) || 
@@ -170,13 +361,30 @@ public class BasicExpressionStream implements ExpressionStream {
 					return false;
 				}
 				
-				// TODO: fill in this part. 
+				if (BasicExpressionHelper.isBinaryOperator(token)) {
+					enterState(new BinaryOperatorState(token));
+				} else if (BasicExpressionHelper.isLiteral(token)) {
+					enterState(new LiteralState(token));
+				} else if (BasicExpressionHelper.isLikeVariable(token)) {
+					enterState(new VariableState(token));
+				} else if (BasicExpressionHelper.isFunction(token)) {
+					enterState(new DefaultFunctionState(token));
+				} else if (token.equals("(")) {
+					enterState(new OpenParenthesisState(token));
+				} else if (token.equals(")")) {
+					if (numOpenParenthesis == 0) {
+						return false;
+					}
+					enterState(new CloseParemthesisState(token));
+				} else if (token.equals("\n")) {
+					// nothing to do 
+				} else {
+					throw new CTSyntaxException("Unknown token " + token);
+				}
 				
 				return true;
 			}
 			
-			void enter() {
-			}
 		}
 		
 		private State state;
@@ -229,96 +437,31 @@ public class BasicExpressionStream implements ExpressionStream {
 			 * - ( or )    
 			 * 
 			 */
-			while (numExpectedExpression >= 0) {
-				String token = tokenStream.popNext();
-				// System.out.printf("(%s - ", token.replace("\n", "-Space-"));
-				// System.out.printf("%d %d) ", numExpectedExpression, numOpenParenthesis);
 
-				if (numExpectedExpression == 0
-						&& (
-							isOperableToken(token) || 
-							token.equals("(") || 
-							token.equals("\n"))) {
-					// tailing "\n" shall be pushed back as a mark
+			String token = tokenStream.popNext();
+			while (token.equals("\n"))
+				token = tokenStream.popNext();
+
+			if (BasicExpressionHelper.isLiteral(token)) {
+				enterState(new LiteralState(token));
+			} else if (BasicExpressionHelper.isLikeVariable(token)) {
+				enterState(new VariableState(token));
+			} else if (BasicExpressionHelper.isFunction(token)) {
+				enterState(new DefaultFunctionState(token));
+			} else if (token.equals("(")) {
+				enterState(new OpenParenthesisState(token));
+			} else {
+				throw new CTSyntaxException("Unknown token " + token);
+			}
+			// TODO: Blocks & instructions 
+			// System.out.printf("<%d>", numExpectedExpression);
+
+			while (true) {
+				token = tokenStream.popNext();
+				if (!state.accept(token)) {
 					tokenStream.pushFront(token);
 					break;
 				}
-
-				if (isOperatorToken(token)) {
-					OperatorTokenMark mark;
-					if (isLastOperator) {
-						// This token must be unary operator
-						if (!BasicExpressionHelper.isUnaryOperator(token))
-							throw new CTSyntaxException("Binary operator used as unary");
-						mark = BasicExpressionHelper.constructUnaryOperator(token);
-					} else {
-						// This token must be binary operator
-						numExpectedExpression++;
-						if (!BasicExpressionHelper.isBinaryOperator(token))
-							throw new CTSyntaxException("Unary operator used as binary");
-						mark = BasicExpressionHelper.constructBinaryOperator(token);
-					}
-					while (!workingStack.isEmpty() && workingStack.peek().getPrecedence() >= mark.getPrecedence()) {
-						resList.add(workingStack.pop().getRpnOperable());
-					}
-					workingStack.push(mark);
-					isLastOperator = true;
-				} else if (BasicExpressionHelper.isLiteral(token)) {
-					resList.add(new RPNExpressionWrapper(BasicExpressionHelper.parseLiteral(token)));
-					isLastOperator = false;
-					numExpectedExpression--;
-				} else if (BasicExpressionHelper.isLikeVariable(token)) {
-					// check for variable 
-					resList.add(new RPNExpressionWrapper(new VariableExpression(
-							token.substring(1))));
-					isLastOperator = false;
-					numExpectedExpression--;
-				} else if (token.equals("(") && !BasicExpressionHelper.isFunction(tokenStream.getNext())) {
-					workingStack.push(BasicExpressionHelper.constructLeftParenthesisMarker());
-					numOpenParenthesis++;
-				} else if (token.equals(")")) {
-					if (numOpenParenthesis == 0) {
-						tokenStream.pushFront(")");
-						if (numExpectedExpression != 0) {
-							throw new CTSyntaxException("Unexpected closing paranthesis");
-						} else {
-							break;
-						}
-					}
-					numOpenParenthesis--;
-
-					while (!workingStack.isEmpty() && !workingStack.peek().isLeftParenthesis()) {
-						resList.add(workingStack.pop().getRpnOperable());
-					}
-					if (workingStack.peek().isLeftParenthesis()) {
-						workingStack.pop();
-					} else {
-						throw new RuntimeException("Error when analysing parenthesis (bug perhaps).");
-					}
-				} else if (token.equals("(") && BasicExpressionHelper.isFunction(tokenStream.getNext())) {
-					String fname = tokenStream.popNext();
-					List<Expression> params = getUntil(")");
-					tokenStream.popNext();
-					Expression fexp = BasicExpressionHelper.constructFunctionExpression(fname, params);
-					resList.add(new RPNExpressionWrapper(fexp));
-					numExpectedExpression--;
-					isLastOperator = false;
-				} else if (BasicExpressionHelper.isFunction(token)) {
-					List<Expression> params = nextn(BasicExpressionHelper.getDefaultParamNum(token));
-					Expression fexp = BasicExpressionHelper.constructFunctionExpression(token, params);
-					resList.add(new RPNExpressionWrapper(fexp));
-					numExpectedExpression--;
-					isLastOperator = false;
-				} else if (false) {
-					// check for begin/end of list or block
-				} else if (token.equals("\n")) {
-					// System.out.printf(" -Cont- ");
-					continue;
-				} else {
-					// System.out.printf(" -Cont- ");
-					throw new CTSyntaxException("Unknown token " + token);
-				}
-				// System.out.printf("<%d>", numExpectedExpression);
 			}
 
 			while (!workingStack.isEmpty()) {
