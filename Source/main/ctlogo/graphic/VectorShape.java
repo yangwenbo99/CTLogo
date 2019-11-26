@@ -1,9 +1,24 @@
 package ctlogo.graphic;
 
-public interface VectorShape {
+import java.awt.Graphics;
+
+public abstract class VectorShape {
 
 	/**
 	 * 
 	 */
-	public void draw();
+	protected double startX;
+	protected double startY;
+	protected double endX;
+	protected double endY;
+
+	public VectorShape(double startX, double startY, double endX, double endY) {
+		this.startX = startX;
+		this.startY = startY;
+		this.endX = endX;
+		this.endY = endY;
+	}
+
+	abstract public void draw(Graphics g);
+
 }
