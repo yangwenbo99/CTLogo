@@ -1,13 +1,21 @@
 package ctlogo.graphic;
 
+import java.util.ArrayList;
+
 public class VectorScreen implements Screen{
 
-	Iterable<VectorShape> vectorShapeCollection;
-	
+//	private static List<VectorShape> vectorShapeCollection= new ArrayList<VectorShape>();
+//	
+//	public static void addVectorShape(VectorShape vs) {
+//		vectorShapeCollection.add(vs);
+//	}
+
 	@Override
 	public void drawLine(double x1, double y1, double x2, double y2) {
 		// TODO Auto-generated method stub
-		
+		VectorShape vs = new VectorLine(x1,y1,x2,y2);
+		CTCanvas.addVectorShape(vs);
+		new CTCanvas();
 	}
 
 	@Override
@@ -40,10 +48,10 @@ public class VectorScreen implements Screen{
 		
 	}
 	
-	public Iterable<VectorShape> getShapeList(){
-		// TODO Auto-generated method stub
-
-		return vectorShapeCollection;
-	}
+//	public Iterable<VectorShape> getShapeList(){
+//		// TODO Auto-generated method stub
+//
+//		return vectorShapeCollection;
+//	}
 
 }
