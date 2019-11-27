@@ -1,16 +1,11 @@
 package ctlogo.graphics;
 
-import java.awt.Frame;
-import java.awt.Graphics;
 import java.util.Scanner;
 
 import org.junit.Test;
 
-import ctlogo.graphic.CTCanvas;
 import ctlogo.graphic.Screen;
-import ctlogo.graphic.VectorLine;
 import ctlogo.graphic.VectorScreen;
-import ctlogo.graphic.VectorShape;
 
 public class TestGraphics {
 
@@ -40,16 +35,36 @@ public class TestGraphics {
 //        String name2 = sc.nextLine(); 
 
 		Screen s = new VectorScreen();
-		s.drawLine(1, 2, 100, 200);
-
 		Scanner sc = new Scanner(System.in);
-		String name = sc.nextLine();
+
+		s.drawLine(1, 2, 100, 200);
+		sc.nextLine();
 		
-		s.drawLine(10, 20, 100, 200);
+		s.drawLine(50, 20, 100, 200);
+		sc.nextLine();
+		
+		s.setWidth(500);
+		sc.nextLine();
 
-		String name2 = sc.nextLine();
+		s.setHeight(400);
+		sc.nextLine();		
+		
+		s.clean();
+		sc.nextLine();
 
+		s.drawLine(1, 2, 100, 200);
+		sc.nextLine();
+		
+		s.drawLine(50, 20, 100, 200);
+		sc.nextLine();		
 
+		s.setHeight(300);
+		sc.nextLine();		
+
+		s.clean();
+		sc.nextLine();
+
+		sc.close();
 	}
 
 }
