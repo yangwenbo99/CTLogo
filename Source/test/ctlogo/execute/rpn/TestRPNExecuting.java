@@ -94,7 +94,16 @@ public class TestRPNExecuting {
                 () -> exec(List.<RPNObject>of(
                         wle(cint(20)), 
                         PLUS)));
+        Assertions.assertThrows(
+                CTLogicException.class,
+                () -> exec(List.<RPNObject>of(
+                		RPNTerminator.getInstance(),
+                		RPNTerminator.getInstance(),
+                        PLUS)));
+        Assertions.assertThrows(
+                CTLogicException.class,
+                () -> exec(List.<RPNObject>of(
+                		RPNTerminator.getInstance())));
     }
-
-
+    
 }

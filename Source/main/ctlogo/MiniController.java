@@ -91,8 +91,10 @@ public class MiniController {
 				ExpressionStream es = new BasicExpressionStream(ts);
 
 				try {
-					Expression exp = es.getNextExpression();
-					exp.execute(stubContext);
+					while (true) {
+						Expression exp = es.getNextExpression();
+						exp.execute(stubContext);
+					}
 				} catch (NoSuchElementException e) {
 					// End of line
 					System.out.println("----------------------------");
