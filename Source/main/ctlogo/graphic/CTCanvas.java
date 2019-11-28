@@ -19,6 +19,14 @@ public class CTCanvas extends JFrame {
 	private static double height = 300;
 	
 	private static List<VectorShape> vectorShapeCollection = new ArrayList<VectorShape>();
+	
+	public static double getCurrentWidth() {
+		return CTCanvas.width;
+	}
+
+	public static double getCurrentHeight() {
+		return CTCanvas.height;
+	}
 
 	public static void setWidth(double width) {
 		CTCanvas.width = width;

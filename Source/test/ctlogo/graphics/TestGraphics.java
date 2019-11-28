@@ -40,7 +40,7 @@ public class TestGraphics {
 		s.drawLine(1, 2, 100, 200);
 		sc.nextLine();
 		
-		s.drawLine(50, 20, 100, 200);
+		s.drawLine(-50, -20, 100, 200);
 		sc.nextLine();
 		
 		s.setWidth(500);
