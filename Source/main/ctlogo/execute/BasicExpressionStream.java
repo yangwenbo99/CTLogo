@@ -12,6 +12,7 @@ import java.util.Scanner;
 import ctlogo.execute.expression.Expression;
 import ctlogo.execute.expression.VariableExpression;
 import ctlogo.exception.CTSyntaxException;
+import ctlogo.exception.CTUnexpectedTokenException;
 import ctlogo.data.CTValue;
 import ctlogo.data.GlobalVariableManager;
 import ctlogo.data.VariableManager;
@@ -477,14 +478,37 @@ public class BasicExpressionStream implements ExpressionStream {
 
 	@Override
 	public List<Expression> geNextBlock() throws CTSyntaxException {
-		// TODO Auto-generated method stub
-		return null;
+		String opening = tokenStream.getNext();
+		String closing = getClosingToken(opening);
+		List<Expression> res = new ArrayList<>();
+		while (!tokenStream.getNext().equals(closing)) {
+			res.add(getNextExpression());
+		}
+
+		if (tokenStream.hasNext()) 
+			tokenStream.popNext();
+		return res;
 	}
 
 	@Override
 	public Expression getNextString() throws CTSyntaxException {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	private static String getClosingToken(String openToken) 
+			throws CTUnexpectedTokenException {
+		switch (openToken) {
+			case "(":
+				return ")";
+			case "[":
+				return "]";
+			case "{":
+				return "}";
+			default:
+				throw new CTUnexpectedTokenException(String.format(
+							"\"%s\" is not a opening token", 
+							openToken));
+		}
 	}
 
 
