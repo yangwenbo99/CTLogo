@@ -2,8 +2,8 @@ package ctlogo.execute;
 
 import java.util.List;
 
-import ctlogo.execute.expression.Expression;
 import ctlogo.exception.CTSyntaxException;
+import ctlogo.execute.expression.Expression;
 
 /**
  * 

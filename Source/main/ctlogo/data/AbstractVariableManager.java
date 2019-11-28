@@ -3,12 +3,11 @@
  */
 package ctlogo.data;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import ctlogo.exception.CTVariableNotDefinedException;
 import ctlogo.exception.CTVariableAlreadyDefinedException;
-
-import java.util.HashMap;
+import ctlogo.exception.CTVariableNotDefinedException;
 
 /**
  * @author Paul Yang

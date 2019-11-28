@@ -16,6 +16,8 @@ public class Turtle {
 	
 	public Turtle() {
 		this(DEFAULT_MAX_HISTORY_LENGTH);
+		setCoordinate(new Coordinate(0, 0));
+		setDown(true);
 	}
 
 	public Turtle(int maxHistoryLength){
@@ -68,14 +70,15 @@ public class Turtle {
 	 * @throws IllegalArgumentException if orientation is not between -pi and pi
 	 */
 	public void setOrientation(double orientation) {
-		if (orientation > Math.PI || orientation < Math.PI)
-			throw new IllegalArgumentException(
-					"Orientation should between -pi and pi");
+		if (orientation > Math.PI || orientation < - Math.PI)
+			throw new IllegalArgumentException(String.format(
+					"Orientation should between -pi and pi, %f given",
+					orientation));
 		this.orientation = orientation;
 	}
 
 	/**
-	 * Set the orientation of the tutle. 
+	 * Set the orientation of the turtle. 
 	 * 
 	 * @param offOrientation offset
 	 * 
@@ -86,7 +89,7 @@ public class Turtle {
 		orientation += offOrientation;
 		while (orientation < - Math.PI)
 			orientation += 2 * Math.PI;
-		while (orientation > - Math.PI)
+		while (orientation > Math.PI)
 			orientation -= 2 * Math.PI;
 	}
 
@@ -94,6 +97,8 @@ public class Turtle {
 	 * @throws NoSuchElementException if no history
 	 */
 	public void popLocation() {
+		if (history.size() <= 1)
+			throw new NoSuchElementException("The last history item cannot be poped.");
 		history.removeLast();
 	}
 	public boolean hasLastLocation() {

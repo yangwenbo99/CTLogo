@@ -3,7 +3,10 @@
  */
 package ctlogo.execute.rpn;
 
-import ctlogo.execute.expression.*;
+import java.util.NoSuchElementException;
+
+import ctlogo.execute.expression.Expression;
+import ctlogo.execute.expression.OperatorManager;
 
 /**
  * The factory and manger of RPNExpression objects. 

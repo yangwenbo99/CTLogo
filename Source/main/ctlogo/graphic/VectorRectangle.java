@@ -6,7 +6,6 @@ public class VectorRectangle extends VectorShape{
 
 	public VectorRectangle(double startX, double startY, double endX, double endY) {
 		super(startX, startY, endX, endY);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

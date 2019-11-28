@@ -1,13 +1,12 @@
 package ctlogo.data;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-
 import static ctlogo.data.TestDataUtility.cbol;
-import static ctlogo.data.TestDataUtility.cdbl;
 import static ctlogo.data.TestDataUtility.cint;
 import static ctlogo.data.TestDataUtility.cstr;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import ctlogo.exception.CTVariableNotDefinedException;
 

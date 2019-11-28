@@ -3,18 +3,14 @@
  */
 package ctlogo.execute.rpn;
 
-import ctlogo.execute.expression.Expression;
-import ctlogo.processing.TokenStream;
-import ctlogo.exception.*;
-
-import java.util.Stack;
-
-import org.hamcrest.core.IsEqual;
-
+import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Stack;
+
+import ctlogo.exception.CTCodeNotEvaluableException;
+import ctlogo.exception.CTLogicException;
+import ctlogo.execute.expression.Expression;
 
 /**
  * @author Paul Yang

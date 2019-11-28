@@ -5,12 +5,16 @@ package ctlogo.execute;
 
 import java.util.List;
 
-import ctlogo.execute.util.*;
-import ctlogo.data.*;
+import ctlogo.data.CTDouble;
+import ctlogo.data.CTInteger;
+import ctlogo.data.CTString;
 import ctlogo.exception.CTSyntaxException;
-import ctlogo.execute.rpn.*;
-import ctlogo.execute.expression.*;
+import ctlogo.execute.expression.Expression;
+import ctlogo.execute.expression.LiteralExpression;
+import ctlogo.execute.expression.OperatorManager;
 import ctlogo.execute.rpn.RPNExpressionManager;
+import ctlogo.execute.util.DoubleParser;
+import ctlogo.execute.util.LongParser;
 import ctlogo.function.FunctionManager;
 
 /**

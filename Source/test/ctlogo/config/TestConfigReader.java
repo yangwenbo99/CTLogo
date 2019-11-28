@@ -2,7 +2,6 @@ package ctlogo.config;
 
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import ctlogo.config.ConfigReader;
 
 public class TestConfigReader {
 

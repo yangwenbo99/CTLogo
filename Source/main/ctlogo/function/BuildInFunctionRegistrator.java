@@ -25,6 +25,20 @@ public class BuildInFunctionRegistrator {
 		FunctionManager.getInstace().register("ACOS", AcosFunction.getInstance(), false);
 		FunctionManager.getInstace().register("ATAN", AtanFunction.getInstance(), false);
 		FunctionManager.getInstace().register("ATAN2", Atan2Function.getInstance(), false);
+		
+		// Drawing Functions
+		FunctionManager.getInstace().register("FORWARD", ForwardFunction.getInstance(), false);
+		FunctionManager.getInstace().register("FD", ForwardFunction.getInstance(), false);
+		FunctionManager.getInstace().register("BACKWARD", BackwardFunction.getInstance(), false);
+		FunctionManager.getInstace().register("BACK", BackwardFunction.getInstance(), false);
+		FunctionManager.getInstace().register("BK", BackwardFunction.getInstance(), false);
+		FunctionManager.getInstace().register("LEFTTERN", LeftFunction.getInstance(), false);
+		FunctionManager.getInstace().register("LEFT", LeftFunction.getInstance(), false);
+		FunctionManager.getInstace().register("LT", LeftFunction.getInstance(), false);
+		FunctionManager.getInstace().register("RIGHTTERN", RightFunction.getInstance(), false);
+		FunctionManager.getInstace().register("RIGHT", RightFunction.getInstance(), false);
+		FunctionManager.getInstace().register("RT", RightFunction.getInstance(), false);
+		
 	}
 
 }

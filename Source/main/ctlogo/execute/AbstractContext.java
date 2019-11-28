@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import ctlogo.data.CTValue;
 import ctlogo.data.VariableManager;
+import ctlogo.exception.CTVariableNotDefinedException;
 import ctlogo.graphic.Screen;
 
 public abstract class AbstractContext implements Context {

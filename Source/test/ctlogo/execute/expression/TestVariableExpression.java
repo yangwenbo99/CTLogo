@@ -3,25 +3,19 @@
  */
 package ctlogo.execute.expression;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-
-import ctlogo.data.CTValue;
-import ctlogo.data.GlobalVariableManager;
-import ctlogo.data.VariableManager;
-import ctlogo.exception.CTException;
-import ctlogo.execute.Context;
-import ctlogo.execute.GlobalContext;
-import ctlogo.graphic.Screen;
-
-import static ctlogo.data.TestDataUtility.cbol;
-import static ctlogo.data.TestDataUtility.cdbl;
 import static ctlogo.data.TestDataUtility.cint;
-import static ctlogo.data.TestDataUtility.cstr;
 
 import java.io.PrintStream;
 import java.util.Scanner;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import ctlogo.data.CTValue;
+import ctlogo.data.VariableManager;
+import ctlogo.exception.CTException;
+import ctlogo.execute.Context;
+import ctlogo.graphic.Screen;
 
 /**
  * @author Paul Yang
