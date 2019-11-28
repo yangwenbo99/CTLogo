@@ -3,8 +3,6 @@
  */
 package ctlogo.data;
 
-import java.util.regex.*;
-
 /**
  * @author yang
  *

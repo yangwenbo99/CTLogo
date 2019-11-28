@@ -1,7 +1,7 @@
 package ctlogo.execute.expression;
 
 import ctlogo.data.CTValue;
-import ctlogo.exception.*;
+import ctlogo.exception.CTException;
 import ctlogo.execute.Context;
 
 /**

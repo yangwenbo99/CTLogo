@@ -38,11 +38,32 @@ public class TestGraphics {
 		Scanner sc = new Scanner(System.in);
 
 		s.drawLine(1, 2, 100, 200);
+		sc.nextLine();		
+		
+		s.setStroke(3);
+		sc.nextLine();
+
+		s.drawLine(-50, -20, 100, -200);
 		sc.nextLine();
 		
-		s.drawLine(-50, -20, 100, 200);
+		s.setColor("red");
+		sc.nextLine();
+
+		s.drawLine(-100, -20, 100, -200);
 		sc.nextLine();
 		
+		s.setColor("green");
+		sc.nextLine();
+
+		s.drawLine(1, -20, 100, -200);
+		sc.nextLine();
+
+		s.setColor("rd");
+		sc.nextLine();
+
+		s.drawLine(-30, -20, 100, -200);
+		sc.nextLine();
+
 		s.setWidth(500);
 		sc.nextLine();
 

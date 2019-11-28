@@ -27,5 +27,13 @@ public class StubScreen implements ctlogo.graphic.Screen {
 	@Override
 	public void setHeight(double h) {
 	}
+
+	@Override
+	public void setStroke(double s) {		
+	}
+
+	@Override
+	public void setColor(String color) {		
+	}
 	
 }

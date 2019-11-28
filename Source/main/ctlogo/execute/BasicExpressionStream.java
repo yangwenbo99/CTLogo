@@ -3,24 +3,19 @@
  */
 package ctlogo.execute;
 
-import java.util.List;
-import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Stack;
-import java.util.Scanner;
 
+import ctlogo.exception.CTLogicException;
+import ctlogo.exception.CTSyntaxException;
 import ctlogo.execute.expression.Expression;
 import ctlogo.execute.expression.VariableExpression;
-import ctlogo.exception.CTSyntaxException;
-import ctlogo.data.CTValue;
-import ctlogo.data.GlobalVariableManager;
-import ctlogo.data.VariableManager;
-import ctlogo.exception.CTException;
-import ctlogo.exception.CTLogicException;
+import ctlogo.execute.rpn.RPNExpressionExecutor;
+import ctlogo.execute.rpn.RPNExpressionWrapper;
+import ctlogo.execute.rpn.RPNObject;
 import ctlogo.processing.TokenStream;
-import ctlogo.processing.BasicTokenStream;
-import ctlogo.execute.rpn.*;
-import ctlogo.graphic.Screen;
 
 /**
  * @author Paul Yang

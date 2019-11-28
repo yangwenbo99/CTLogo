@@ -1,19 +1,16 @@
 package ctlogo.execute;
 
-import org.junit.jupiter.api.Test;
+import static ctlogo.data.TestDataUtility.cint;
+
+import java.io.PrintStream;
+import java.util.Scanner;
+
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import ctlogo.data.GlobalVariableManager;
 import ctlogo.data.VariableManager;
 import ctlogo.graphic.Screen;
-import static ctlogo.data.TestDataUtility.cbol;
-import static ctlogo.data.TestDataUtility.cdbl;
-import static ctlogo.data.TestDataUtility.cint;
-import static ctlogo.data.TestDataUtility.cstr;
-
-import java.io.PrintStream;
-import java.util.Scanner;
 
 // This will test AbstractContext, GlobalContext and LocalContext
 public class TestContext {
