@@ -8,13 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 public class CTCanvas extends JFrame {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3259034126975648423L;
+	private static final long serialVersionUID = 3259034126975648423L;	
+
 	// TODO change hard code 400,300 to be configurable
 	private static double width = 400;
 	private static double height = 300;
@@ -66,6 +68,7 @@ public class CTCanvas extends JFrame {
 
 	public CTCanvas() {
 		super("CTCanvas");
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		// create a empty canvas
 		Canvas c = new Canvas() {
