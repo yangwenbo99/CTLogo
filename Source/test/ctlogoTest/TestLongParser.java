@@ -3,7 +3,7 @@ package ctlogoTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import ctlogo.execute.util.*;
+import ctlogo.execute.util.LongParser;
 
 public class TestLongParser {
 

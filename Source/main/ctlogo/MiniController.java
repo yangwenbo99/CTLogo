@@ -1,11 +1,11 @@
 package ctlogo;
 
+import java.io.PrintStream;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import java.io.PrintStream;
 
-import ctlogo.data.CTValue;
 import ctlogo.data.GlobalVariableManager;
+import ctlogo.data.VariableManager;
 import ctlogo.exception.CTException;
 import ctlogo.exception.CTSyntaxException;
 import ctlogo.execute.AbstractContext;
@@ -16,7 +16,6 @@ import ctlogo.execute.expression.Expression;
 import ctlogo.graphic.Screen;
 import ctlogo.processing.BasicTokenStream;
 import ctlogo.processing.TokenStream;
-import ctlogo.data.VariableManager;
 
 public class MiniController {
 
@@ -72,6 +71,18 @@ public class MiniController {
 				// TODO Auto-generated method stub
 				
 			}
+
+			@Override
+			public void setStroke(double s) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void setColor(String color) {
+				// TODO Auto-generated method stub
+				
+			}
 		}
 
 		Context stubContext = new StubContext(
@@ -91,8 +102,10 @@ public class MiniController {
 				ExpressionStream es = new BasicExpressionStream(ts);
 
 				try {
-					Expression exp = es.getNextExpression();
-					exp.execute(stubContext);
+					while (true) {
+						Expression exp = es.getNextExpression();
+						exp.execute(stubContext);
+					}
 				} catch (NoSuchElementException e) {
 					// End of line
 					System.out.println("----------------------------");

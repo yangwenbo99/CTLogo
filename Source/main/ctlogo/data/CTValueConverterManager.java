@@ -1,10 +1,9 @@
 package ctlogo.data;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import ctlogo.exception.CTOperationUndefinedException;
-
-import java.util.HashMap;
 
 class CTValueConverterManager {
 	private static final CTValueConverterManager theInstance = 

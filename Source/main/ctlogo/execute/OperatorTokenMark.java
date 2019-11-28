@@ -1,9 +1,6 @@
 package ctlogo.execute;
 
-import ctlogo.execute.util.*;
-import ctlogo.data.*;
-import ctlogo.execute.rpn.*;
-import ctlogo.execute.expression.*;
+import ctlogo.execute.rpn.RPNOperable;
 
 class OperatorTokenMark {
     private RPNOperable rpnOperable;

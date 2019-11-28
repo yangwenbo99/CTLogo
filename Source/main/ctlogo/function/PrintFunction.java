@@ -5,9 +5,9 @@ package ctlogo.function;
 
 import java.util.List;
 
+import ctlogo.data.CTUndefined;
 import ctlogo.data.CTValue;
 import ctlogo.exception.CTException;
-import ctlogo.data.CTUndefined;
 import ctlogo.execute.Context;
 import ctlogo.execute.expression.Expression;
 

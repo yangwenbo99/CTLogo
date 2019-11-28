@@ -3,7 +3,7 @@
  */
 package ctlogo.data;
 
-import ctlogo.exception.*;
+import ctlogo.exception.CTOperationUndefinedException;
 
 /**
  * @author yang

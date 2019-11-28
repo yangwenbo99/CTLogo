@@ -1,10 +1,10 @@
 package ctlogo.execute.expression;
 
+import java.util.List;
+
 import ctlogo.data.CTValue;
 import ctlogo.exception.CTConversionNotSupportedException;
 import ctlogo.exception.CTDataUndefinedException;
-
-import java.util.*;
 
 /**
  * Stub class for testing purpose. 

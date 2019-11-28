@@ -3,15 +3,14 @@
  */
 package ctlogo.execute.rpn;
 
-import ctlogo.execute.expression.Expression;
-import ctlogo.processing.TokenStream;
-import ctlogo.exception.*;
-
-import java.util.Stack;
+import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Stack;
+
+import ctlogo.exception.CTCodeNotEvaluableException;
+import ctlogo.exception.CTLogicException;
+import ctlogo.execute.expression.Expression;
 
 /**
  * @author Paul Yang
@@ -50,27 +49,14 @@ public class RPNExpressionExecutor {
                     int operandNum = rpnOperable.getParameterNumber();
                     List<RPNObject> operands;
 
-                    if (operandNum >= 0) {
-                        operands = new ArrayList<>(
-                                rpnStack.subList(rpnStack.size()-operandNum, rpnStack.size()));
-                        for (int i=0; i<operandNum; i++) {
-                            rpnStack.pop();
-                        }
-                    } else {
-                        operands = new ArrayList<>();
-                        while (!rpnStack.isEmpty()) {
-                            RPNObject operand = rpnStack.pop();
-                            if (!operand.isTerminator())
-                                operands.add(operand);
-                            else
-                                break;
-                        }
-                        Collections.reverse(operands);
-                    }
+                    assert(operandNum >= 0);
+					operands = new ArrayList<>(
+							rpnStack.subList(rpnStack.size()-operandNum, rpnStack.size()));
+					for (int i=0; i<operandNum; i++) {
+						rpnStack.pop();
+					}
                     RPNObject res = rpnOperable.operateOn(operands);
-                    if (!res.isEvaluable()) {
-                        throw new CTLogicException("Operand not evaluable");
-                    }
+                    assert(res.isEvaluable());
                     rpnStack.push(res);
                 }
             }
@@ -88,8 +74,5 @@ public class RPNExpressionExecutor {
             throw new CTLogicException("Some operand cannot be evaluated");
         }
            return resExp;
-    }
-
-    public static void main(String [] args) {
     }
 }

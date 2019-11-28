@@ -1,15 +1,10 @@
 package ctlogo.data;
 
-import org.junit.jupiter.api.Test;
+import static ctlogo.data.TestDataUtility.cint;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-
-import static ctlogo.data.TestDataUtility.cbol;
-import static ctlogo.data.TestDataUtility.cdbl;
-import static ctlogo.data.TestDataUtility.cint;
-import static ctlogo.data.TestDataUtility.cstr;
-
-import ctlogo.exception.CTVariableNotDefinedException;
+import org.junit.jupiter.api.Test;
 
 public class TestLocalVariableManager {
 	

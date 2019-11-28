@@ -3,23 +3,18 @@
  */
 package ctlogo.function;
 
+import static ctlogo.data.TestDataUtility.cdbl;
+import static ctlogo.data.TestDataUtility.cint;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import ctlogo.data.CTValue;
 import ctlogo.exception.CTException;
 import ctlogo.execute.expression.Expression;
 import ctlogo.execute.expression.LiteralExpression;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-
-import static ctlogo.data.TestDataUtility.cbol;
-import static ctlogo.data.TestDataUtility.cdbl;
-import static ctlogo.data.TestDataUtility.cint;
-import static ctlogo.data.TestDataUtility.cstr;
-
-import java.util.Collection;
-import java.util.List;
 
 /**
  * @author Paul Yang

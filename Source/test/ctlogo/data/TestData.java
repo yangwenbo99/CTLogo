@@ -1,12 +1,10 @@
 package ctlogo.data;
 
+import static ctlogo.data.TestDataUtility.cbol;
+import static ctlogo.data.TestDataUtility.cstr;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import ctlogo.data.*;
-import ctlogo.exception.CTException;
-
-import static ctlogo.data.TestDataUtility.*;
 
 public class TestData {
    

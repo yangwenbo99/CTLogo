@@ -1,9 +1,13 @@
 package ctlogo.function;
 
+import static ctlogo.data.TestDataUtility.cint;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import ctlogo.data.CTInteger;
 import ctlogo.data.CTUndefined;
@@ -14,8 +18,6 @@ import ctlogo.execute.Context;
 import ctlogo.execute.DummpExpression;
 import ctlogo.execute.expression.Expression;
 import ctlogo.execute.expression.LiteralExpression;
-
-import static ctlogo.data.TestDataUtility.*;
 
 public class TestFunction {
 	

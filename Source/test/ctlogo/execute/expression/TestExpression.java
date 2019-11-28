@@ -1,12 +1,14 @@
 package ctlogo.execute.expression;
 
+import static ctlogo.data.TestDataUtility.cdbl;
+import static ctlogo.data.TestDataUtility.cint;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import ctlogo.data.*;
+import ctlogo.data.CTBoolean;
+import ctlogo.data.CTInteger;
 import ctlogo.exception.CTException;
-
-import static ctlogo.data.TestDataUtility.*;
 
 /**
  * @author Paul Yang

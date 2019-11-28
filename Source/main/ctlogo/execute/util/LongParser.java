@@ -3,10 +3,11 @@
  */
 package ctlogo.execute.util;
 
-import java.util.regex.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Paul Yang
