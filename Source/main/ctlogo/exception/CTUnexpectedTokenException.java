@@ -10,6 +10,11 @@ package ctlogo.exception;
 public class CTUnexpectedTokenException extends CTSyntaxException {
 
 	/**
+	 *
+	 */
+	private static final long serialVersionUID = 3143084402154280371L;
+
+	/**
 	 * @param message The message.
 	 */
 	public CTUnexpectedTokenException(String message) {

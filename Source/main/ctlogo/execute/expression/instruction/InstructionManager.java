@@ -4,11 +4,8 @@
 package ctlogo.execute.expression.instruction;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 import ctlogo.exception.CTSyntaxException;
 import ctlogo.execute.ExpressionStream;
@@ -45,7 +42,7 @@ public class InstructionManager {
 	}
 	
 	public boolean hasInstruction(String name) {
-		return instrucions.containsKey(name);
+		return instrucions.containsKey(name.toUpperCase());
 	}
 	
 	/**
