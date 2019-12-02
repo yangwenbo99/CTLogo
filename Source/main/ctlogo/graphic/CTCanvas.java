@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+import java.awt.geom.AffineTransform;
 
 public class CTCanvas extends JFrame {
 
@@ -18,51 +19,51 @@ public class CTCanvas extends JFrame {
 	private static final long serialVersionUID = 3259034126975648423L;	
 
 	// TODO change hard code 400,300 to be configurable
-	private static double width = 400;
-	private static double height = 300;
+	private double width = 400;
+	private double height = 300;
 
-	private static double stroke = 1;
-	private static Color color = Color.black;
+	private double stroke = 1;
+	private Color color = Color.black;
 
-	private static List<VectorShape> vectorShapeCollection = new ArrayList<VectorShape>();
+	private List<VectorShape> vectorShapeCollection = new ArrayList<VectorShape>();
 
-	public static double getCurrentWidth() {
-		return CTCanvas.width;
+	public double getCurrentWidth() {
+		return width;
 	}
 
-	public static double getCurrentHeight() {
-		return CTCanvas.height;
+	public double getCurrentHeight() {
+		return height;
 	}
 
-	public static double getCurrentStroke() {
-		return CTCanvas.stroke;
+	public double getCurrentStroke() {
+		return stroke;
 	}
 
-	public static Color getCurrentColor() {
-		return CTCanvas.color;
+	public Color getCurrentColor() {
+		return color;
 	}
 
-	public static void setWidth(double width) {
-		CTCanvas.width = width;
+	public void setWidth(double width) {
+		this.width = width;
 	}
 
-	public static void setHeight(double height) {
-		CTCanvas.height = height;
+	public void setHeight(double height) {
+		this.height = height;
 	}
 
-	public static void setStroke(double stroke) {
-		CTCanvas.stroke = stroke;
+	public void setStroke(double stroke) {
+		this.stroke = stroke;
 	}
 
-	public static void setColor(Color color) {
-		CTCanvas.color = color;
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
-	public static void addVectorShape(VectorShape vs) {
+	public void addVectorShape(VectorShape vs) {
 		vectorShapeCollection.add(vs);
 	}
 
-	public static void removeAllVectorShape() {
+	public void removeAllVectorShape() {
 		vectorShapeCollection.clear();
 	}
 
@@ -84,6 +85,14 @@ public class CTCanvas extends JFrame {
 			public void paint(Graphics g) {
 				super.paint(g);
 				Graphics2D g2 = (Graphics2D) g;
+				AffineTransform aftrans = new AffineTransform(
+						getWidth() / getCurrentWidth(),
+						0, 
+						0, 
+						- getHeight() / getCurrentHeight(), 
+						getWidth() / 2, 
+						getHeight() / 2);
+				g2.transform(aftrans);
 
 				for (int i = 0; i < vectorShapeCollection.size(); i++) {
 					vectorShapeCollection.get(i).draw(g2);
