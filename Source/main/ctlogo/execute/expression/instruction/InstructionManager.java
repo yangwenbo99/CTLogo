@@ -22,7 +22,10 @@ import ctlogo.processing.TokenStream;
 public class InstructionManager {
 	private Map<String, Instruction> instrucions;
 	
-	private InstructionManager() { }
+	private InstructionManager() { 
+		instrucions = new HashMap<>();
+	}
+
 	private static InstructionManager instance = new InstructionManager();
 	public static InstructionManager getInstance() {
 		return instance;
@@ -60,7 +63,7 @@ public class InstructionManager {
 			ExpressionStream es, 
 			boolean isFirst
 			) throws CTSyntaxException {
-		if (hasInstruction(name))
+		if (hasInstruction(name.toUpperCase()))
 			return instrucions.get(name.toUpperCase()).getExpression(
 					ts, es, isFirst);
 		else
@@ -84,5 +87,9 @@ public class InstructionManager {
 			TokenStream ts, 
 			ExpressionStream es) throws CTSyntaxException {
 		return getExpression(name, ts, es, false);
+	}
+
+	static {
+		InstructionManager.getInstance().register("REPEAT", RepeatInstruction.getInstance());
 	}
 }

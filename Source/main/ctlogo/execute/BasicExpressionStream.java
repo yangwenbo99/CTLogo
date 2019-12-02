@@ -13,6 +13,7 @@ import ctlogo.exception.CTSyntaxException;
 import ctlogo.exception.CTUnexpectedTokenException;
 import ctlogo.execute.expression.Expression;
 import ctlogo.execute.expression.VariableExpression;
+import ctlogo.execute.expression.instruction.InstructionManager;
 import ctlogo.execute.rpn.RPNExpressionExecutor;
 import ctlogo.execute.rpn.RPNExpressionWrapper;
 import ctlogo.execute.rpn.RPNObject;
@@ -96,7 +97,7 @@ public class BasicExpressionStream implements ExpressionStream {
 			 * @param token the token to be accepted 
 			 * 
 			 * This method shall handle all cases, except 
-			 * Operator -> Operator, in this case, the sub-classes shall 
+			 * Operator to Operator, in this case, the sub-classes shall 
 			 * do the job. 
 			 * @throws CTSyntaxException 
 			 * 
@@ -105,12 +106,8 @@ public class BasicExpressionStream implements ExpressionStream {
 				if (isOperatorToken(token)) {
 					// This token must be unary operator
 					enterState(new UnaryOperatorState(token));
-				} else if (BasicExpressionHelper.isLiteral(token)) {
-					enterState(new LiteralState(token));
-				} else if (BasicExpressionHelper.isLikeVariable(token)) {
-					enterState(new VariableState(token));
-				} else if (BasicExpressionHelper.isFunction(token)) {
-					enterState(new DefaultFunctionState(token));
+				} else if (isOperableToken(token)) {
+					enterState(getOperableState(token, false));
 				} else if (token.equals("(")) {
 					enterState(new OpenParenthesisState(token));
 				} else if (token.equals("\n")) {
@@ -180,7 +177,9 @@ public class BasicExpressionStream implements ExpressionStream {
 				assert(numExpectedExpression == 0);
 				if (
 						isOperableToken(token) || 
-						token.equals("(") || 
+						token.equals("(") ||  
+						token.equals("[") || 
+						token.equals("{") || 
 						token.equals("\n")) {
 					// tailing "\n" shall be pushed back as a mark
 					return false;
@@ -188,7 +187,7 @@ public class BasicExpressionStream implements ExpressionStream {
 				
 				if (BasicExpressionHelper.isBinaryOperator(token)) {
 					enterState(new BinaryOperatorState(token));
-				} else if (token.equals(")")) {
+				} else if (token.equals(")") || token.equals("}") || token.equals("]")) {
 					if (numOpenParenthesis == 0) {
 						return false;
 					}
@@ -259,6 +258,12 @@ public class BasicExpressionStream implements ExpressionStream {
 				super(token);
 			}
 
+			@Override 
+			public void enter() throws CTSyntaxException {
+				workingStack.pop();
+				super.enter();
+			}
+
 			@Override
 			RPNObject getRPNObject() throws CTSyntaxException {
 				List<Expression> params = getUntil(")");
@@ -283,13 +288,8 @@ public class BasicExpressionStream implements ExpressionStream {
 
 			@Override
 			boolean accept(String token) throws CTSyntaxException {
-				if (BasicExpressionHelper.isFunction(token)) {
-					workingStack.pop();
-					enterState(new ComplexFunctionState(token));
-				} else if (BasicExpressionHelper.isLiteral(token)) {
-					enterState(new LiteralState(token));
-				} else if (BasicExpressionHelper.isLikeVariable(token)) {
-					enterState(new VariableState(token));
+				if (isOperableToken(token)) {
+					enterState(getOperableState(token, true));
 				} else if (token.equals("(")) {
 					enterState(new OpenParenthesisState(token));
 				} else if (isOperatorToken(token)) {
@@ -331,6 +331,8 @@ public class BasicExpressionStream implements ExpressionStream {
 				if (
 						isOperableToken(token) || 
 						token.equals("(") || 
+						token.equals("[") || 
+						token.equals("{") || 
 						token.equals("\n")) {
 					// tailing "\n" shall be pushed back as a mark
 					return false;
@@ -354,6 +356,34 @@ public class BasicExpressionStream implements ExpressionStream {
 			}
 			
 		}
+
+		class InstructionState extends OperableState {
+
+			private boolean isFirst;
+
+			public InstructionState(String token, boolean isFirst) {
+				super(token);
+				this.isFirst = isFirst;
+			}
+
+			@Override
+			public void enter() throws CTSyntaxException {
+				tokenStream.pushFront(getToken());
+				super.enter();
+			}
+
+			@Override
+			RPNObject getRPNObject() throws CTSyntaxException {
+				Expression exp = 
+					InstructionManager.getInstance().getExpression(
+							getToken(), 
+							tokenStream, 
+							BasicExpressionStream.this, 
+							isFirst);
+				return new RPNExpressionWrapper(exp);
+			}
+
+		}
 		
 		private State state;
 		
@@ -372,7 +402,37 @@ public class BasicExpressionStream implements ExpressionStream {
 			return 
 					BasicExpressionHelper.isLiteral(token) ||
 					BasicExpressionHelper.isFunction(token) ||
-					BasicExpressionHelper.isLikeVariable(token);
+					BasicExpressionHelper.isLikeVariable(token) ||
+					BasicExpressionHelper.isInstruction(token);
+		}
+
+		/**
+		 * Get an state correcsponsing to operable token.
+		 *
+		 * @param token   The operable token
+		 * @param isFirst is this the first token after <code>(</code>?
+		 * @throws IllegalArgumentException if the token is not operable
+		 * @return the corresponding state
+		 */
+		private State getOperableState(
+				String token, 
+				boolean isFirst) {
+			if (BasicExpressionHelper.isLiteral(token)) {
+				return new LiteralState(token);
+			} else if (BasicExpressionHelper.isLikeVariable(token)) {
+				return new VariableState(token);
+			} else if (BasicExpressionHelper.isFunction(token)) {
+				if (isFirst) 
+					return new ComplexFunctionState(token);
+				else
+					return new DefaultFunctionState(token);
+			} else if (BasicExpressionHelper.isInstruction(token)) {
+				return new InstructionState(token, isFirst);
+			} else {
+				throw new IllegalArgumentException(String.format(
+							"%s is not an operable token",
+							token));
+			}
 		}
 
 		// this method is made package-visible on purpose. 
@@ -410,12 +470,11 @@ public class BasicExpressionStream implements ExpressionStream {
 			while (token.trim().equals(""))
 				token = tokenStream.popNext();
 
-			if (BasicExpressionHelper.isLiteral(token)) {
-				enterState(new LiteralState(token));
-			} else if (BasicExpressionHelper.isLikeVariable(token)) {
-				enterState(new VariableState(token));
-			} else if (BasicExpressionHelper.isFunction(token)) {
-				enterState(new DefaultFunctionState(token));
+			if (isOperatorToken(token)) {
+				// This token must be unary operator
+				enterState(new UnaryOperatorState(token));
+			} else if (isOperableToken(token)) {
+				enterState(getOperableState(token, false));
 			} else if (token.equals("(")) {
 				enterState(new OpenParenthesisState(token));
 			} else {
@@ -472,9 +531,10 @@ public class BasicExpressionStream implements ExpressionStream {
 	}
 
 	@Override
-	public List<Expression> geNextBlock() throws CTSyntaxException {
+	public List<Expression> getNextBlock() throws CTSyntaxException {
 		String opening = tokenStream.getNext();
 		String closing = getClosingToken(opening);
+		tokenStream.popNext();
 		List<Expression> res = new ArrayList<>();
 		while (!tokenStream.getNext().equals(closing)) {
 			res.add(getNextExpression());

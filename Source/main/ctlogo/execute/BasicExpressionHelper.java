@@ -12,6 +12,7 @@ import ctlogo.exception.CTSyntaxException;
 import ctlogo.execute.expression.Expression;
 import ctlogo.execute.expression.LiteralExpression;
 import ctlogo.execute.expression.OperatorManager;
+import ctlogo.execute.expression.instruction.InstructionManager;
 import ctlogo.execute.rpn.RPNExpressionManager;
 import ctlogo.execute.util.DoubleParser;
 import ctlogo.execute.util.LongParser;
@@ -113,6 +114,10 @@ public class BasicExpressionHelper {
 
 	static boolean isLikeVariable(String token) {
 		return token.length() > 1 && token.charAt(0) == ':';
+	}
+
+	static boolean isInstruction(String token) {
+		return InstructionManager.getInstance().hasInstruction(token);
 	}
 
     static int getDefaultParamNum(String token) {

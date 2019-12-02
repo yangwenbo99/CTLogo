@@ -12,6 +12,7 @@ import ctlogo.exception.CTSyntaxException;
 import ctlogo.exception.CTUnexpectedTokenException;
 import ctlogo.execute.Context;
 import ctlogo.execute.ExpressionStream;
+import ctlogo.execute.LocalContext;
 import ctlogo.execute.expression.Expression;
 import ctlogo.processing.TokenStream;
 
@@ -29,7 +30,6 @@ public class RepeatInstruction implements Instruction {
 		return instance;
 	}
 
-	@SuppressWarnings("unused")
 	private class RepeatExpression implements Expression {
 		
 		Expression times; 
@@ -44,9 +44,10 @@ public class RepeatInstruction implements Instruction {
 		public CTValue execute(Context context) throws CTException {
 			CTValue timesv = times.execute(context).convertTo(CTInteger.getTypeMarkerStatic());
 			long timesl = ((CTInteger) timesv).getNumericalValue().longValue();
+			Context localContext = new LocalContext(context);
 			for (long i=0; i<timesl; i++) {
 				for (Expression exp : block) {
-					exp.execute(context);
+					exp.execute(localContext);
 				}
 			}
 			return timesv;
@@ -62,7 +63,7 @@ public class RepeatInstruction implements Instruction {
 		if (!name.toUpperCase().equals("REPEAT")) {
 			throw new CTUnexpectedTokenException("REPEAT", name);
 		}
-		return new RepeatExpression(es.getNextExpression(), es.geNextBlock());
+		return new RepeatExpression(es.getNextExpression(), es.getNextBlock());
 	}
 
 }

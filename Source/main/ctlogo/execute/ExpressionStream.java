@@ -52,7 +52,7 @@ public interface ExpressionStream {
      *
      * @return the expressions in the block.
      */
-    public List<Expression> geNextBlock() throws CTSyntaxException;
+    public List<Expression> getNextBlock() throws CTSyntaxException;
 
     /**
      * Get the next string from the stream.

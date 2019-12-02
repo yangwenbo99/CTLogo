@@ -238,4 +238,13 @@ public class TestBasicExpressionStream {
 					() -> es.getNextExpression());
 		}
 	}
+
+	@Test 
+	void testGetNextBlock() throws IOException, CTSyntaxException, CTException {
+		try (BasicTokenStream ts = ts("{PR 1}\n")) {
+			BasicExpressionStream es = new BasicExpressionStream(ts);
+			Assertions.assertEquals(cint(1), es.getNextBlock().get(0).execute(gbl));
+		}
+	}
+
 }
