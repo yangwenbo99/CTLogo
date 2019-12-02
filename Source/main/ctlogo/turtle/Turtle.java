@@ -140,7 +140,7 @@ public class Turtle {
 	 * 
 	 * @param penWidth the width of pen
 	 * 
-	 * @throws IllegalArgumentException if penwidth < 0
+	 * @throws IllegalArgumentException if {@code penwidth < 0}
 	 */
 	public void setPenWidth(double penWidth) {
 		if (penWidth < 0)

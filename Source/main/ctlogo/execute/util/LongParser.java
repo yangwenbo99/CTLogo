@@ -119,7 +119,7 @@ public class LongParser {
     }
 
     /**
-     * Long parser, which behaves like C++'s {@code: strtol} with base 0.  
+     * Long parser, which behaves like C++'s {@code strtol} with base 0.  
      *
      * <p>
      * The behavior of this function is well documented in code... If you

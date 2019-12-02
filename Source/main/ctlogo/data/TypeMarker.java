@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author Paul Yang
  *
  */
-class TypeMarker {
+public class TypeMarker {
 	
 	private String s;
 

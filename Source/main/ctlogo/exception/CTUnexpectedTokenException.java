@@ -22,7 +22,7 @@ public class CTUnexpectedTokenException extends CTSyntaxException {
 	}
 
 	/**
-	 * @param message The message.
+	 * @param message   The message.
 	 * @param throwable the exception causing this exception.
 	 */
 	public CTUnexpectedTokenException(String message, Throwable throwable) {
@@ -30,7 +30,8 @@ public class CTUnexpectedTokenException extends CTSyntaxException {
 	}
 
 	/**
-	 * @param message The message.
+	 * @param expected the expected token
+	 * @param actual the actual token got
 	 */
 	public CTUnexpectedTokenException(String expected, String actual) {
 		super(String.format(

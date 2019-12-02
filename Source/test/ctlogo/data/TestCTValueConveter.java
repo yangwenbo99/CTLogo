@@ -3,6 +3,11 @@ package ctlogo.data;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import ctlogo.data.CTValue;
+import ctlogo.data.CTValueConverter;
+import ctlogo.data.TypeConversionDirection;
+import ctlogo.data.TypeMarker;
+
 /**
  *
  *
@@ -27,11 +32,14 @@ public class TestCTValueConveter {
             return null;
         }
 
-        @Override
-        boolean isConvertible(CTValue from) {
-            // TODO Auto-generated method stub
-            return false;
-        }
+		@Override
+		public boolean isConvertible(CTValue from) {
+			return false;
+		}
+
+		public TypeConversionDirection getDirection() {
+			return super.getDirection();
+		}
     }
 
     TypeMarker tm1 = new TypeMarker("type marker 1");
@@ -44,8 +52,8 @@ public class TestCTValueConveter {
 
     @Test
     public void TestConstructor() {
-        CTValueConverter c1 = new stubConverter1(tm1, tm2);
-        CTValueConverter c2 = new stubConverter1(dir1);
+        stubConverter1 c1 = new stubConverter1(tm1, tm2);
+        stubConverter1 c2 = new stubConverter1(dir1);
         Assertions.assertEquals(c1.getDirection(), c2.getDirection());
     }
 

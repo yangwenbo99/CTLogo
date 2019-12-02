@@ -24,12 +24,12 @@ import ctlogo.execute.expression.Expression;
  *   If so, regard it a variable. 
  *
  * - Check whether it is a function name.
- *   If so, create a {@code: RPNFunctionCall}
+ *   If so, create a {@code RPNFunctionCall}
  *
  * - Check whether it is begin / end of list or block
  *   If so, (recursively) call and construct.
  *
- * - Otherwise, {@link: CTSyntaxException} shall be thrown.
+ * - Otherwise, {@link CTSyntaxException} shall be thrown.
  * 
  * These imply: 
  * - we need to distinguish between unary and binary '-'

@@ -35,12 +35,12 @@ import ctlogo.processing.TokenStream;
  *         represented as an RPN object
  * </p>
  * 
- * </p>
+ * <p>
  *         The strategy of converting a stream of tokens to Expression is as
  *         defined in the {@link ExpressionStream}.
  * </p>
  *
- * </p>
+ * <p>
  *         For each token: - Check whether it is an literal. If so, wrap it with
  *         {@code RPNObject} for Literal
  * </p>

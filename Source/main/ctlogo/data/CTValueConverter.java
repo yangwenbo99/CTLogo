@@ -7,7 +7,7 @@ package ctlogo.data;
  * @author Paul Yang
  * CTValue's type converter 
  */
-abstract class CTValueConverter {
+public abstract class CTValueConverter {
 	
 	private TypeConversionDirection tcd;
 	
@@ -40,6 +40,6 @@ abstract class CTValueConverter {
 	 */
 	abstract public CTValue convert(CTValue from);
 
-    abstract boolean isConvertible(CTValue from);
+    abstract protected boolean isConvertible(CTValue from);
 	
 }

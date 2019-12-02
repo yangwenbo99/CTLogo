@@ -3,9 +3,10 @@ package ctlogo.data;
 import java.util.HashMap;
 import java.util.Map;
 
+import ctlogo.data.convert.ConvertInitilizer;
 import ctlogo.exception.CTOperationUndefinedException;
 
-class CTValueConverterManager {
+public class CTValueConverterManager {
 	private static final CTValueConverterManager theInstance = 
 			new CTValueConverterManager();
 	public static CTValueConverterManager getInstance() {
