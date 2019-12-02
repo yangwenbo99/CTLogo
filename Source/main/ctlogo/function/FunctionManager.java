@@ -80,6 +80,8 @@ public class FunctionManager {
 	}
 
 	/**
+	 * Get an expression representing a function
+	 * 
 	 * @param name
 	 * @param params
 	 * @return the Expression object representing the function.

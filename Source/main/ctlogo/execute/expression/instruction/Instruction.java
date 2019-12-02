@@ -40,7 +40,7 @@ public interface Instruction {
 	 * Get the expression corresponding to the instruction. 
 	 *
 	 * @param ts the token stream containing the instruction.
-	 * @return the corresponsing expression. 
+	 * @return the corresponding expression. 
 	 *
 	 * This shall be equivalent to 
 	 * <code>{@code getExpression(ts, es, false)}</code>, 
