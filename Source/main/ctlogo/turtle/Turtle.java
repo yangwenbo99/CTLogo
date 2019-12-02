@@ -8,6 +8,7 @@ public class Turtle {
 	private double orientation;
 	private double penWidth;
 	private boolean isDown;
+	private boolean isVisible;
 	
 	public static final int DEFAULT_MAX_HISTORY_LENGTH = 100;
 	
@@ -16,13 +17,15 @@ public class Turtle {
 	
 	public Turtle() {
 		this(DEFAULT_MAX_HISTORY_LENGTH);
-		setCoordinate(new Coordinate(0, 0));
-		setDown(true);
 	}
 
 	public Turtle(int maxHistoryLength){
 		history = new ArrayDeque<Coordinate>();
 		this.maxHistoryLength = maxHistoryLength;
+		setCoordinate(new Coordinate(0, 0));
+		setOrientation(Math.PI / 2);
+		setDown(true);
+		setVisible(true);
 	}
 	
 	private void setCoordinate(Coordinate c) {
@@ -114,6 +117,20 @@ public class Turtle {
 		this.isDown = down;
 	}
 	
+	/**
+	 * @return the isVisible
+	 */
+	public boolean isVisible() {
+		return isVisible;
+	}
+
+	/**
+	 * @param isVisible the isVisible to set
+	 */
+	public void setVisible(boolean isVisible) {
+		this.isVisible = isVisible;
+	}
+
 	public double getPenWidth() {
 		return penWidth;
 	}
