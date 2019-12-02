@@ -7,8 +7,7 @@ public class VectorScreen implements Screen {
 	private CTCanvas currentCTCanvas = new CTCanvas();
 	
 	public void changeCTCanvas() {
-		currentCTCanvas.setVisible(false);
-		currentCTCanvas = new CTCanvas();
+		currentCTCanvas.repaint();
 	}
 
 	@Override

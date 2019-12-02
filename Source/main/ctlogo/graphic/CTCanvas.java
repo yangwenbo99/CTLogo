@@ -66,20 +66,23 @@ public class CTCanvas extends JFrame {
 		vectorShapeCollection.clear();
 	}
 
+	Canvas c;
+
 	public CTCanvas() {
 		super("CTCanvas");
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		// create a empty canvas
-		Canvas c = new Canvas() {
+		c = new Canvas() {
 
 			/**
 			 * 
 			 */
-			private static final long serialVersionUID = 7589226733217604405L;
+			private static final long serialVersionUID = 7589226733217604406L;
 
 			// paint the canvas
 			public void paint(Graphics g) {
+				super.paint(g);
 				Graphics2D g2 = (Graphics2D) g;
 
 				for (int i = 0; i < vectorShapeCollection.size(); i++) {
@@ -94,5 +97,12 @@ public class CTCanvas extends JFrame {
 		setSize((int) width, (int) height);
 		setVisible(true);
 	}
+
+	@Override 
+	public void repaint() {
+		super.repaint();
+		c.repaint();
+	}
+
 
 }
