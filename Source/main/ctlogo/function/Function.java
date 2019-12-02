@@ -6,7 +6,7 @@ import ctlogo.exception.CTSyntaxException;
 import ctlogo.execute.expression.Expression;
 
 /**
- * @author yang
+ * @author Paul Yang
  *
  */
 public interface Function {
