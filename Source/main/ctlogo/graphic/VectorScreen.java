@@ -4,11 +4,12 @@ import java.awt.Color;
 
 public class VectorScreen implements Screen {
 
-//	private static List<VectorShape> vectorShapeCollection= new ArrayList<VectorShape>();
-//	
-//	public static void addVectorShape(VectorShape vs) {
-//		vectorShapeCollection.add(vs);
-//	}
+	private CTCanvas currentCTCanvas = new CTCanvas();
+	
+	public void changeCTCanvas() {
+		currentCTCanvas.setVisible(false);
+		currentCTCanvas = new CTCanvas();
+	}
 
 	@Override
 	public void drawLine(double x1, double y1, double x2, double y2) {
@@ -22,7 +23,7 @@ public class VectorScreen implements Screen {
 		vs.setStroke(CTCanvas.getCurrentStroke());
 		vs.setColor(CTCanvas.getCurrentColor());
 		CTCanvas.addVectorShape(vs);
-		new CTCanvas();
+		changeCTCanvas();
 	}
 
 	@Override
@@ -40,25 +41,25 @@ public class VectorScreen implements Screen {
 	@Override
 	public void clean() {
 		CTCanvas.removeAllVectorShape();
-		new CTCanvas();
+		changeCTCanvas();
 	}
 
 	@Override
 	public void setWidth(double w) {
 		CTCanvas.setWidth(w);
-		new CTCanvas();
+		changeCTCanvas();
 	}
 
 	@Override
 	public void setHeight(double h) {
 		CTCanvas.setHeight(h);
-		new CTCanvas();
+		changeCTCanvas();
 	}
 
 	@Override
 	public void setStroke(double s) {
 		CTCanvas.setStroke(s);
-		new CTCanvas();
+		changeCTCanvas();
 	}
 
 	@Override
@@ -70,7 +71,7 @@ public class VectorScreen implements Screen {
 			c = CTCanvas.getCurrentColor();
 		}
 		CTCanvas.setColor(c);
-		new CTCanvas();
+		changeCTCanvas();
 	}
 
 }

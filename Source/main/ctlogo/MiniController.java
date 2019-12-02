@@ -14,6 +14,7 @@ import ctlogo.execute.Context;
 import ctlogo.execute.ExpressionStream;
 import ctlogo.execute.expression.Expression;
 import ctlogo.graphic.Screen;
+import ctlogo.graphic.VectorScreen;
 import ctlogo.processing.BasicTokenStream;
 import ctlogo.processing.TokenStream;
 
@@ -34,61 +35,61 @@ public class MiniController {
 			}
 		}
 		
-		class StubScreen implements Screen {
-
-			@Override
-			public void drawLine(double x1, double y1, double x2, double y2) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void drawRectangle(double x1, double y1, double x2, double y2) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void drawEclipse(double cx, double cy, double a, double b) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void clean() {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void setWidth(double w) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void setHeight(double h) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void setStroke(double s) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void setColor(String color) {
-				// TODO Auto-generated method stub
-				
-			}
-		}
+//		class StubScreen implements Screen {
+//
+//			@Override
+//			public void drawLine(double x1, double y1, double x2, double y2) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			@Override
+//			public void drawRectangle(double x1, double y1, double x2, double y2) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			@Override
+//			public void drawEclipse(double cx, double cy, double a, double b) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			@Override
+//			public void clean() {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			@Override
+//			public void setWidth(double w) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			@Override
+//			public void setHeight(double h) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			@Override
+//			public void setStroke(double s) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			@Override
+//			public void setColor(String color) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//		}
 
 		Context stubContext = new StubContext(
 				new Scanner("Test scanner"), 
 				System.out, 
-				new StubScreen(), 
+				new VectorScreen(), 
 				new GlobalVariableManager());
 
 		try (Scanner sc = new Scanner(System.in)) {

@@ -10,9 +10,9 @@ import java.util.Stack;
 
 import ctlogo.exception.CTLogicException;
 import ctlogo.exception.CTSyntaxException;
+import ctlogo.exception.CTUnexpectedTokenException;
 import ctlogo.execute.expression.Expression;
 import ctlogo.execute.expression.VariableExpression;
-import ctlogo.exception.CTUnexpectedTokenException;
 import ctlogo.execute.rpn.RPNExpressionExecutor;
 import ctlogo.execute.rpn.RPNExpressionWrapper;
 import ctlogo.execute.rpn.RPNObject;
