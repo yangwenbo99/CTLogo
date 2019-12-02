@@ -1,8 +1,7 @@
 /**
- * 
- */
-/**
- * @author Paul Yang, Dennis Wang, James Wang
+ * Management of Logo functions
+ *
+ * @author Paul Yang
  *
  */
 package ctlogo.function;

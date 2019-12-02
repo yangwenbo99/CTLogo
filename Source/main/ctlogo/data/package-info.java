@@ -1,13 +1,9 @@
 /**
- * 
- */
-/**
- * @author Paul Yang, Dennis Wang, James Wang
+ * This data package defines data types similar to js.
+ *
+ * @author Paul Yang
+ * @author Dennis Wang
+ * @author James Wang
  *
  */
 package ctlogo.data;
-/**
- * This data package defines 5 data type, similar to js but has several differences as below:
- * 
- * 
- */
