@@ -3,7 +3,6 @@
  */
 package ctlogo.function;
 
-import static ctlogo.data.TestDataUtility.cdbl;
 import static ctlogo.data.TestDataUtility.cint;
 
 import java.io.PrintStream;
