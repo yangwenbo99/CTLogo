@@ -29,7 +29,7 @@ public class MakeFunction extends AbstractFunction {
 	}
 
 	@Override
-	CTValue execute(Context ctx, List<Expression> params) throws CTException {
+	protected CTValue execute(Context ctx, List<Expression> params) throws CTException {
 		CTValue value = params.get(1).execute(ctx);
 		CTValue name = params.get(0).execute(ctx);
 		ctx.getVariableManager().setVariable(

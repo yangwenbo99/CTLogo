@@ -20,8 +20,6 @@ class OperatorTokenMark {
     /**
      * Construct a marker for "(".
      *
-     * @param isLeftParenthesis
-     *
      * Always has lowest precedence. Why? Because this is good for 
      * implementation.
      */

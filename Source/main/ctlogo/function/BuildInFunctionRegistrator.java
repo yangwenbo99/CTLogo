@@ -3,6 +3,15 @@
  */
 package ctlogo.function;
 
+import ctlogo.function.drawing.*;
+import ctlogo.function.math.AcosFunction;
+import ctlogo.function.math.AsinFunction;
+import ctlogo.function.math.Atan2Function;
+import ctlogo.function.math.AtanFunction;
+import ctlogo.function.math.CosFunction;
+import ctlogo.function.math.SinFunction;
+import ctlogo.function.math.TanFunction;
+
 /**
  * @author Paul Yang
  *

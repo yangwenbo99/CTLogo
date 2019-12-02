@@ -6,9 +6,8 @@ package ctlogo.data;
 import ctlogo.exception.CTOperationUndefinedException;
 
 /**
- * @author yang
- * @author
- * @version
+ * @author Paul Yang
+ * @version 1.0
  *
  * All should be convertible to CTInteger
  *

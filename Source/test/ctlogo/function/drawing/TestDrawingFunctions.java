@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ctlogo.function;
+package ctlogo.function.drawing;
 
 import static ctlogo.data.TestDataUtility.cint;
 
@@ -22,6 +22,7 @@ import ctlogo.execute.Context;
 import ctlogo.execute.StubScreen;
 import ctlogo.execute.expression.Expression;
 import ctlogo.execute.expression.LiteralExpression;
+import ctlogo.function.drawing.RightFunction;
 import ctlogo.graphic.Screen;
 import ctlogo.turtle.Turtle;
 import ctlogo.turtle.TurtleManager;

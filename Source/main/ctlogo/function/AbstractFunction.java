@@ -24,7 +24,7 @@ public abstract class AbstractFunction implements Function {
 	 * @return the return value of the function
 	 * @throws CTException 
 	 */
-	abstract CTValue execute(Context ctx, List<Expression> params) throws CTException;
+	abstract protected CTValue execute(Context ctx, List<Expression> params) throws CTException;
 	
 	@Override
 	public Expression getFunctionExpression(List<Expression> params) 
@@ -47,7 +47,7 @@ public abstract class AbstractFunction implements Function {
 	 * @return minimum number of allowed parameter.
 	 * 
 	 * The default behaviour of this function is to return 
-	 * {@link: #getDefaultParameterNum()}
+	 * {@link #getDefaultParameterNum()}
 	 */
 	@Override
 	public int getMinParameterNum() {
@@ -58,7 +58,7 @@ public abstract class AbstractFunction implements Function {
 	 * @return maximum number of allowed parameter, a negative number if unlimited.
 	 * 
 	 * The default behaviour of this function is to return 
-	 * {@link: #getDefaultParameterNum()}
+	 * {@link #getDefaultParameterNum()}
 	 */
 	@Override
 	public int getMaxParameterNum() {

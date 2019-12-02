@@ -23,7 +23,7 @@ public abstract class AbstractContext implements Context {
 	 * @param variableManager
 	 * @param enclContext
 	 * 
-	 * If {@code: enclosingContext} is not given, then all other parameters
+	 * If {@code enclosingContext} is not given, then all other parameters
 	 * cannot be null.
 	 */
 	public AbstractContext(

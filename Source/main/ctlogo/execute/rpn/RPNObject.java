@@ -6,9 +6,9 @@ package ctlogo.execute.rpn;
 /**
  * @author Paul Yang
  *
- * <remark>An RPNObject is either an RPNEvaluable or an RPNOperable, and
+ * An RPNObject is either an RPNEvaluable or an RPNOperable, and
  * occationally, both. An RPNObject may also be an terminator, mainly for 
- * terminating variable sized argument list.</remark>
+ * terminating variable sized argument list.
  *
  */
 public interface RPNObject {

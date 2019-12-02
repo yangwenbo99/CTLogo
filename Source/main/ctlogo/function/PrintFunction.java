@@ -40,7 +40,7 @@ public class PrintFunction extends AbstractFunction {
 	}
 
 	@Override
-	CTValue execute(Context ctx, List<Expression> params) throws CTException {
+	protected CTValue execute(Context ctx, List<Expression> params) throws CTException {
 		CTValue last = CTUndefined.UNDEFINED;
 		boolean isFirst = true;
 		for (Expression param : params) {

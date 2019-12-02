@@ -29,7 +29,7 @@ public interface VariableManager {
 	 * @throws CTVariableNotDefinedException if the variable name is not defined.
 	 * @return the variable
 	 * 
-	 * If this {@code: VariableManager} has enclosed some other 
+	 * If this {@code VariableManager} has enclosed some other 
 	 * VariableManager, this method shall return the local variable if 
 	 * found, otherwise, return the variable from higher level.
 	 */
@@ -37,21 +37,21 @@ public interface VariableManager {
 
 	/**
 	 * @param name
-	 * @return the variable is it is already defined, {@code: null} 
+	 * @return the variable is it is already defined, {@code null} 
      *         otherwise.
 	 * 
-	 * If this {@code: VariableManager} has enclosed some other 
+	 * If this {@code VariableManager} has enclosed some other 
 	 * VariableManager, this method shall return the local variable if 
 	 * found, otherwise, return the variable from higher level.
 	 */
 	CTValue tryGetValue(String name);
 
 	/**
-	 * @param name
-	 * @param variable
+	 * @param name the name of the variable to set
+	 * @param value the value to set 
 	 * 
 	 * @return the variable be replaced. If there is no variable being 
-	 *         replace, then {@code: null} shall be returned. 
+	 *         replace, then {@code null} shall be returned. 
      * @throws IllegalArgumentException if trying to set the variable to null (
      *                                  (in Java)
 	 * 
@@ -62,11 +62,11 @@ public interface VariableManager {
 	CTValue setVariable(String name, CTValue value);
 
 	/**
-	 * @param name
-	 * @param variable
+	 * @param name the name of the variable to set
+	 * @param value the value to set 
 	 * 
 	 * @return the variable be replaced. If there is no variable being 
-	 *         replace, then {@code: null} shall be returned. 
+	 *         replace, then {@code null} shall be returned. 
      * @throws IllegalArgumentException if trying to set the variable to null (
      *                                  (in Java)
 	 * 

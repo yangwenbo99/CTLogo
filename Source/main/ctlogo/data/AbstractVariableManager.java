@@ -64,8 +64,8 @@ abstract class AbstractVariableManager implements VariableManager {
      * @throws IllegalArgumentException if trying to set the variable to null (
      *                                  (in Java) or the name is null
      *
-     * The difference behaviour between this method and {@code: setValue} is because
-     * of the supposed behaviour of the two methods. To be short, {@code: setValue}
+     * The difference behaviour between this method and {@code setValue} is because
+     * of the supposed behaviour of the two methods. To be short, {@code setValue}
      * shall be like CTLogo language, which is permissive. On the other 
      * hand, this method is for internal usage, meaning that should be 
      * strict, and this is also benificial for further implementation.

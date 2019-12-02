@@ -102,7 +102,7 @@ class StubFuntion extends AbstractFunction {
 	}
 
 	@Override
-	CTValue execute(Context ctx, List<Expression> params) throws CTException {
+	protected CTValue execute(Context ctx, List<Expression> params) throws CTException {
 		return evalRes;
 	}
 	

@@ -22,38 +22,50 @@ import ctlogo.processing.TokenStream;
 /**
  * @author Paul Yang
  *
+ * <p>
  *         Implementation details: The class shall firstly translate the program
  *         to Reverse Polish notation (RPN), then generate expression object
  *         based on the RPN representation.
+ * </p>
  * 
+ * <p>
  *         When translating to RPN: - Need to track on where is boundary of
  *         expression - Need to put additional function call terminator RPN
  *         object - A block and list shall be (recursively) parsed, and
  *         represented as an RPN object
+ * </p>
  * 
+ * </p>
  *         The strategy of converting a stream of tokens to Expression is as
- *         defined in the {@link: ExpressionStream}.
+ *         defined in the {@link ExpressionStream}.
+ * </p>
  *
+ * </p>
  *         For each token: - Check whether it is an literal. If so, wrap it with
- *         {@code: RPNObject} for Literal
+ *         {@code RPNObject} for Literal
+ * </p>
  *
- *         - Check whether it is an operator. If so, check whether it is unary
- *         or binary. - If the last token is an operator or (begin of
- *         expression), it unary - Otherwise, its binary
+ * <ul>
+ * <li>Check whether it is an operator. If so, check whether it is unary
+ * or binary. If the last token is an operator or (begin of
+ * expression), it unary. Otherwise, its binary</li>
  *
- *         Construct a proper RPN object wrapper for {@code: UnaryOperator} or
- *         {@code: BinaryOperator} respectively.
+ *
+ * <li>Construct a proper RPN object wrapper for {@code UnaryOperator} or
+ * {@code BinaryOperator} respectively.</li>
  * 
- *         - Check whether it looks like a variable If so, create a wrapper for
- *         variable expression
+ * <li>Check whether it looks like a variable If so, create a wrapper for
+ * variable expression</li>
  *
- *         - Check whether it is a function name. If so, create a
- *         {@code: RPNFunctionCall}
+ * <li>Check whether it is a function name. If so, create a wrapper for it </li>
  *
- *         - Check whether it is begin / end of list or block If so,
- *         (recursively) call and construct.
+ * <li>Check whether it is a instruction name. If so, create a wrapper for it </li>
+ *
+ * <li>Check whether it is begin / end of list or block If so,
+ * (recursively) call and construct.</li>
  * 
- *         - Otherwise, {@link: CTSyntaxException} shall be thrown.
+ * <li>Otherwise, {@link CTSyntaxException} shall be thrown.</li>
+ * </ul>
  *
  */
 public class BasicExpressionStream implements ExpressionStream {
