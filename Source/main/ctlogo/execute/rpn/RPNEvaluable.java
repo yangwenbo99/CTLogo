@@ -6,6 +6,8 @@ package ctlogo.execute.rpn;
 import ctlogo.execute.expression.Expression;
 
 /**
+ * An RPN object that can be evaluated. 
+ *
  * @author Paul Yang
  *
  */

@@ -4,7 +4,7 @@
 package ctlogo.exception;
 
 /**
- * Exception to indicate that some variable is not defined. 
+ * Exception to indicate that some variable is already defined. 
  * 
  * @author Paul Yang
  *

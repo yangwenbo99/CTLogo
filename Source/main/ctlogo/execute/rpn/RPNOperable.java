@@ -5,7 +5,7 @@ import java.util.List;
 import ctlogo.exception.CTCodeNotEvaluableException;
 
 /**
- *
+ * An RPN object that can be used as an operator. 
  *
  * @author Paul Yang
  */

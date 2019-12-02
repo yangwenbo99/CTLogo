@@ -6,33 +6,36 @@ import ctlogo.exception.CTSyntaxException;
 import ctlogo.execute.expression.Expression;
 
 /**
- * 
- * @author Paul Yang
+ * The stream of Expression. 
  *
  *
- * For each token: 
+ * <p>For each token: </p>
  *
- * - Check whether it is an literal.
- *   If so, regard it as an literal.
+ * <ul>
+ * <li> Check whether it is an literal.
+ *   If so, regard it as an literal.</li>
  *
- * - Check whether it is an operator.
+ * <li> Check whether it is an operator.
  *   If so, check whether it is unary or binary. 
  *     - If the last token is an operator or (begin of expression), it unary
- *     - Otherwise, its binary
+ *     - Otherwise, its binary</li>
  *   
- * - Check whether it looks like a variable
- *   If so, regard it a variable. 
+ * <li> Check whether it looks like a variable
+ *   If so, regard it a variable. </li>
  *
- * - Check whether it is a function name.
- *   If so, create a {@code RPNFunctionCall}
+ * <li> Check whether it is a function name.</li>
  *
- * - Check whether it is begin / end of list or block
- *   If so, (recursively) call and construct.
+ * <li> Check whether it is a instruction name.</li>
  *
- * - Otherwise, {@link CTSyntaxException} shall be thrown.
+ * <li> Check whether it is begin / end of list or block
+ *   If so, (recursively) call and construct.</li>
+ *
+ * <li> Otherwise, {@link CTSyntaxException} shall be thrown.</li>
+ * </ul>
  * 
- * These imply: 
- * - we need to distinguish between unary and binary '-'
+ * These imply that we need to distinguish between unary and binary '-'
+ *
+ * @author Paul Yang
  */
 public interface ExpressionStream {
 

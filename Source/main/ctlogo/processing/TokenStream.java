@@ -5,19 +5,20 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
- * Stream-like objects for reading Logo tokens
+ * Stream-like objects for reading Logo tokens.
+ *
+ * <p>All methods for reading elements may throw {@code IllegalStateException} and 
+ * {@code NoSuchElementException} if nessisary</p>
+ *
  * 
  * @author Paul Yang
  * 
- * All methods for reading elements may throw IllegalStateException and 
- * NoSuchElementException if nessisary
- *
  */
 public interface TokenStream extends Iterator<String> {
 	/**
 	 * Push a string to the front of the stream (the first to be popped)
 	 * 
-	 * @param s: the content to push
+	 * @param s the content to push
 	 * 
 	 * @return whether the push is success
 	 */
