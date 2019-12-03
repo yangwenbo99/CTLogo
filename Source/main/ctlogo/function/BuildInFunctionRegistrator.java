@@ -18,6 +18,8 @@ import ctlogo.function.math.TanFunction;
  */
 public class BuildInFunctionRegistrator {
 	
+	private BuildInFunctionRegistrator() { }
+	
 	static void registerAll () {
 		// print
 		FunctionManager.getInstace().register("PR", PrintFunction.getInstance(), false);

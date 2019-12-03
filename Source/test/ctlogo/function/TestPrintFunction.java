@@ -73,8 +73,15 @@ public class TestPrintFunction {
     @Test
     void test2() throws CTException {
         Assertions.assertEquals(
-                cstr("String"), executeTest(List.<Expression>of(w(cstr("String")))));
-        Assertions.assertEquals("String\n", getContent(baoStream));
+                cstr("String"), executeTest(List.<Expression>of(w(cint(1)), w(cstr("String")))));
+        Assertions.assertEquals("1 String\n", getContent(baoStream));
+    }
+    
+    @Test
+    void testParamNum() throws CTException {
+        Assertions.assertEquals(
+        		1, 
+        		PrintFunction.getInstance().getDefaultParameterNum());
     }
     
 }
