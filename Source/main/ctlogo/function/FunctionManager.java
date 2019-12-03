@@ -11,9 +11,10 @@ import ctlogo.exception.CTSyntaxException;
 import ctlogo.execute.expression.Expression;
 
 /**
- * @author Paul Yang
+ * <p>Managing registered functions.</p>
+ * <p>Please note that all function names are case-insensitive. </p>
  * 
- * Please note that all function names are case-insensitive. 
+ * @author Paul Yang
  *
  */
 public class FunctionManager {
@@ -82,8 +83,8 @@ public class FunctionManager {
 	/**
 	 * Get an expression representing a function
 	 * 
-	 * @param name
-	 * @param params
+	 * @param name name of the function
+	 * @param params parameters of the function-call
 	 * @return the Expression object representing the function.
 	 * @throws CTSyntaxException if incorrect number of parameter given
      * @throws NoSuchElementException if token not registered

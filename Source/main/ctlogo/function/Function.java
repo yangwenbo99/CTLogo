@@ -22,7 +22,8 @@ public interface Function {
 	 * @param params the parameter(s) of the function call
 	 * @return the return corresponding object.
 	 *
-	 * @throws CTSyntaxException
+	 * @throws CTSyntaxException if a syntax exception is detected, for 
+	 * example incorrect number of parameters. 
 	 */
 	Expression getFunctionExpression(List<Expression> params) throws CTSyntaxException;
 
