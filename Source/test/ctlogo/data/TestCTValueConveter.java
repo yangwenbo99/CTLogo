@@ -57,33 +57,5 @@ public class TestCTValueConveter {
         Assertions.assertEquals(c1.getDirection(), c2.getDirection());
     }
 
-    @Test 
-    public void testDirEquals() {
-        Assertions.assertNotEquals(dir2, dir1);
-        Assertions.assertNotEquals(dir3, dir1);
-        Assertions.assertNotEquals("stub", dir1);
-    }
-
-    @Test
-    public void testHash() {
-        Assertions.assertEquals(dir1.hashCode(), dir1.hashCode());
-        Assertions.assertEquals(dir1.hashCode(), dir4.hashCode());
-    }
-
-    @Test 
-    public void testDirToString() {
-        String s = dir1.toString();
-        Assertions.assertTrue(() -> s.contains("<"));
-        Assertions.assertTrue(() -> s.contains("ctlogo.data.TypeConversionDirection"));
-        Assertions.assertTrue(() -> s.contains("type marker 1"));
-        Assertions.assertTrue(() -> s.contains("type marker 2"));
-        Assertions.assertTrue(() -> s.contains(">"));
-    }
-
-    @Test
-    public void testGetFromTo() {
-        Assertions.assertEquals(tm1, dir1.getFrom());
-        Assertions.assertEquals(tm2, dir1.getTo());
-    }
 
 }
