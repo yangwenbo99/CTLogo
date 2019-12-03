@@ -22,17 +22,13 @@ public class TestFunctionManager {
 		FunctionManager.getInstace().register("DummyN", new StubFuntion(), false);
 	}
 	
-	@Test 
-	void testFunctionManager() throws CTException {
+	@Test
+	void testRegister() throws CTException {
 		List<Expression> params = List.<Expression>of(new DummpExpression());
 		Assertions.assertEquals(
 				cint(1), 
 				FunctionManager.getInstace().
 					getFunctionExpression("Dummy", params).execute(null));
-	}
-
-	@Test
-	void testRegister() throws CTException {
 		Assertions.assertThrows(IllegalArgumentException.class,
 				() -> FunctionManager.getInstace().register("Dummy", new StubFuntion()));
 		Assertions.assertThrows(IllegalArgumentException.class,
@@ -56,15 +52,6 @@ public class TestFunctionManager {
 					FunctionManager.getInstace().getFunctionExpression(
 							"dummyF1", List.<Expression>of(new LiteralExpression(cint(1))))
 							.execute(null));
-
-		FunctionManager.getInstace().register("DummyF1", new StubFuntion(cint(1)));
-		Assertions.assertEquals(cint(1), 
-				FunctionManager.getInstace().getFunctionExpression(
-						"dummyF1", List.<Expression>of(new LiteralExpression(cint(1)))).execute(null));
-		FunctionManager.getInstace().reRegister("DummyF1", new StubFuntion(cint(2)));
-		Assertions.assertEquals(cint(2), 
-				FunctionManager.getInstace().getFunctionExpression(
-						"dummyF1", List.<Expression>of(new LiteralExpression(cint(1)))).execute(null));
 	}
 	
 	@Test 
