@@ -74,6 +74,12 @@ public class TestDrawingFunctions {
 				);
 		Assertions.assertEquals(100.0, turtle().getX());
 		Assertions.assertEquals(1, sn.getNoLine());
+		turtle().setDown(false);
+		ForwardFunction.getInstance().execute(
+				stubContext, 
+				List.<Expression>of(l(cint(100)))
+				);
+		Assertions.assertEquals(1, sn.getNoLine());
 	}
 
 	@Test
@@ -84,6 +90,12 @@ public class TestDrawingFunctions {
 				List.<Expression>of(l(cint(100)))
 				);
 		Assertions.assertEquals(-100.0, turtle().getX());
+		Assertions.assertEquals(1, sn.getNoLine());
+		turtle().setDown(false);
+		BackwardFunction.getInstance().execute(
+				stubContext, 
+				List.<Expression>of(l(cint(100)))
+				);
 		Assertions.assertEquals(1, sn.getNoLine());
 	}
 
