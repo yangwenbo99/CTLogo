@@ -53,20 +53,10 @@ public class TestMakeFunction {
         stubContext = new StubContext(sc, ptStream, sn, vm);
     }
 
-    Expression pr(List<Expression> input) throws CTException {
-        PrintFunction pf  = PrintFunction.getInstance();
-        Expression    pfe = pf.getFunctionExpression(input);
-        return pfe;
-    }
-
     Expression make(List<Expression> input) throws CTException {
         MakeFunction mkf = MakeFunction.getInstance();
         return mkf.getFunctionExpression(input);
 
-    }
-    
-    private static String getContent(ByteArrayOutputStream baos) {
-        return baos.toString().replace("\r\n", "\n");
     }
     
     @Test
@@ -79,14 +69,6 @@ public class TestMakeFunction {
         // vm.setVariable("A", cint(1));
         Assertions.assertEquals(
                 cint(1),
-                vm.getValue("A"));
-        Assertions.assertEquals(
-                cint(2),
-                make(List.<Expression>of(
-                        w(cstr("A")), 
-                        w(cint(2)))).execute(stubContext));
-        Assertions.assertEquals(
-                cint(2),
                 vm.getValue("A"));
     }
     
