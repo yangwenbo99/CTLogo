@@ -3,9 +3,12 @@ package ctlogo.execute;
 public class StubScreen implements ctlogo.graphic.Screen {
 	
 	public static final StubScreen theInstance = new StubScreen();
+	private int noLine = 0;
+	private int noClean = 0;
 
 	@Override
 	public void drawLine(double x1, double y1, double x2, double y2) {
+		noLine++;
 	}
 
 	@Override
@@ -18,6 +21,7 @@ public class StubScreen implements ctlogo.graphic.Screen {
 
 	@Override
 	public void clean() {
+		noClean++;
 	}
 
 	@Override
@@ -34,6 +38,20 @@ public class StubScreen implements ctlogo.graphic.Screen {
 
 	@Override
 	public void setColor(String color) {		
+	}
+
+	/**
+	 * @return the number of line
+	 */
+	public int getNoLine() {
+		return noLine;
+	}
+
+	/**
+	 * @return the number of clean
+	 */
+	public int getNoClean() {
+		return noClean;
 	}
 	
 }
