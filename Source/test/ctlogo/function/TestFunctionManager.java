@@ -9,41 +9,30 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import ctlogo.data.CTInteger;
-import ctlogo.data.CTUndefined;
-import ctlogo.data.CTValue;
 import ctlogo.exception.CTException;
-import ctlogo.exception.CTSyntaxException;
-import ctlogo.execute.Context;
 import ctlogo.execute.DummpExpression;
 import ctlogo.execute.expression.Expression;
 import ctlogo.execute.expression.LiteralExpression;
 
-public class TestFunction {
-	
+public class TestFunctionManager {
 	@BeforeAll 
-	static void prepare () {
+	static void prepare() {
 		// register the dummy function
 		FunctionManager.getInstace().register("Dummy", new StubFuntion());
+		FunctionManager.getInstace().register("DummyN", new StubFuntion(), false);
+	}
+	
+	@Test 
+	void testFunctionManager() throws CTException {
+		List<Expression> params = List.<Expression>of(new DummpExpression());
+		Assertions.assertEquals(
+				cint(1), 
+				FunctionManager.getInstace().
+					getFunctionExpression("Dummy", params).execute(null));
 	}
 
-	@Test 
-	void testBasic() throws CTException {
-		Function f = new StubFuntion();
-		Expression exp = f.getFunctionExpression(List.<Expression>of(
-				new LiteralExpression(CTUndefined.UNDEFINED)));
-		Assertions.assertEquals(cint(1), exp.execute(null));
-	}
-	
 	@Test
-	void testWrongParameterNum() {
-		Function f = new StubFuntion();
-		Assertions.assertThrows(CTSyntaxException.class,
-				() -> f.getFunctionExpression(List.<Expression>of()));
-	}
-	
-	@Test 
-	void testReRegister() throws CTException {
+	void testRegister() throws CTException {
 		Assertions.assertThrows(IllegalArgumentException.class,
 				() -> FunctionManager.getInstace().register("Dummy", new StubFuntion()));
 		Assertions.assertThrows(IllegalArgumentException.class,
@@ -52,8 +41,15 @@ public class TestFunction {
 				() -> FunctionManager.getInstace().register("DuMmY", new StubFuntion()));
 		Assertions.assertDoesNotThrow(
 				() -> FunctionManager.getInstace().register("DuMmY2", new StubFuntion()));
-		
-		
+	}
+
+	@Test 
+	void testReRegister() throws CTException {
+		Assertions.assertEquals(
+				true, 
+				FunctionManager.getInstace().reRegister("dummy", new StubFuntion()));
+		Assertions.assertThrows(UnsupportedOperationException.class,
+				() -> FunctionManager.getInstace().reRegister("DummyN", new StubFuntion()));
 		
 		Assertions.assertThrows(NoSuchElementException.class,
 				() -> 
@@ -69,41 +65,35 @@ public class TestFunction {
 		Assertions.assertEquals(cint(2), 
 				FunctionManager.getInstace().getFunctionExpression(
 						"dummyF1", List.<Expression>of(new LiteralExpression(cint(1)))).execute(null));
-		
 	}
 	
 	@Test 
-	void testFunctionManager() throws CTException {
-		List<Expression> params = List.<Expression>of(new DummpExpression());
+	void testGetDefaultParameterNum() {
 		Assertions.assertEquals(
-				cint(1), 
-				FunctionManager.getInstace().
-					getFunctionExpression("Dummy", params).execute(null));
-	}
-
-}
-
-class StubFuntion extends AbstractFunction {
-	
-	private CTValue evalRes;
-	
-	public StubFuntion(CTValue evalRes) {
-		super();
-		this.evalRes = evalRes;
-	}
-
-	public StubFuntion() {
-		this(CTInteger.ONE);
+				1, 
+				FunctionManager.getInstace().getDefaultParameterNum("Dummy"));
+		Assertions.assertThrows(NoSuchElementException.class,
+				() -> 
+					FunctionManager.getInstace().getDefaultParameterNum("DNE"));
 	}
 	
-	@Override
-	public int getDefaultParameterNum() {
-		return 1;
-	}
-
-	@Override
-	protected CTValue execute(Context ctx, List<Expression> params) throws CTException {
-		return evalRes;
+	@Test 
+	void testGetMinParameterNum() {
+		Assertions.assertEquals(
+				1, 
+				FunctionManager.getInstace().getMinParameterNum("Dummy"));
+		Assertions.assertThrows(NoSuchElementException.class,
+				() -> 
+					FunctionManager.getInstace().getMinParameterNum("DNE"));
 	}
 	
+	@Test 
+	void testGetMaxParameterNum() {
+		Assertions.assertEquals(
+				1, 
+				FunctionManager.getInstace().getMaxParameterNum("Dummy"));
+		Assertions.assertThrows(NoSuchElementException.class,
+				() -> 
+					FunctionManager.getInstace().getMaxParameterNum("DNE"));
+	}
 }
