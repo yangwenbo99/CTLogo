@@ -3,6 +3,7 @@ package ctlogo.function.drawing;
 import java.util.List;
 
 import ctlogo.data.CTDouble;
+import ctlogo.data.CTUndefined;
 import ctlogo.data.CTValue;
 import ctlogo.exception.CTException;
 import ctlogo.execute.Context;
@@ -12,34 +13,28 @@ import ctlogo.turtle.Turtle;
 import ctlogo.turtle.TurtleManager;
 
 /**
- * Let the turtle turn left
+ * Query the Y-coordinate of the turtle. 
  * @author Paul Yang
  *
  */
-public class LeftFunction extends AbstractFunction {
+public class YcorFunction extends AbstractFunction {
 	
-	private LeftFunction () { }
+	private YcorFunction () { }
 	
-	private static LeftFunction theInstance = new LeftFunction();
+	private static YcorFunction theInstance = new YcorFunction();
 	
-	public static LeftFunction getInstance() {
+	public static YcorFunction getInstance() {
 		return theInstance;
 	}
 
 	@Override
 	public int getDefaultParameterNum() {
-		return 1;
+		return 0;
 	}
 
 	@Override
 	protected CTValue execute(Context ctx, List<Expression> params) throws CTException {
-		CTDouble v = (CTDouble) 
-				params.get(0).execute(ctx).convertTo(CTDouble.getTypeMarkerStatic());
-		double sa= (v.getNumericalValue().doubleValue() % 360) * Math.PI / 180;
-
-		Turtle tur = TurtleManager.getInstance().getActiveTurtle();
-		tur.offsetOrientation(sa);
-
-		return v;
+		double y = TurtleManager.getInstance().getActiveTurtle().getY();
+		return new CTDouble(y);
 	}
 }

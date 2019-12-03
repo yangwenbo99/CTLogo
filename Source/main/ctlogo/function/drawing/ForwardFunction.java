@@ -11,6 +11,11 @@ import ctlogo.function.AbstractFunction;
 import ctlogo.turtle.Turtle;
 import ctlogo.turtle.TurtleManager;
 
+/**
+ * Let the turtle go forward. 
+ * @author Paul Yang
+ *
+ */
 public class ForwardFunction extends AbstractFunction {
 	
 	private ForwardFunction () { }

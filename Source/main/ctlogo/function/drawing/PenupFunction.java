@@ -3,37 +3,38 @@ package ctlogo.function.drawing;
 import java.util.ArrayList;
 import java.util.List;
 
+import ctlogo.data.CTUndefined;
 import ctlogo.data.CTValue;
 import ctlogo.exception.CTException;
 import ctlogo.execute.Context;
 import ctlogo.execute.expression.Expression;
 import ctlogo.execute.expression.NegativeOperator;
 import ctlogo.function.AbstractFunction;
+import ctlogo.turtle.TurtleManager;
 
 /**
- * Let the turtle go backward. 
+ * Put pen up (so that the turtle does not draw shapes).
  * @author Paul Yang
  *
  */
-public class BackwardFunction extends AbstractFunction {
+public class PenupFunction extends AbstractFunction {
 	
-	private BackwardFunction () { }
+	private PenupFunction () { }
 	
-	private static BackwardFunction theInstance = new BackwardFunction();
+	private static PenupFunction theInstance = new PenupFunction();
 	
-	public static BackwardFunction getInstance() {
+	public static PenupFunction getInstance() {
 		return theInstance;
 	}
 
 	@Override
 	public int getDefaultParameterNum() {
-		return 1;
+		return 0;
 	}
 
 	@Override
 	protected CTValue execute(Context ctx, List<Expression> params) throws CTException {
-		List<Expression> newParams = new ArrayList<>();
-		newParams.add(new NegativeOperator(params.get(0)));
-		return ForwardFunction.getInstance().execute(ctx, newParams);
+		TurtleManager.getInstance().getActiveTurtle().setDown(false);
+		return CTUndefined.UNDEFINED;
 	}
 }

@@ -35,7 +35,7 @@ public class BuildInFunctionRegistrator {
 		FunctionManager.getInstace().register("ATAN", AtanFunction.getInstance(), false);
 		FunctionManager.getInstace().register("ATAN2", Atan2Function.getInstance(), false);
 		
-		// Drawing Functions
+		// Drawing Functions - Relative
 		FunctionManager.getInstace().register("FORWARD", ForwardFunction.getInstance(), false);
 		FunctionManager.getInstace().register("FD", ForwardFunction.getInstance(), false);
 		FunctionManager.getInstace().register("BACKWARD", BackwardFunction.getInstance(), false);
@@ -47,6 +47,28 @@ public class BuildInFunctionRegistrator {
 		FunctionManager.getInstace().register("RIGHTTERN", RightFunction.getInstance(), false);
 		FunctionManager.getInstace().register("RIGHT", RightFunction.getInstance(), false);
 		FunctionManager.getInstace().register("RT", RightFunction.getInstance(), false);
+		
+		// Drawing Functions - Absolute
+		FunctionManager.getInstace().register("SETX", SetxFunction.getInstance(), false);
+		FunctionManager.getInstace().register("SETXY", SetxyFunction.getInstance(), false);
+		FunctionManager.getInstace().register("SETY", SetyFunction.getInstance(), false);
+		
+		// Drawing Functions - query
+		FunctionManager.getInstace().register("XCOR", XcorFunction.getInstance(), false);
+		FunctionManager.getInstace().register("YCOR", YcorFunction.getInstance(), false);
+		
+		
+		// Drawing - Misc functions
+		FunctionManager.getInstace().register("Penup", PenupFunction.getInstance(), false);
+		FunctionManager.getInstace().register("PU", PenupFunction.getInstance(), false);
+		FunctionManager.getInstace().register("Pendown", PendownFunction.getInstance(), false);
+		FunctionManager.getInstace().register("PD", PendownFunction.getInstance(), false);
+		
+		// Drawing - clean
+		FunctionManager.getInstace().register("CleanScreen", ClearScreenFunction.getInstance(), false);
+		FunctionManager.getInstace().register("CS", ClearScreenFunction.getInstance(), false);
+		FunctionManager.getInstace().register("Clean", CleanFunction.getInstance(), false);
+		
 		
 	}
 

@@ -10,6 +10,11 @@ import ctlogo.execute.expression.Expression;
 import ctlogo.execute.expression.NegativeOperator;
 import ctlogo.function.AbstractFunction;
 
+/**
+ * Let the turtle turn right.
+ * @author Paul Yang
+ *
+ */
 public class RightFunction extends AbstractFunction {
 	
 	private RightFunction () { }

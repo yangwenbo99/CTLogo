@@ -3,6 +3,7 @@ package ctlogo.function.drawing;
 import java.util.List;
 
 import ctlogo.data.CTDouble;
+import ctlogo.data.CTUndefined;
 import ctlogo.data.CTValue;
 import ctlogo.exception.CTException;
 import ctlogo.execute.Context;
@@ -12,17 +13,17 @@ import ctlogo.turtle.Turtle;
 import ctlogo.turtle.TurtleManager;
 
 /**
- * Let the turtle turn left
+ * Change the Y-coordinate of the turtle. 
  * @author Paul Yang
  *
  */
-public class LeftFunction extends AbstractFunction {
+public class SetyFunction extends AbstractFunction {
 	
-	private LeftFunction () { }
+	private SetyFunction () { }
 	
-	private static LeftFunction theInstance = new LeftFunction();
+	private static SetyFunction theInstance = new SetyFunction();
 	
-	public static LeftFunction getInstance() {
+	public static SetyFunction getInstance() {
 		return theInstance;
 	}
 
@@ -33,13 +34,18 @@ public class LeftFunction extends AbstractFunction {
 
 	@Override
 	protected CTValue execute(Context ctx, List<Expression> params) throws CTException {
-		CTDouble v = (CTDouble) 
+		CTDouble vy = (CTDouble) 
 				params.get(0).execute(ctx).convertTo(CTDouble.getTypeMarkerStatic());
-		double sa= (v.getNumericalValue().doubleValue() % 360) * Math.PI / 180;
-
+		double y = vy.getNumericalValue().doubleValue();
 		Turtle tur = TurtleManager.getInstance().getActiveTurtle();
-		tur.offsetOrientation(sa);
+		if (tur.isDown())
+			ctx.getScreen().drawLine(
+					tur.getX(), 
+					tur.getY(), 
+					tur.getX(),
+					y);
+		tur.setY(y);
 
-		return v;
+		return vy;
 	}
 }
