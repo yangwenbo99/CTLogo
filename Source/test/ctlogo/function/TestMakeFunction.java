@@ -25,7 +25,6 @@ import ctlogo.graphic.Screen;
 public class TestMakeFunction {
     
     private final Scanner sc = new Scanner("Test scanner");
-    private final PrintStream os = System.out;
     private final VariableManager vm = new GlobalVariableManager();
     private final Screen sn = StubScreen.theInstance;
     
