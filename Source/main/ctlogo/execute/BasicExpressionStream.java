@@ -353,7 +353,7 @@ public class BasicExpressionStream implements ExpressionStream {
 				if (BasicExpressionHelper.isBinaryOperator(token)) {
 					enterState(new BinaryOperatorState(token));
 				} else if (token.equals(")")) {
-					// TODO: Seems this part is effiectively dead
+					// Just a fall-back, control should not reach here.
 					if (numOpenParenthesis == 0) {
 						return false;
 					}
@@ -441,6 +441,7 @@ public class BasicExpressionStream implements ExpressionStream {
 			} else if (BasicExpressionHelper.isInstruction(token)) {
 				return new InstructionState(token, isFirst);
 			} else {
+				// Just a fall-back, control should not reach here.
 				throw new IllegalArgumentException(String.format(
 							"%s is not an operable token",
 							token));
@@ -478,10 +479,9 @@ public class BasicExpressionStream implements ExpressionStream {
 			 * 
 			 */
 
-			String token = tokenStream.popNext();
+			/*
 			while (token.trim().equals(""))
 				token = tokenStream.popNext();
-
 			if (isOperatorToken(token)) {
 				// This token must be unary operator
 				enterState(new UnaryOperatorState(token));
@@ -492,8 +492,14 @@ public class BasicExpressionStream implements ExpressionStream {
 			} else {
 				throw new CTSyntaxException("Unknown token " + token);
 			}
-			// TODO: Blocks & instructions 
 			// System.out.printf("<%d>", numExpectedExpression);
+			*/
+			enterState(new UnaryOperatorState("+"));
+
+			String token;
+			while (tokenStream.getNext().trim().equals("")) {
+				tokenStream.popNext();
+			}
 
 			while (true) {
 				token = tokenStream.popNext();
@@ -511,6 +517,7 @@ public class BasicExpressionStream implements ExpressionStream {
 			try {
 				List<Expression> resExpression = RPNExpressionExecutor.getInstance().execute(resList);
 				if (resExpression.size() != 1) {
+					// Just a fall-back, control should not reach here.
 					for (Expression exp : resExpression) {
 						System.err.println(">>> " + exp.toString());
 					}
@@ -518,8 +525,12 @@ public class BasicExpressionStream implements ExpressionStream {
 				}
 				return resExpression.get(0);
 			} catch (CTLogicException e) {
+				// Reach here only if RPNExecution throw exception.
+				// Should not happen, this is just a fall-back
 				throw new CTSyntaxException("Invalid syntax", e);
 			} catch (Exception e) {
+				// Reach here only if RPNExecution throw exception.
+				// Should not happen, this is just a fall-back
 				for (RPNObject exp : resList) {
 					System.err.println(">>> " + exp.toString());
 				}

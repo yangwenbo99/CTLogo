@@ -92,12 +92,12 @@ public class TestBasicExpressionStream {
 			BasicExpressionStream es = new BasicExpressionStream(ts);
 			Expression exp1 = es.getNextExpression();
 			Assertions.assertEquals(
-					BasicFunctionExpression.class,
-					exp1.getClass());
+					cint(1),
+					exp1.execute(gbl));
 			Expression exp2 = es.getNextExpression();
 			Assertions.assertEquals(
-					BasicFunctionExpression.class,
-					exp2.getClass());
+					cint(4), 
+					exp2.execute(gbl));
 		}
 	}
 
