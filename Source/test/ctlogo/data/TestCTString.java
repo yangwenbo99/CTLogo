@@ -123,17 +123,6 @@ public class TestCTString {
     }
 
     @Test
-    void testCompareTo() {
-        Assertions.assertEquals(0, cstr("1").compareTo(cint(1)));
-        Assertions.assertEquals(0, cstr("1").compareTo(cstr("1")));
-        Assertions.assertTrue(() ->
-                1 > 0);
-        Assertions.assertTrue(() ->
-                cstr("dummy").compareTo(new DummyValueType()) > 0);
-
-    }
-
-    @Test
     void testLogicalOperators() {
         Assertions.assertEquals(cint(1), cstr("True").and(cint(1)));
         Assertions.assertEquals(cint(0), cstr("FALSE").or(cint(0)));
@@ -150,7 +139,17 @@ public class TestCTString {
     }
 
     @Test
-    void testMisc() {
+    void testIsComparable() {
         Assertions.assertEquals(true, cstr("12").isCompareableTo(new DummyValueType()));
     }
+
+    @Test
+    void testCompareTo() {
+        Assertions.assertEquals(0, cstr("1").compareTo(cint(1)));
+        Assertions.assertEquals(0, cstr("1").compareTo(cstr("1")));
+        Assertions.assertTrue(() ->
+                cstr("dummy").compareTo(new DummyValueType()) > 0);
+
+    }
+
 }
