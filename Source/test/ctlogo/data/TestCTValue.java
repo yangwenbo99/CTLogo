@@ -89,6 +89,7 @@ public class TestCTValue {
 }
 
 class StubCTValue implements CTValue {
+	private static TypeMarker tm = new TypeMarker("Stub1");
 
 	@Override
 	public CTBoolean equals(CTValue another) {
@@ -112,7 +113,7 @@ class StubCTValue implements CTValue {
 
 	@Override
 	public TypeMarker getTypeMarker() {
-		return null;
+		return tm;
 	}
 
 	@Override
@@ -143,6 +144,7 @@ class StubCTValue implements CTValue {
 }
 
 class StubCTValue2 implements CTValue {
+	private static TypeMarker tm = new TypeMarker("Stub2");
 
 	@Override
 	public CTBoolean equals(CTValue another) {
@@ -166,7 +168,7 @@ class StubCTValue2 implements CTValue {
 
 	@Override
 	public TypeMarker getTypeMarker() {
-		return null;
+		return tm;
 	}
 
 	@Override

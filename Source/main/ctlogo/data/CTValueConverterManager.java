@@ -53,10 +53,4 @@ public class CTValueConverterManager {
 		this.map.put(converter.getDirection(), converter);
 	}
 	
-	public static void main(String [] args) {
-        System.out.println(getInstance().map.size());
-        for (TypeConversionDirection tm : getInstance().map.keySet()) {
-            System.out.println(tm.toString());
-        }
-	}
 }

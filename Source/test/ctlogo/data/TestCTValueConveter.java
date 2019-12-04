@@ -9,11 +9,9 @@ import ctlogo.data.TypeConversionDirection;
 import ctlogo.data.TypeMarker;
 
 /**
- *
+ * Also testing TypeConversionDirection
  *
  * @author Paul Yang
- *
- * Also testing TypeConversionDirection
  */
 public class TestCTValueConveter {
     static class stubConverter1 extends CTValueConverter {
