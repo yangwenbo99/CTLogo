@@ -70,8 +70,6 @@ public class BuildInFunctionRegistrator {
 		FunctionManager.getInstace().register("CleanScreen", ClearScreenFunction.getInstance(), false);
 		FunctionManager.getInstace().register("CS", ClearScreenFunction.getInstance(), false);
 		FunctionManager.getInstace().register("Clean", CleanFunction.getInstance(), false);
-		
-		
 	}
 
 }
