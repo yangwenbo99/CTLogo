@@ -23,6 +23,19 @@ abstract public class AbstractNumericalCTValue extends AbstractCTValue {
      */
     abstract public Number getNumericalValue();
 
+	/**
+	 * Check whether two CTValue objects are equal. 
+	 *
+	 * <ul>
+	 * <li>If the other operand has the type CTUndefined, the result should 
+	 * be false</li>
+	 * <li>If both are numerical value, their values are compared</li>
+	 * <li>Otherwise, the result is false. </li>
+	 * </ul>
+	 *
+	 * @param other
+	 * @return the result. 
+	 */
     @Override
     public CTBoolean equals(CTValue other) {
         if (other instanceof CTUndefined) {
@@ -36,6 +49,15 @@ abstract public class AbstractNumericalCTValue extends AbstractCTValue {
         }
     }
 
+	/**
+	 * Compares two {@link CTValue} variables.
+	 * If {@code this.isCompareableTo(another)} is false, an exception 
+	 * will be thrown. If they are comparable, their values are to be 
+	 * compared. 
+	 *
+	 * @param another
+	 * @return the comparison result. 
+	 */
     @Override
     public int compareTo(CTValue another) {
         if (another instanceof AbstractNumericalCTValue) {
@@ -54,6 +76,14 @@ abstract public class AbstractNumericalCTValue extends AbstractCTValue {
         }
     }
 
+	/**
+	 * Check whether two variables are comparable.
+	 * <p>The result should always be true for two 
+	 * {@code AbstractNumericalCTValue} variables, and false otherwise.  </p>
+	 *
+	 * @param another
+	 * @return whether the other variable is comparable with {@code this}
+	 */
     @Override
     public boolean isCompareableTo(CTValue another) {
         return another instanceof AbstractNumericalCTValue;
@@ -81,17 +111,17 @@ abstract public class AbstractNumericalCTValue extends AbstractCTValue {
 
     @Override
     public CTValue bitwiseAnd(CTValue another) {
-        return this.convertTo(CTInteger.getTypeMarkerStatic()).and(another);
+        return this.convertTo(CTInteger.getTypeMarkerStatic()).bitwiseAnd(another);
     }
 
     @Override
     public CTValue bitwiseOr(CTValue another) {
-        return this.convertTo(CTInteger.getTypeMarkerStatic()).or(another);
+        return this.convertTo(CTInteger.getTypeMarkerStatic()).bitwiseOr(another);
     }
 
     @Override
     public CTValue bitwiseNot() {
-        return this.convertTo(CTInteger.getTypeMarkerStatic()).not();
+        return this.convertTo(CTInteger.getTypeMarkerStatic()).bitwiseNot();
     }
 
 
