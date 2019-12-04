@@ -74,9 +74,14 @@ public class CTBoolean extends AbstractNumericalCTValue {
 	public Number getNumericalValue() {
         return value ? 1 : 0;
     }
+    
+    public boolean getValue() {
+    	return value;
+    }
 
     @Override 
     public CTValue and(CTValue other) {
+        System.out.println(other);
         if (this.value)
             return other;
         else

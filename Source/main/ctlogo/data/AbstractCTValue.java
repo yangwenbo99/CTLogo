@@ -3,10 +3,13 @@
  */
 package ctlogo.data;
 
+import javax.naming.OperationNotSupportedException;
+
 /**
- * @author yang
+ * Skeloton of CTValue.
  *
- * All should be convertible to CTBoolean
+ * Note that all children of this class should be convertible to CTBoolean
+ * @author yang
  *
  */
 abstract public class AbstractCTValue implements CTValue {
@@ -41,21 +44,40 @@ abstract public class AbstractCTValue implements CTValue {
     @Override
     public CTValue and(CTValue another) {
         if (this.isConvertibleTo(CTBoolean.getTypeMarkerStatic())) {
-            return this.convertTo(CTBoolean.getTypeMarkerStatic()).and(another);
+        	CTBoolean converted = (CTBoolean) this.convertTo(CTBoolean.getTypeMarkerStatic());
+        	if (converted.getValue())
+        		return another;
+        	else
+        		return this;
+        } else {
+        	throw new RuntimeException(
+        			"A subclass of AbstractCTValue does not support converting "
+        			+ "to CTBoolean");
         }
-        return this;
     }
 
     @Override
     public CTValue or(CTValue another) {
         if (this.isConvertibleTo(CTBoolean.getTypeMarkerStatic())) {
-            return this.convertTo(CTBoolean.getTypeMarkerStatic()).and(another);
+        	CTBoolean converted = (CTBoolean) this.convertTo(CTBoolean.getTypeMarkerStatic());
+        	if (converted.getValue())
+        		return this;
+        	else
+        		return another;
+        } else {
+        	throw new RuntimeException(
+        			"A subclass of AbstractCTValue does not support converting "
+        			+ "to CTBoolean");
         }
-        return another;
     }
 
     @Override
     public CTValue not() {
+        if (!this.isConvertibleTo(CTBoolean.getTypeMarkerStatic())) {
+        	throw new RuntimeException(
+        			"A subclass of AbstractCTValue does not support converting "
+        			+ "to CTBoolean");
+        }
         return this.convertTo(CTBoolean.getTypeMarkerStatic()).not();
     }
 }
