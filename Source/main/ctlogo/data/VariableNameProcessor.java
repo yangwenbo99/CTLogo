@@ -9,6 +9,8 @@ package ctlogo.data;
  */
 public class VariableNameProcessor {
 
+	private VariableNameProcessor() { } 
+
     /**
      * Process the variable name 
      *
