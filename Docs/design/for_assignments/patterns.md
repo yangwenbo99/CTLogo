@@ -13,3 +13,6 @@ We must emphasis that we are not using these patterns to show-off our knowledge,
     - Not so typical: `VectorShape`
 - Composite and decorator: 
     - `Expression`
+    - `VariableManger`
+- Null object pattern
+	- `CTUndefined`

@@ -32,3 +32,70 @@ BuildInFunctionRegistrator --> MakeFuction
 BuildInFunctionRegistrator --> PrintFunction
 BuildInFunctionRegistrator -> FunctionManager
 @enduml
+
+
+## ctlogo.data
+
+Testing hierarchy 
+
+@startuml
+skinparam linetype ortho
+rectangle TypeMarker #PapayaWhip 
+rectangle TypeConversionDirection #LightYellow 
+rectangle CTValue #LightYellow 
+rectangle CTValueConverter #HoneyDew 
+rectangle CTValueConverterManager #Azure 
+' rectangle CTValue_default 
+rectangle AbstractCTValue #Aquamarine 
+rectangle CTUndefined #Lavender 
+rectangle CTString #Lavender 
+rectangle AbstractNumericalCTValue #Lavender 
+rectangle CTDouble #Thistle 
+rectangle CTBoolean #Thistle 
+rectangle CTInteger #Thistle 
+rectangle xxxConverter #Gainsboro 
+
+rectangle CTBoolean_logical #Azure
+rectangle CTInteger_arithmetics #LightBlue 
+
+rectangle CTVariable #HoneyDew 
+rectangle AbstractVariableManager  #Azure 
+rectangle LocalVariableManager #Aquamarine 
+rectangle GlobalVariableManager #Aquamarine 
+
+CTValue --> TypeMarker
+AbstractCTValue --> CTValue
+CTUndefined --> AbstractCTValue
+CTString --> AbstractCTValue
+AbstractNumericalCTValue --> AbstractCTValue
+CTDouble --> AbstractNumericalCTValue
+CTInteger --> AbstractNumericalCTValue
+CTBoolean --> AbstractNumericalCTValue
+
+TypeConversionDirection --> TypeMarker
+CTValueConverter --> TypeConversionDirection
+xxxConverter --> CTValueConverter
+xxxConverter --> CTValue
+CTValueConverter --> CTValue
+
+CTVariable --> CTValue
+CTValueConverterManager --> CTValue
+CTValueConverterManager --> CTValueConverter
+AbstractVariableManager --> CTValue
+AbstractVariableManager --> CTVariable
+LocalVariableManager --> AbstractVariableManager
+GlobalVariableManager --> AbstractVariableManager
+' CTValue_default --> CTBoolean
+' CTValue_default --> CTUndefined
+AbstractCTValue --> CTValueConverterManager
+AbstractVariableManager ..> CTInteger 
+
+AbstractCTValue --> CTBoolean_logical
+CTBoolean_logical --> CTValue
+
+AbstractNumericalCTValue --> CTInteger_arithmetics
+CTInteger_arithmetics --> AbstractCTValue
+
+AbstractNumericalCTValue ..> CTString
+
+@enduml
