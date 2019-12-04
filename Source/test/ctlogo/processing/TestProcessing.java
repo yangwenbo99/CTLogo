@@ -20,9 +20,10 @@ public class TestProcessing {
         };
 
         try (BasicTokenStream ts = new BasicTokenStream(new Scanner(testS))) {
-			Assertions.assertEquals(0, ts.getCurrentRow());
+            Assertions.assertEquals(0, ts.getCurrentRow());
             for (String s : expected) {
                 Assertions.assertEquals(s, ts.getNext());
+                Assertions.assertEquals(0, ts.getCurrentRow());
                 Assertions.assertEquals(s, ts.popNext());
             }
             Assertions.assertFalse(ts.hasNext());
@@ -44,6 +45,8 @@ public class TestProcessing {
             for (String s : expected) {
                 Assertions.assertEquals(s, ts.next());
             }
+            Assertions.assertFalse(ts.hasNext());
+            Assertions.assertFalse(ts.hasNextLine());
         }
 
     }
@@ -149,6 +152,7 @@ public class TestProcessing {
         try ( Scanner sc = new Scanner(testS)) {
             TokenStream ts = new BasicTokenStream(sc);
             for (String s : expected) {
+                Assertions.assertTrue(ts.hasNextLine());
                 Assertions.assertEquals(s, ts.getNext());
                 Assertions.assertEquals(s, ts.popNext());
             }
@@ -187,6 +191,27 @@ public class TestProcessing {
             Assertions.assertArrayEquals(
                     expected, 
                     ts.getNextLine().toArray(expected));
+            Assertions.assertFalse(ts.hasNext());
+        }
+    }
+
+    @Test 
+    void testWholeLineMultiLine () {
+        String testS = 
+        		"PR \'AAA\' \n \'BBB\'\n";
+        String [] expected1 = new String [] {
+        		"PR", "\'AAA\'", "\n" };
+        String [] expected2 = new String [] {
+        		"\'BBB\'", "\n" };
+
+        try (Scanner sc = new Scanner(testS)) {
+            TokenStream ts = new BasicTokenStream(sc);
+            for (String s : expected1) {
+                Assertions.assertEquals(s, ts.popNext());
+            }
+            Assertions.assertArrayEquals(
+                    expected2, 
+                    ts.getNextLine().toArray(expected2));
             Assertions.assertFalse(ts.hasNext());
         }
     }
