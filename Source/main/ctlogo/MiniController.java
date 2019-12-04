@@ -109,13 +109,17 @@ public class MiniController {
 					}
 				} catch (NoSuchElementException e) {
 					// End of line
-					System.out.println("----------------------------");
+					System.out.println();
 				} catch (CTSyntaxException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.printf("Error %s, at line %d: %s\n",
+							e.getClass().toString(),
+							ts.getCurrentRow(),
+							e.getMessage());
 				} catch (CTException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.printf("Error %s, at line %d: %s\n",
+							e.getClass().toString(),
+							ts.getCurrentRow(),
+							e.getMessage());
 				}
 
 				System.out.print(">>> ");
