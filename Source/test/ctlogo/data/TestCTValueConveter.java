@@ -51,7 +51,7 @@ public class TestCTValueConveter {
     TypeConversionDirection dir4 = new TypeConversionDirection(tm1, tm2);
 
     @Test
-    public void TestConstructor() {
+    public void TestDirection() {
         stubConverter1 c1 = new stubConverter1(tm1, tm2);
         stubConverter1 c2 = new stubConverter1(dir1);
         Assertions.assertEquals(c1.getDirection(), c2.getDirection());

@@ -51,6 +51,7 @@ public class TestTypeConversionDirection {
         Assertions.assertEquals(tm1, dir1.getFrom());
     }
 
+    @Test
     public void testGetTo() {
         Assertions.assertEquals(tm2, dir1.getTo());
     }
