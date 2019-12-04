@@ -52,7 +52,7 @@ rectangle CTString #Lavender
 rectangle AbstractNumericalCTValue #Lavender 
 rectangle CTDouble #Thistle 
 rectangle CTBoolean #Thistle 
-rectangle CTInteger #Thistle 
+rectangle CTInteger_other #Thistle 
 rectangle xxxConverter #Gainsboro 
 
 rectangle CTBoolean_logical #Azure
@@ -69,7 +69,7 @@ CTUndefined --> AbstractCTValue
 CTString --> AbstractCTValue
 AbstractNumericalCTValue --> AbstractCTValue
 CTDouble --> AbstractNumericalCTValue
-CTInteger --> AbstractNumericalCTValue
+CTInteger_other --> AbstractNumericalCTValue
 CTBoolean --> AbstractNumericalCTValue
 
 TypeConversionDirection --> TypeMarker
@@ -88,13 +88,15 @@ GlobalVariableManager --> AbstractVariableManager
 ' CTValue_default --> CTBoolean
 ' CTValue_default --> CTUndefined
 AbstractCTValue --> CTValueConverterManager
-AbstractVariableManager ..> CTInteger 
+AbstractVariableManager ..> CTInteger_other 
 
 AbstractCTValue --> CTBoolean_logical
 CTBoolean_logical --> CTValue
 
 AbstractNumericalCTValue --> CTInteger_arithmetics
 CTInteger_arithmetics --> AbstractCTValue
+
+CTInteger_other --> CTDouble
 
 AbstractNumericalCTValue ..> CTString
 
