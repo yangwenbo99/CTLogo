@@ -3,8 +3,6 @@
  */
 package ctlogo.data;
 
-import javax.naming.OperationNotSupportedException;
-
 /**
  * Skeloton of CTValue.
  *
@@ -41,6 +39,13 @@ abstract public class AbstractCTValue implements CTValue {
                 this, newType);
 	}
 
+    /**
+     * <p>Similar to JavaScript's and operator. </p>
+     * 
+     * @return If another's boolean value is true, then the result will be 
+     * {@code another}, otherwise, it will be {@code this}.
+     * 
+     */
     @Override
     public CTValue and(CTValue another) {
         if (this.isConvertibleTo(CTBoolean.getTypeMarkerStatic())) {
@@ -56,6 +61,13 @@ abstract public class AbstractCTValue implements CTValue {
         }
     }
 
+    /**
+     * <p>Similar to JavaScript's or operator. </p>
+     * 
+     * @return If another's boolean value is false, then the result will be 
+     * {@code another}, otherwise, it will be {@code this}.
+     * 
+     */
     @Override
     public CTValue or(CTValue another) {
         if (this.isConvertibleTo(CTBoolean.getTypeMarkerStatic())) {
@@ -71,6 +83,13 @@ abstract public class AbstractCTValue implements CTValue {
         }
     }
 
+    /**
+     * <p>Similar to JavaScript's not operator. </p>
+     * <p> This method will convert this to boolean value, then return its negate</p>
+     * 
+     * @return The logic negate result. 
+     * 
+     */
     @Override
     public CTValue not() {
         if (!this.isConvertibleTo(CTBoolean.getTypeMarkerStatic())) {

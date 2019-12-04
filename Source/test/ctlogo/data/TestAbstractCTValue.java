@@ -3,6 +3,8 @@
  */
 package ctlogo.data;
 
+import java.util.Objects;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -56,6 +58,13 @@ public class TestAbstractCTValue {
 				RuntimeException.class, 
 				() -> nonconvertable.not());
 	}
+
+	@Test
+	void testObjectEquals() {
+		Assertions.assertTrue(convertableFalse.equals((Object) convertableFalse));
+		Assertions.assertFalse(convertableFalse.equals((Object) convertableTrue));
+		Assertions.assertFalse(convertableFalse.equals((Object) "ASD"));
+	}
 }
 
 class StubAbsCTValue extends AbstractCTValue {
@@ -87,7 +96,16 @@ class StubAbsCTValue extends AbstractCTValue {
 
 	@Override
 	public CTBoolean equals(CTValue another) {
-		return null;
+		return this == another ?
+				CTBoolean.TRUE : 
+					CTBoolean.FALSE;
+	}
+	
+	@Override
+	public CTBoolean exactlyEquals(CTValue another) {
+		return this == another ?
+				CTBoolean.TRUE : 
+					CTBoolean.FALSE;
 	}
 
 	@Override
