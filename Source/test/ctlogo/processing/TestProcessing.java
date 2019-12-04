@@ -34,7 +34,7 @@ public class TestProcessing {
     @Test
     void testTrival2 () {
         String testS = 
-            "REPEAT 100[FD 10 RT 10 ]\n";
+            "REPEAT 100[FD 10 RT 10]\n";
         String [] expected = new String [] {
             "REPEAT", "100", "[", "FD", "10", "RT", "10", "]", "\n"
         };
@@ -42,7 +42,7 @@ public class TestProcessing {
         try (Scanner sc = new Scanner(testS)) {
             TokenStream ts = new BasicTokenStream(sc);
             for (String s : expected) {
-                Assertions.assertEquals(s, ts.popNext());
+                Assertions.assertEquals(s, ts.next());
             }
         }
 
