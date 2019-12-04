@@ -1,4 +1,4 @@
-package ctlogoTest;
+package ctlogo.processing;
 
 import java.io.IOException;
 import java.util.Scanner;
