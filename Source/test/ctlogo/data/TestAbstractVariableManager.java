@@ -9,11 +9,11 @@ import ctlogo.exception.CTVariableAlreadyDefinedException;
 import ctlogo.exception.CTVariableNotDefinedException;
 
 /**
- *
- *
- * @author Paul Yang
+ * Test AbstractVariableManager.
  *
  * Botton-up for this part, only test extra methods not tested in children.
+ *
+ * @author Paul Yang
  */
 public class TestAbstractVariableManager {
 
@@ -34,6 +34,29 @@ public class TestAbstractVariableManager {
     }
 
     @Test
+    void testIsDefinedLocally() {
+    	Assertions.assertFalse(mgr.isDefinedLocally("Var"));
+    	mgr.createLocalVariable("Var", cint(1));
+    	Assertions.assertTrue(mgr.isDefinedLocally("Var"));
+    	Assertions.assertFalse(mgr.isDefinedLocally("VarDNE"));
+    	Assertions.assertThrows(
+    			IllegalArgumentException.class, 
+    			() -> mgr.isDefinedLocally(null));
+    }
+
+    @Test
+    void testSetLocalVariable() {
+    	Assertions.assertEquals(null, mgr.setLocalVariable("VarL", cint(1)));
+    	Assertions.assertEquals(cint(1), mgr.setLocalVariable("VarL", cint(2)));
+    	Assertions.assertEquals(cint(2), mgr.getValue("VarL"));
+    }
+
+    /**
+     * Test {@code: setLocalValue}.
+     * 
+     * Whether it returns correct result.
+     */
+    @Test
     void testSetLocalValue() {
         Assertions.assertThrows(
                 IllegalArgumentException.class,
@@ -45,6 +68,12 @@ public class TestAbstractVariableManager {
         Assertions.assertThrows(
                 IllegalArgumentException.class,
                 () -> mgr.setLocalValue("AAA", null));
+        Assertions.assertEquals(cint(2), mgr.setLocalValue("AAA", cint(3)));
+    }
+    
+    @Test
+    void testTryGetLocalValue() {
+    	Assertions.assertEquals(null, mgr.tryGetLocalValue("DNE"));
     }
 
 }

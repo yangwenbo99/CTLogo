@@ -10,10 +10,10 @@ import ctlogo.exception.CTVariableAlreadyDefinedException;
 import ctlogo.exception.CTVariableNotDefinedException;
 
 /**
- * @author Paul Yang
- *
+ * Skeloton of {@link VariableManager}.
  * This class is left package-visible intentionally. 
- *
+ * 
+ * @author Paul Yang
  */
 abstract class AbstractVariableManager implements VariableManager {
     
@@ -57,18 +57,18 @@ abstract class AbstractVariableManager implements VariableManager {
     }
 
     /**
-     * Set local value. 
+     * Set a local variable managed by this abstract class. 
+     *
+     * <p>The difference behaviour between this method and {@code setValue} is because
+     * of the supposed behaviour of the two methods. To be short, {@code setValue}
+     * shall be like CTLogo language, which is permissive. On the other 
+     * hand, this method is for internal usage, meaning that should be 
+     * strict, and this is also beneficial for further implementation.</p>
      *
      * @return the original value (before change) 
      * @throws CTVariableNotDefinedException if the variable name is not defined.
      * @throws IllegalArgumentException if trying to set the variable to null (
      *                                  (in Java) or the name is null
-     *
-     * The difference behaviour between this method and {@code setValue} is because
-     * of the supposed behaviour of the two methods. To be short, {@code setValue}
-     * shall be like CTLogo language, which is permissive. On the other 
-     * hand, this method is for internal usage, meaning that should be 
-     * strict, and this is also benificial for further implementation.
      */
     protected CTValue setLocalValue(String name, CTValue value) {
             if (value == null) 
@@ -109,6 +109,9 @@ abstract class AbstractVariableManager implements VariableManager {
         }
     }
     
+    /**
+     * Set value of a local variable. 
+     */
     public CTValue setLocalVariable(String name, CTValue value) {
     	if (isDefinedLocally(name)) {
     		return setLocalValue(name, value);

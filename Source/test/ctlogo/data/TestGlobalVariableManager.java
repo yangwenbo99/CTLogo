@@ -42,9 +42,7 @@ public class TestGlobalVariableManager {
     }
 
     @Test
-    void testSetValue() {
-        // this will also cover tryGetValue
-
+    void testSetVariable() {
         // not defined 
         Assertions.assertNull(mgr.tryGetValue("test2"));
         mgr.setVariable("test2", cstr("Test2"));
