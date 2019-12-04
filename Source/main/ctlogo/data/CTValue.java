@@ -1,8 +1,15 @@
 package ctlogo.data;
 
+/**
+ * Representing a variable in CTLogo language. 
+ * @author Paul
+ *
+ */
 public interface CTValue extends Comparable<CTValue> {
+
 	/**
 	 * Analogue to JS's '==' operator
+	 * 
 	 * @param another
 	 * @return
 	 */
