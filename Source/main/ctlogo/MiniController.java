@@ -1,8 +1,11 @@
 package ctlogo;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.time.LocalDateTime;
 
 import ctlogo.data.GlobalVariableManager;
 import ctlogo.data.VariableManager;
@@ -19,6 +22,17 @@ import ctlogo.processing.BasicTokenStream;
 import ctlogo.processing.TokenStream;
 
 public class MiniController {
+
+	public static void writeLog(String filename, String log) {
+		try (FileWriter fw = new FileWriter(filename, true)) {
+			fw.write(String.format(
+					"%s:\n%s\n",
+					LocalDateTime.now().toString(),
+					log));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static void main(String[] args) {
 
@@ -120,6 +134,10 @@ public class MiniController {
 							e.getClass().toString(),
 							ts.getCurrentRow(),
 							e.getMessage());
+				} catch (Exception e) {
+					System.out.println(
+							"Seems something wrong when executing your code, please check.");
+					writeLog("ctlogo_log.txt", e.toString());
 				}
 
 				System.out.print(">>> ");
