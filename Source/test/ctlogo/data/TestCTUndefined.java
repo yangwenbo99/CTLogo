@@ -39,6 +39,12 @@ public class TestCTUndefined {
                 () -> CTUndefined.UNDEFINED.compareTo(cint(1)));
     }
     
+    @Test
+    void testTypeMarker() {
+    	Assertions.assertEquals(
+    			CTUndefined.UNDEFINED.getTypeMarker(), 
+    			CTUndefined.getTypeMarkerStatic());
+    }
 
 
 }
