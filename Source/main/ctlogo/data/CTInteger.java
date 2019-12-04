@@ -29,6 +29,17 @@ public class CTInteger extends AbstractNumericalCTValue {
         return Long.toString(value);
     }
 
+	/**
+	 * Calculate the sum.
+	 * If {@code another} is double, {@code this} will be converted to double,
+	 * then calculate the sum. 
+	 * Otherwise, the method will first convert {@code another} to CTInteger,
+	 * then calculate the result. If there is no such conversion, the result 
+	 * shall be {@code: CTUndefined}.
+	 *
+	 * @param another another operand. 
+	 * @return The result.
+	 */
     @Override
     public CTValue add(CTValue another) {
         if (another instanceof CTDouble) {
@@ -41,6 +52,17 @@ public class CTInteger extends AbstractNumericalCTValue {
         }
     }
 
+	/**
+	 * Calculate the difference.
+	 * If {@code another} is double, {@code this} will be converted to double,
+	 * then calculate the result. 
+	 * Otherwise, the method will first convert {@code another} to CTInteger,
+	 * then calculate the result. If there is no such conversion, the result 
+	 * shall be {@code: CTUndefined}.
+	 *
+	 * @param another another operand. 
+	 * @return The result.
+	 */
     @Override
     public CTValue subtract(CTValue another) {
         if (another instanceof CTDouble) {
@@ -53,11 +75,27 @@ public class CTInteger extends AbstractNumericalCTValue {
         }
     }
 
+	/**
+	 * Calculate the negation.
+	 *
+	 * @return The result.
+	 */
     @Override
     public CTValue negate() {
         return new CTInteger(-value);
     }
 
+	/**
+	 * Calculate the product.
+	 * If {@code another} is double, {@code this} will be converted to double,
+	 * then calculate the result. 
+	 * Otherwise, the method will first convert {@code another} to CTInteger,
+	 * then calculate the result. If there is no such conversion, the result 
+	 * shall be {@code: CTUndefined}.
+	 *
+	 * @param another another operand. 
+	 * @return The result.
+	 */
     @Override
     public CTValue multiply(CTValue another) {
         if (another instanceof CTDouble) {
@@ -70,6 +108,17 @@ public class CTInteger extends AbstractNumericalCTValue {
         }
     }
 
+	/**
+	 * Calculate the quotient.
+	 * If {@code another} is double, {@code this} will be converted to double,
+	 * then calculate the result. 
+	 * Otherwise, the method will first convert {@code another} to {@code CTInteger},
+	 * then calculate the result. If there is no such conversion, the result 
+	 * shall be {@code: CTUndefined}.
+	 *
+	 * @param another another operand. 
+	 * @return The result.
+	 */
     @Override
     public CTValue divide(CTValue another) {
         if (another instanceof CTDouble) {
@@ -82,6 +131,17 @@ public class CTInteger extends AbstractNumericalCTValue {
         }
     }
 
+	/**
+	 * Calculate the remainder.
+	 * If {@code another} is double, {@code this} will be converted to double,
+	 * then calculate the result. 
+	 * Otherwise, the method will first convert {@code another} to {@code CTInteger},
+	 * then calculate the result. If there is no such conversion, the result 
+	 * shall be {@code: CTUndefined}.
+	 *
+	 * @param another another operand. 
+	 * @return The result.
+	 */
     @Override
     public CTValue mod(CTValue another) {
         if (another instanceof CTDouble) {
@@ -94,6 +154,17 @@ public class CTInteger extends AbstractNumericalCTValue {
         }
     }
 
+	/**
+	 * Calculate the power.
+	 * If {@code another} is {@code CTInteger}, the integral power will be 
+	 * calculated. 
+	 * Otherwise, the method will first convert {@code another} to 
+	 * {@code CTDouble}, then calculate the result. If there is no 
+	 * such conversion, the result shall be {@code: CTUndefined}.
+	 *
+	 * @param another another operand. 
+	 * @return The result.
+	 */
     @Override
     public CTValue pow(CTValue another) {
         if (another instanceof CTInteger) {
@@ -106,6 +177,15 @@ public class CTInteger extends AbstractNumericalCTValue {
         }
     }
 
+	/**
+	 * Calculate the result of left shifting.
+	 * If {@code another} is {@code CTInteger}, the result will be directly
+	 * calculated. 
+	 * Otherwise, the result shall be {@code: CTUndefined}.
+	 *
+	 * @param another another operand. 
+	 * @return The result.
+	 */
     @Override
     public CTValue shiftLeft(CTValue another) {
         if (another.isConvertibleTo(this.getTypeMarker())) {
@@ -116,6 +196,15 @@ public class CTInteger extends AbstractNumericalCTValue {
         }
     }
 
+	/**
+	 * Calculate the result of (logical) right shifting.
+	 * If {@code another} is {@code CTInteger}, the result will be directly
+	 * calculated. 
+	 * Otherwise, the result shall be {@code: CTUndefined}.
+	 *
+	 * @param another another operand. 
+	 * @return The result.
+	 */
     @Override
     public CTValue shiftRight(CTValue another) {
         if (another.isConvertibleTo(this.getTypeMarker())) {
@@ -126,6 +215,15 @@ public class CTInteger extends AbstractNumericalCTValue {
         }
     }
 
+	/**
+	 * Calculate the result of arithmetic right shifting.
+	 * If {@code another} is {@code CTInteger}, the result will be directly
+	 * calculated. 
+	 * Otherwise, the result shall be {@code: CTUndefined}.
+	 *
+	 * @param another another operand. 
+	 * @return The result.
+	 */
     @Override
     public CTValue shiftRightArithmetic(CTValue another) {
         if (another.isConvertibleTo(this.getTypeMarker())) {
