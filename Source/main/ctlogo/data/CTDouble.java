@@ -63,12 +63,8 @@ public class CTDouble extends AbstractNumericalCTValue {
     @Override
     public CTValue divide(CTValue another) {
         if (another.isConvertibleTo(this.getTypeMarker())) {
-            try {
-                CTDouble otherVal = (CTDouble) another.convertTo(this.getTypeMarker());
-                return new CTDouble(this.value / otherVal.value);
-            } catch (NumberFormatException e) {
-                return NaN;
-            }
+            CTDouble otherVal = (CTDouble) another.convertTo(this.getTypeMarker());
+            return new CTDouble(this.value / otherVal.value);
         } else {
             return CTUndefined.UNDEFINED;
         }
