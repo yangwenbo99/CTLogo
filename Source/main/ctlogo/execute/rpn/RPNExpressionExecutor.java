@@ -44,7 +44,8 @@ public class RPNExpressionExecutor {
 
                 if (rpn.isEvaluable() || rpn.isTerminator()) {
                     rpnStack.push(rpn);
-                } else if (rpn.isOperable()) {
+                } else {
+                	assert(rpn.isOperable());
                     RPNOperable rpnOperable = (RPNOperable) rpn;
                     int operandNum = rpnOperable.getParameterNumber();
                     List<RPNObject> operands;
