@@ -13,7 +13,7 @@ import ctlogo.execute.expression.Expression;
 import ctlogo.execute.expression.LiteralExpression;
 import ctlogo.execute.expression.OperatorManager;
 import ctlogo.execute.expression.instruction.InstructionManager;
-import ctlogo.execute.rpn.RPNExpressionManager;
+import ctlogo.execute.rpn.RPNOperationManager;
 import ctlogo.execute.util.DoubleParser;
 import ctlogo.execute.util.LongParser;
 import ctlogo.function.FunctionManager;
@@ -92,14 +92,14 @@ public class BasicExpressionHelper {
     static OperatorTokenMark constructUnaryOperator(String token) {
         return 
             new OperatorTokenMark(
-                RPNExpressionManager.getInstance().getUnaryOperator(token),
+                RPNOperationManager.getInstance().getUnaryOperator(token),
                 Integer.MAX_VALUE);
     }
 
     static OperatorTokenMark constructBinaryOperator(String token) {
         return 
             new OperatorTokenMark(
-                    RPNExpressionManager.getInstance().getBinaryOperator(token),
+                    RPNOperationManager.getInstance().getBinaryOperator(token),
                     OperatorManager.getInstance().getBinaryOperationPrecedence(token)
             ); 
     }

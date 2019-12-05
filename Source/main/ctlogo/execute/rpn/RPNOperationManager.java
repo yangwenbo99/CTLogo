@@ -14,11 +14,11 @@ import ctlogo.execute.expression.OperatorManager;
  * @author Paul Yang
  *
  */
-public class RPNExpressionManager {
+public class RPNOperationManager {
 
-    private static final RPNExpressionManager thisInstance = new RPNExpressionManager();
+    private static final RPNOperationManager thisInstance = new RPNOperationManager();
 
-    public static RPNExpressionManager getInstance() {
+    public static RPNOperationManager getInstance() {
         return thisInstance;
     }
 
@@ -48,11 +48,6 @@ public class RPNExpressionManager {
         Class<? extends Expression> operatorExpressionClass = 
             OperatorManager.getInstance().getUnaryOperationExpression(token);
         return new RPNUnaryOperation(operatorExpressionClass);
-    }
-
-    public RPNOperable getFunctionCallOperator(String funcitonName) {
-        // TODO: implement this method 
-        throw new UnsupportedOperationException("To be implemented");
     }
 
 }

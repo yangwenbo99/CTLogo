@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class TestRPNExpressionManager {
 
-    private static final RPNExpressionManager mgr = RPNExpressionManager.getInstance();
+    private static final RPNOperationManager mgr = RPNOperationManager.getInstance();
 
 	@Test 
 	void testTrivalGetOperator() {
