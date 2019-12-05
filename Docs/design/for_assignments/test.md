@@ -1,3 +1,19 @@
+## Interpackage 
+
+@startuml
+rectangle ctlogo.data
+rectangle ctlogo.function
+rectangle ctlogo.execute_main
+rectangle ctlogo.execute.expression
+
+ctlogo.execute_main --> ctlogo.data
+ctlogo.execute.expression --> ctlogo.data
+ctlogo.function --> ctlogo.data
+ctlogo.function --> ctlogo.execute.expression
+ctlogo.execute_main --> ctlogo.execute.expression
+@enduml
+
+
 ## ctlogo.function
 
 Testing hierarchy 
@@ -99,5 +115,75 @@ CTInteger_arithmetics --> AbstractCTValue
 CTInteger_other --> CTDouble
 
 AbstractNumericalCTValue ..> CTString
+
+@enduml
+
+
+## Expression
+
+@startuml
+skinparam linetype ortho
+
+rectangle ctlogo.execute.expression {
+	rectangle binary_expressions
+	rectangle unary_expressions
+	rectangle variable_expressions
+	rectangle literal_expressions
+	rectangle ExpressionManager
+	rectangle instruction_expressions #GreenYellow 
+}
+
+rectangle function_expressions #MistyRose 
+
+rectangle rpn #Azure
+
+rectangle BasicExpressionHelper
+
+rectangle ExpressionStream
+
+rectangle util
+
+ExpressionManager --> binary_expressions
+ExpressionManager --> unary_expressions
+
+rpn --> binary_expressions
+rpn --> unary_expressions
+rpn --> variable_expressions
+rpn --> literal_expressions
+rpn --> function_expressions
+rpn --> instruction_expressions
+
+ExpressionStream --> rpn
+ExpressionStream --> BasicExpressionHelper
+
+unary_expressions ..> literal_expressions
+binary_expressions ..> literal_expressions
+
+
+@enduml
+
+### Unary operators
+
+@startuml
+rectangle PositiveOperator
+rectangle NegativeOperator
+rectangle AbstractUnaryOperator
+
+PositiveOperator --> AbstractUnaryOperator
+NegativeOperator --> AbstractUnaryOperator
+
+@enduml
+
+### Binary operators
+
+@startuml
+rectangle PlusOperator
+rectangle MinusOperator
+rectangle AbstractBinaryOperator
+rectangle other #HoneyDew 
+
+PlusOperator --> AbstractBinaryOperator
+MinusOperator --> AbstractBinaryOperator
+other --> AbstractBinaryOperator
 
 @enduml
