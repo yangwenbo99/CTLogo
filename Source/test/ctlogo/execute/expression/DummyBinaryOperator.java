@@ -22,8 +22,17 @@ public class DummyBinaryOperator extends AbstractBinaryOperator {
 	}
 
     @Override
-    CTValue operate(CTValue value1, CTValue value2) throws CTDataUndefinedException, CTConversionNotSupportedException {
+    public CTValue operate(CTValue value1, CTValue value2) 
+    		throws CTDataUndefinedException, CTConversionNotSupportedException {
         return value1;
     }
+    
+	public Expression getOperand1() {
+		return super.getOperand1();
+	}
 
+	public Expression getOperand2() {
+		return super.getOperand2();
+	}
+	
 }

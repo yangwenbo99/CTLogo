@@ -174,6 +174,7 @@ public class BasicExpressionStream implements ExpressionStream {
 			OperatorTokenMark getMark() throws CTSyntaxException {
 				numExpectedExpression++;
 				if (!BasicExpressionHelper.isBinaryOperator(getToken()))
+					// Only a fall-back, should not reach here
 					throw new CTSyntaxException("Unary operator used as binary");
 				return BasicExpressionHelper.constructBinaryOperator(getToken());
 			}

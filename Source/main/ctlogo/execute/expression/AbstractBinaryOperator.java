@@ -35,7 +35,6 @@ public abstract class AbstractBinaryOperator implements Expression {
 
 	@Override
 	public CTValue execute(Context context) throws CTException {
-		// TODO Auto-generated method stub
 		return operate(
 				operand1.execute(context),
 				operand2.execute(context));

@@ -36,4 +36,8 @@ public class DummyUnaryOperator extends AbstractUnaryOperator {
 		return value;
 	}
 
+	public Expression getOperand() {
+		return super.getOperand();
+	}
+
 }

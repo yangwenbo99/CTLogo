@@ -27,7 +27,6 @@ public class TestVariableExpression {
 
 		@Override
 		public Scanner getInputScanner() {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
