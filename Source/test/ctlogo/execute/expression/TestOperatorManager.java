@@ -12,7 +12,8 @@ public class TestOperatorManager {
     @BeforeAll
     static void init() {
         mgr.registerUnaryOperator("@", DummyUnaryOperator.class);
-        mgr.registerBinaryOperator("`", DummyBinaryOperator.class);
+        mgr.registerBinaryOperator("$$", DummyBinaryOperator.class);
+        mgr.registerBinaryOperator("`", DummyBinaryOperator.class, 10);
     }
 
     @Test 
@@ -51,6 +52,16 @@ public class TestOperatorManager {
         Assertions.assertTrue(mgr.hasBinaryOperator("`"));
         Assertions.assertFalse(mgr.hasUnaryOperator("asdfg"));
         Assertions.assertFalse(mgr.hasBinaryOperator("asdfg"));
+    }
+
+    @Test 
+    void testGetPrecedence() {
+        Assertions.assertEquals(
+        		10,
+                mgr.getBinaryOperationPrecedence("`"));
+        Assertions.assertThrows(
+                NoSuchElementException.class,
+                () -> mgr.getBinaryOperationPrecedence("!!"));
     }
 
 }

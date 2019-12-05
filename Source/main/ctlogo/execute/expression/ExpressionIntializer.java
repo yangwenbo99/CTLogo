@@ -1,6 +1,8 @@
 package ctlogo.execute.expression;
 
 public class ExpressionIntializer {
+	
+	private ExpressionIntializer() { }
 
 	public static void registerAll() {
         OperatorManager.getInstance().registerUnaryOperator("+", PositiveOperator.class);

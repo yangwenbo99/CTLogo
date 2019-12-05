@@ -73,10 +73,10 @@ public class OperatorManager {
     }
 
     /**
-     *
+     * Get the precedence of a binary operator. 
      *
      * @param token
-     * @return
+     * @return the precedence of the operator. 
      * @throws NoSuchElementException if token not registered
      */
     public int getBinaryOperationPrecedence(String token) {
