@@ -3,7 +3,7 @@ package ctlogo.execute.rpn;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class TestRPNExpressionManager {
+public class TestRPNOPerationManager {
 
     private static final RPNOperationManager mgr = RPNOperationManager.getInstance();
 
@@ -15,9 +15,6 @@ public class TestRPNExpressionManager {
         Assertions.assertEquals(
                 1, 
                 mgr.getUnaryOperator("+").getParameterNumber());
-
-
-
 	}
 	
 
