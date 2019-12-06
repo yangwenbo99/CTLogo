@@ -5,10 +5,6 @@ import java.awt.Color;
 public class VectorScreen implements Screen {
 
 	private CTCanvas currentCTCanvas = new CTCanvas();
-	
-	public void changeCTCanvas() {
-		currentCTCanvas.repaint();
-	}
 
 	@Override
 	public void drawLine(double x1, double y1, double x2, double y2) {
@@ -22,7 +18,7 @@ public class VectorScreen implements Screen {
 		vs.setStroke(currentCTCanvas.getCurrentStroke());
 		vs.setColor(currentCTCanvas.getCurrentColor());
 		currentCTCanvas.addVectorShape(vs);
-		changeCTCanvas();
+		currentCTCanvas.repaint();
 	}
 
 	@Override
@@ -31,7 +27,7 @@ public class VectorScreen implements Screen {
 		vs.setStroke(currentCTCanvas.getCurrentStroke());
 		vs.setColor(currentCTCanvas.getCurrentColor());
 		currentCTCanvas.addVectorShape(vs);
-		changeCTCanvas();
+		currentCTCanvas.repaint();
 	}
 
 	@Override
@@ -40,31 +36,31 @@ public class VectorScreen implements Screen {
 		vs.setStroke(currentCTCanvas.getCurrentStroke());
 		vs.setColor(currentCTCanvas.getCurrentColor());
 		currentCTCanvas.addVectorShape(vs);
-		changeCTCanvas();
+		currentCTCanvas.repaint();
 	}
 
 	@Override
 	public void clean() {
 		currentCTCanvas.removeAllVectorShape();
-		changeCTCanvas();
+		currentCTCanvas.repaint();
 	}
 
 	@Override
 	public void setWidth(double w) {
 		currentCTCanvas.setWidth(w);
-		changeCTCanvas();
+		currentCTCanvas.repaint();
 	}
 
 	@Override
 	public void setHeight(double h) {
 		currentCTCanvas.setHeight(h);
-		changeCTCanvas();
+		currentCTCanvas.repaint();
 	}
 
 	@Override
 	public void setStroke(double s) {
 		currentCTCanvas.setStroke(s);
-		changeCTCanvas();
+		currentCTCanvas.repaint();
 	}
 
 	@Override
@@ -76,7 +72,7 @@ public class VectorScreen implements Screen {
 			c = currentCTCanvas.getCurrentColor();
 		}
 		currentCTCanvas.setColor(c);
-		changeCTCanvas();
+		currentCTCanvas.repaint();
 	}
 
 }
