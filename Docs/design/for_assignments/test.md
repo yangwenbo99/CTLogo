@@ -187,3 +187,19 @@ MinusOperator --> AbstractBinaryOperator
 other --> AbstractBinaryOperator
 
 @enduml
+
+
+### RPN
+
+@startuml
+rectangle rpn_operations
+rectangle rpn_evaluable
+rectangle RPNTerminator
+rectangle RPNExpressionManager
+rectangle RPNExpressionExecutor
+
+RPNExpressionManager --> rpn_operations
+RPNExpressionExecutor --> rpn_operations
+RPNExpressionExecutor --> rpn_evaluable
+RPNExpressionExecutor --> RPNTerminator
+@enduml

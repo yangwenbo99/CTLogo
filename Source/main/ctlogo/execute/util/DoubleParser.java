@@ -3,6 +3,8 @@ package ctlogo.execute.util;
 import java.util.regex.Pattern;
 
 public class DoubleParser {
+	
+	private DoubleParser() { } 
 
     private static Pattern checkPattern;
 
