@@ -27,14 +27,20 @@ public class VectorScreen implements Screen {
 
 	@Override
 	public void drawRectangle(double x1, double y1, double x2, double y2) {
-		// TODO Auto-generated method stub
-		// 4 parameters
+		VectorShape vs = new VectorRectangle(x1, y1, x2, y2);
+		vs.setStroke(currentCTCanvas.getCurrentStroke());
+		vs.setColor(currentCTCanvas.getCurrentColor());
+		currentCTCanvas.addVectorShape(vs);
+		changeCTCanvas();
 	}
 
 	@Override
 	public void drawEclipse(double cx, double cy, double a, double b) {
-		// TODO Auto-generated method stub
-		// 4 parameters
+		VectorShape vs = new VectorEclipse(cx, cy, a, b);
+		vs.setStroke(currentCTCanvas.getCurrentStroke());
+		vs.setColor(currentCTCanvas.getCurrentColor());
+		currentCTCanvas.addVectorShape(vs);
+		changeCTCanvas();
 	}
 
 	@Override

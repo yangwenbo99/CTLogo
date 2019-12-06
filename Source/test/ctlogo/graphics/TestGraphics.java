@@ -1,7 +1,5 @@
 package ctlogo.graphics;
 
-import java.util.Scanner;
-
 import org.junit.Test;
 
 import ctlogo.graphic.Screen;
@@ -12,46 +10,30 @@ public class TestGraphics {
 	@Test
 	public void testCanvas() {
 
-//	    CTCanvas ctc = new CTCanvas();
-//		
-//	    VectorShape vs = new VectorLine(3,3,45,45);
-//		CTCanvas.addVectorShape(vs);		
-//
-//	    VectorShape vs2 = new VectorLine(3,100,45,45);
-//		CTCanvas.addVectorShape(vs2);		
-//
-//		
-//	    Scanner sc = new Scanner(System.in); 
-//        String name = sc.nextLine(); 
-//        
-//	    VectorShape vs4 = new VectorLine(3,23,45,45);
-//		CTCanvas.addVectorShape(vs4);		
-//
-//	    VectorShape vs5 = new VectorLine(3,63,45,45);
-//		CTCanvas.addVectorShape(vs5);
-//		
-//	    CTCanvas ctc2 = new CTCanvas();
-//
-//        String name2 = sc.nextLine(); 
-
 		Screen s = new VectorScreen();
-		// Scanner sc = new Scanner(System.in);
+//		Scanner sc = new Scanner(System.in);
+
+		s.drawRectangle(1, 2, 100, 150);
+//		sc.nextLine();		
+
+		s.drawEclipse(0, 0, 100, 150);
+//		sc.nextLine();		
 
 		s.drawLine(1, 2, 100, 200);
-		// sc.nextLine();		
-		
+		// sc.nextLine();
+
 		s.setStroke(3);
 		// sc.nextLine();
 
 		s.drawLine(-50, -20, 100, -200);
 		// sc.nextLine();
-		
+
 		s.setColor("red");
 		// sc.nextLine();
 
 		s.drawLine(-100, -20, 100, -200);
 		// sc.nextLine();
-		
+
 		s.setColor("green");
 		// sc.nextLine();
 
@@ -68,19 +50,19 @@ public class TestGraphics {
 		// sc.nextLine();
 
 		s.setHeight(400);
-		// sc.nextLine();		
-		
+		// sc.nextLine();
+
 		s.clean();
 		// sc.nextLine();
 
 		s.drawLine(1, 2, 100, 200);
 		// sc.nextLine();
-		
+
 		s.drawLine(50, 20, 100, 200);
-		// sc.nextLine();		
+		// sc.nextLine();
 
 		s.setHeight(300);
-		// sc.nextLine();		
+		// sc.nextLine();
 
 		s.clean();
 		// sc.nextLine();
