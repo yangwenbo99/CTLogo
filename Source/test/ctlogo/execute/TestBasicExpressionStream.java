@@ -17,7 +17,6 @@ import ctlogo.data.VariableManager;
 import ctlogo.exception.CTException;
 import ctlogo.exception.CTSyntaxException;
 import ctlogo.execute.expression.Expression;
-import ctlogo.function.BasicFunctionExpression;
 import ctlogo.graphic.Screen;
 import ctlogo.processing.BasicTokenStream;
 

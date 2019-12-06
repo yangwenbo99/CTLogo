@@ -1,6 +1,5 @@
 package ctlogo.data;
 
-import static ctlogo.data.TestDataUtility.cdbl;
 import static ctlogo.data.TestDataUtility.cint;
 import static ctlogo.data.TestDataUtility.cstr;
 

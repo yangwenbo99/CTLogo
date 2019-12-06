@@ -9,18 +9,15 @@ import java.util.Scanner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import ctlogo.data.CTValue;
 import ctlogo.data.GlobalVariableManager;
 import ctlogo.data.VariableManager;
 import ctlogo.exception.CTException;
-import ctlogo.exception.CTSyntaxException;
 import ctlogo.execute.BasicExpressionStream;
-import ctlogo.execute.Context;
 import ctlogo.execute.GlobalContext;
 import ctlogo.execute.StubScreen;
+import ctlogo.execute.expression.Expression;
 import ctlogo.graphic.Screen;
 import ctlogo.processing.BasicTokenStream;
-import ctlogo.execute.expression.Expression;
 
 /**
  * Test the RepeatInstruction class.

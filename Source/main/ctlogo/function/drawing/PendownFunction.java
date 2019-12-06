@@ -1,6 +1,5 @@
 package ctlogo.function.drawing;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ctlogo.data.CTUndefined;
@@ -8,7 +7,6 @@ import ctlogo.data.CTValue;
 import ctlogo.exception.CTException;
 import ctlogo.execute.Context;
 import ctlogo.execute.expression.Expression;
-import ctlogo.execute.expression.NegativeOperator;
 import ctlogo.function.AbstractFunction;
 import ctlogo.turtle.TurtleManager;
 
