@@ -1,5 +1,7 @@
 package ctlogo.turtle;
 
+import java.util.NoSuchElementException;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -64,6 +66,9 @@ public class TestTurtle {
 	void testGetSetPenWidth() {
 		tur.setPenWidth(7);
 		Assertions.assertEquals(7, tur.getPenWidth());
+		Assertions.assertThrows(
+				IllegalArgumentException.class,
+				() -> tur.setPenWidth(-1));
 	}
 
 	@Test
@@ -82,25 +87,45 @@ public class TestTurtle {
 		tur.popLocation();
 		Assertions.assertEquals(0, tur.getX());
 		Assertions.assertEquals(0, tur.getY());
+		Assertions.assertThrows(
+				NoSuchElementException.class,
+				() -> tur.popLocation());
 	}
 
 	@Test
 	void testSetOrientation() {
 		tur.setOrientation(Math.PI);
 		Assertions.assertEquals(Math.PI, tur.getOrientation());
+
 		Assertions.assertThrows(
 				IllegalArgumentException.class,
 				() -> tur.setOrientation(Math.PI + 1));
+		Assertions.assertThrows(
+				IllegalArgumentException.class,
+				() -> tur.setOrientation(-Math.PI - 1));
 	}
 
 	@Test 
 	void testOffsetOrientation() {
+		tur.setOrientation(Math.PI / 2);
 		tur.offsetOrientation(Math.PI/4);
 		Assertions.assertEquals(Math.PI * 3 / 4, tur.getOrientation());
 
 		// overflow
-		tur.offsetOrientation(2 * Math.PI);
-		Assertions.assertEquals(Math.PI * 3 / 4, tur.getOrientation());
+		tur.setOrientation(Math.PI / 2);
+		tur.offsetOrientation(Math.PI);
+		Assertions.assertEquals(- Math.PI / 2, tur.getOrientation());
+		// underflow
+		tur.setOrientation(-Math.PI / 2);
+		tur.offsetOrientation(-Math.PI);
+		Assertions.assertEquals(Math.PI / 2, tur.getOrientation());
 	}
 
+	@Test
+	void testGetSetDown() {
+		tur.setDown(false);
+		Assertions.assertFalse(tur.isDown());
+		tur.setDown(true);
+		Assertions.assertTrue(tur.isDown());
+	}
 }
