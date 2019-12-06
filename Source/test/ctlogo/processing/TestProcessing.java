@@ -6,9 +6,6 @@ import java.util.Scanner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import ctlogo.processing.BasicTokenStream;
-import ctlogo.processing.TokenStream;
-
 public class TestProcessing {
 
     @Test

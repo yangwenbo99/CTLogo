@@ -3,7 +3,19 @@
  */
 package ctlogo.function;
 
-import ctlogo.function.drawing.*;
+import ctlogo.function.drawing.BackwardFunction;
+import ctlogo.function.drawing.CleanFunction;
+import ctlogo.function.drawing.ClearScreenFunction;
+import ctlogo.function.drawing.ForwardFunction;
+import ctlogo.function.drawing.LeftFunction;
+import ctlogo.function.drawing.PendownFunction;
+import ctlogo.function.drawing.PenupFunction;
+import ctlogo.function.drawing.RightFunction;
+import ctlogo.function.drawing.SetxFunction;
+import ctlogo.function.drawing.SetxyFunction;
+import ctlogo.function.drawing.SetyFunction;
+import ctlogo.function.drawing.XcorFunction;
+import ctlogo.function.drawing.YcorFunction;
 import ctlogo.function.math.AcosFunction;
 import ctlogo.function.math.AsinFunction;
 import ctlogo.function.math.Atan2Function;

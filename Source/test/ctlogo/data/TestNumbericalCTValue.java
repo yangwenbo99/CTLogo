@@ -3,9 +3,8 @@
  */
 package ctlogo.data;
 
-import java.util.Objects;
-import static ctlogo.data.TestDataUtility.cstr;
 import static ctlogo.data.TestDataUtility.cint;
+import static ctlogo.data.TestDataUtility.cstr;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

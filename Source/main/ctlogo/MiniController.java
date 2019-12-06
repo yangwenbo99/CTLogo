@@ -3,9 +3,9 @@ package ctlogo;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import java.time.LocalDateTime;
 
 import ctlogo.data.GlobalVariableManager;
 import ctlogo.data.VariableManager;

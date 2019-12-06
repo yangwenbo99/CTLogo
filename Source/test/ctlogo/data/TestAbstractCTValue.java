@@ -3,8 +3,6 @@
  */
 package ctlogo.data;
 
-import java.util.Objects;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

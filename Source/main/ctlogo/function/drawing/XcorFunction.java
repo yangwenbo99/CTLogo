@@ -3,13 +3,11 @@ package ctlogo.function.drawing;
 import java.util.List;
 
 import ctlogo.data.CTDouble;
-import ctlogo.data.CTUndefined;
 import ctlogo.data.CTValue;
 import ctlogo.exception.CTException;
 import ctlogo.execute.Context;
 import ctlogo.execute.expression.Expression;
 import ctlogo.function.AbstractFunction;
-import ctlogo.turtle.Turtle;
 import ctlogo.turtle.TurtleManager;
 
 /**

@@ -1,6 +1,5 @@
 package ctlogo.data;
 
-import static ctlogo.data.TestDataUtility.cbol;
 import static ctlogo.data.TestDataUtility.cint;
 
 import org.junit.jupiter.api.Assertions;

@@ -3,7 +3,6 @@ package ctlogo.function.drawing;
 import java.util.List;
 
 import ctlogo.data.CTDouble;
-import ctlogo.data.CTUndefined;
 import ctlogo.data.CTValue;
 import ctlogo.exception.CTException;
 import ctlogo.execute.Context;

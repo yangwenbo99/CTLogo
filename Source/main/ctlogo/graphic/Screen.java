@@ -23,12 +23,12 @@ public interface Screen {
 	public void drawRectangle(double x1, double y1, double x2, double y2);
 
 	/**
-	 * Draw Eclipse from (cx,cy)
+	 * Draw Eclipse fit in the rectangle start from (cx,cy)
 	 * 
-	 * @param cx start point and end point x
-	 * @param cy start point and end point y
-	 * @param a  Eclipse parameter a
-	 * @param b  Eclipse parameter b
+	 * @param cx start point x
+	 * @param cy start point y
+	 * @param a  rectangle width a
+	 * @param b  rectangle height b
 	 */
 	public void drawEclipse(double cx, double cy, double a, double b);
 

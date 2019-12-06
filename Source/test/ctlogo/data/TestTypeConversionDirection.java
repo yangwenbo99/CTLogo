@@ -6,9 +6,6 @@ package ctlogo.data;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import ctlogo.data.TypeConversionDirection;
-import ctlogo.data.TypeMarker;
-
 /**
  * @author Paul
  *
