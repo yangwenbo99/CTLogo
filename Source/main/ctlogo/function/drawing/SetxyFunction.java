@@ -46,8 +46,7 @@ public class SetxyFunction extends AbstractFunction {
 					tur.getY(), 
 					x,
 					y);
-		tur.setX(x);
-		tur.setY(y);
+		tur.setXY(x, y);
 
 		return vy;
 	}

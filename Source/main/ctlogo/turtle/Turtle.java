@@ -54,6 +54,11 @@ public class Turtle {
 	public void setY(double y) {
 		setCoordinate(new Coordinate(getCoordinate().getX(), y));
 	}
+
+	public void setXY(double x, double y) {
+		setCoordinate(new Coordinate(x, y));
+	}
+	
 	public void shiftY(double sy) {
 		setCoordinate(getCoordinate().add(new Coordinate(0, sy)));
 	}
@@ -104,10 +109,6 @@ public class Turtle {
 			throw new NoSuchElementException("The last history item cannot be poped.");
 		history.removeLast();
 	}
-	public boolean hasLastLocation() {
-//		TODO add hasLastLocation definition	
-		return !history.isEmpty();
-	}	
 	
 	public boolean isDown() {
 		return isDown;
