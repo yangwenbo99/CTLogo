@@ -33,11 +33,10 @@ public class BasicExpressionHelper {
 
     private static boolean isStringLitertal(String token) {
         return 
-            token.length() >= 2 && 
+            token.length() >= 2 && (
             token.charAt(0) == '\'' && 
             token.charAt(token.length()-1) == '\'' || 
-            token.length() > 1 && 
-            token.charAt(0) == '"';
+            token.charAt(0) == '"');
     }
 
     private static boolean isDoubleLiteral(String token) {
@@ -70,6 +69,7 @@ public class BasicExpressionHelper {
 		else if (token.charAt(0) == '"')
 			return new LiteralExpression(new CTString(token.substring(1)));
 		else 
+			// just for making the compiler happy, should never be reached
 			throw new CTSyntaxException("String literal of incorrect format");
     }
 
