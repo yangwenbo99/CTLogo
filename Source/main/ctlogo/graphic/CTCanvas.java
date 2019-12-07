@@ -11,12 +11,15 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+import ctlogo.turtle.Turtle;
+import ctlogo.turtle.TurtleManager;
+
 public class CTCanvas extends JFrame {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3259034126975648423L;	
+	private static final long serialVersionUID = 3259034126975648423L;
 
 	// TODO change hard code 400,300 to be configurable
 	private double width = 400;
@@ -85,17 +88,22 @@ public class CTCanvas extends JFrame {
 			public void paint(Graphics g) {
 				super.paint(g);
 				Graphics2D g2 = (Graphics2D) g;
-				AffineTransform aftrans = new AffineTransform(
-						getWidth() / getCurrentWidth(),
-						0, 
-						0, 
-						- getHeight() / getCurrentHeight(), 
-						getWidth() / 2, 
-						getHeight() / 2);
+				AffineTransform aftrans = new AffineTransform(getWidth() / getCurrentWidth(), 0, 0,
+						-getHeight() / getCurrentHeight(), getWidth() / 2, getHeight() / 2);
 				g2.transform(aftrans);
 
 				for (int i = 0; i < vectorShapeCollection.size(); i++) {
 					vectorShapeCollection.get(i).draw(g2);
+				}
+				
+				//draw turtle
+				try {
+					Turtle t = TurtleManager.getInstance().getActiveTurtle();
+					if (t.isVisible()) {
+						VectorShape vs = new VectorTurtle(t.getX(), t.getY(), t.getOrientation());
+						vs.draw(g2);						
+					}
+				} catch (Exception e) {
 				}
 			}
 		};
@@ -107,11 +115,14 @@ public class CTCanvas extends JFrame {
 		setVisible(true);
 	}
 
-	@Override 
+	@Override
 	public void repaint() {
 		super.repaint();
 		c.repaint();
 	}
 
+	public void remove(VectorShape vs) {
+		vectorShapeCollection.remove(vs);
+	}
 
 }

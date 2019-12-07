@@ -7,6 +7,11 @@ public class VectorScreen implements Screen {
 	private CTCanvas currentCTCanvas = new CTCanvas();
 
 	@Override
+	public void draw() {
+		currentCTCanvas.repaint();
+	}
+
+	@Override
 	public void drawLine(double x1, double y1, double x2, double y2) {
 
 		// double startX = x1 + CTCanvas.getCurrentWidth() / 2;

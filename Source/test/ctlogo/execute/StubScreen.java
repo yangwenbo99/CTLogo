@@ -1,7 +1,7 @@
 package ctlogo.execute;
 
 public class StubScreen implements ctlogo.graphic.Screen {
-	
+
 	public static final StubScreen theInstance = new StubScreen();
 	private int noLine = 0;
 	private int noClean = 0;
@@ -33,11 +33,11 @@ public class StubScreen implements ctlogo.graphic.Screen {
 	}
 
 	@Override
-	public void setStroke(double s) {		
+	public void setStroke(double s) {
 	}
 
 	@Override
-	public void setColor(String color) {		
+	public void setColor(String color) {
 	}
 
 	/**
@@ -53,5 +53,9 @@ public class StubScreen implements ctlogo.graphic.Screen {
 	public int getNoClean() {
 		return noClean;
 	}
-	
+
+	@Override
+	public void draw() {
+	}
+
 }

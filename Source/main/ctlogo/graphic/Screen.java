@@ -1,6 +1,11 @@
 package ctlogo.graphic;
 
 public interface Screen {
+	
+	/**
+	 * Refresh screen
+	 */
+	public void draw();
 
 	/**
 	 * Draw line from (x1,y1) to (x2,y2)
