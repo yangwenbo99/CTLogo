@@ -14,10 +14,7 @@ public class DoubleBooleanConverter extends CTValueConverter {
 
 	@Override
 	public CTValue convert(CTValue from) {
-		if (!(from instanceof CTDouble)) {
-			throw new CTConversionNotSupportedException("Wrong converter used.");
-		}
-		
+
 		CTDouble dblFrom = (CTDouble) from;
 		double dbVaue = dblFrom.getNumericalValue().doubleValue();
 		

@@ -4,7 +4,6 @@ import ctlogo.data.CTDouble;
 import ctlogo.data.CTInteger;
 import ctlogo.data.CTValue;
 import ctlogo.data.CTValueConverter;
-import ctlogo.exception.CTConversionNotSupportedException;
 
 public class DoubleIntegerConverter extends CTValueConverter {
 	
@@ -14,9 +13,6 @@ public class DoubleIntegerConverter extends CTValueConverter {
 
 	@Override
 	public CTValue convert(CTValue from) {
-		if (!(from instanceof CTDouble)) {
-			throw new CTConversionNotSupportedException("Wrong converter used.");
-		}
 		
 		CTDouble intFrom = (CTDouble) from;
 		

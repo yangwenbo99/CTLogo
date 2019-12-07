@@ -15,8 +15,7 @@ public class StringBooleanConverter extends CTValueConverter {
 	@Override
 	public CTValue convert(CTValue from) {
         String froms = from.toString();
-        if (froms.length() == 0)
-            return CTBoolean.FALSE;
+
         if (froms.toUpperCase().equals("FALSE"))
             return CTBoolean.FALSE;
 

@@ -6,6 +6,8 @@ import ctlogo.data.CTUndefined;
 import ctlogo.data.CTValueConverterManager;
 
 public class ConvertInitilizer {
+	private ConvertInitilizer() { } 
+
 	public static void registerAll() {
 
         CTValueConverterManager.getInstance().register(new BooleanIntegerConverter());

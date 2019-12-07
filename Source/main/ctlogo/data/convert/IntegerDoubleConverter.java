@@ -14,9 +14,6 @@ public class IntegerDoubleConverter extends CTValueConverter {
 
 	@Override
 	public CTValue convert(CTValue from) {
-		if (!(from instanceof CTInteger)) {
-			throw new CTConversionNotSupportedException("Wrong converter used.");
-		}
 		
 		CTInteger intFrom = (CTInteger) from;
 		

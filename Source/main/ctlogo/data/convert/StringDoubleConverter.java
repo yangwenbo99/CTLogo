@@ -19,6 +19,7 @@ public class StringDoubleConverter extends CTValueConverter {
         String froms = from.toString();
 
         if (!isConvertible(from)) {
+        	// Just a fall-back, should not reach here
             throw new CTConversionNotSupportedException("Conversion not supported for this string");
         }
         

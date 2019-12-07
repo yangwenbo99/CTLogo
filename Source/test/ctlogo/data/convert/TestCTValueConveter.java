@@ -1,7 +1,12 @@
-package ctlogo.data;
+package ctlogo.data.convert;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import ctlogo.data.CTValue;
+import ctlogo.data.CTValueConverter;
+import ctlogo.data.TypeConversionDirection;
+import ctlogo.data.TypeMarker;
 
 /**
  * Also testing TypeConversionDirection
