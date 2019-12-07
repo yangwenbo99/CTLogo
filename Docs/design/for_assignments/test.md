@@ -203,3 +203,16 @@ RPNExpressionExecutor --> rpn_operations
 RPNExpressionExecutor --> rpn_evaluable
 RPNExpressionExecutor --> RPNTerminator
 @enduml
+
+## ctlogo.turtle
+
+@startuml
+
+rectangle Coordinate
+rectangle Turtle
+rectangle TurtleManager
+
+Turtle -> Coordinate 
+TurtleManager -> Turtle
+
+@enduml
