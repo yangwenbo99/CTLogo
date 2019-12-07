@@ -59,9 +59,17 @@ public class TestGraphics {
 		// sc.nextLine();
 
 		s.drawLine(50, 20, 100, 200);
+		s.drawRectangle(10, 10, 40, 40);
+		s.drawEclipse(10, 10, 40, 40);
 		// sc.nextLine();
 
-		s.setHeight(300);
+		s.setHeight(500);
+
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		// sc.nextLine();
 
 		s.clean();
