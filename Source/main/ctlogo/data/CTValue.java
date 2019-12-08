@@ -1,7 +1,7 @@
 package ctlogo.data;
 
 /**
- * Representing a variable in CTLogo language. 
+ * Representing a value in CTLogo language. 
  * @author Paul
  *
  */

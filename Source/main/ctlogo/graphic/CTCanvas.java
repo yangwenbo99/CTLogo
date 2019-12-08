@@ -104,6 +104,7 @@ public class CTCanvas extends JFrame {
 						vs.draw(g2);						
 					}
 				} catch (Exception e) {
+					// will not happen
 				}
 			}
 		};
