@@ -34,6 +34,8 @@ For example, `Turtle` and `GraphicTurtle`.
 
 _Objects from sub-class must be capable to substitute their super-class's object_. 
 
+Expression
+
    
 ## High cohesion and low coupling 
 

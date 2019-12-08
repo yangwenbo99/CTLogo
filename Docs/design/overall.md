@@ -41,7 +41,7 @@ package ctlogo.execute {
         + {static} isUnaryOperator(s : String) : Boolean
     }
     interface Expression {
-        + evaluate() : CTValue
+        + evaluate(context : Context) : CTValue
     }
 
     interface ExpressionStream {
@@ -98,14 +98,16 @@ package ctlogo.execute {
     ExpressionEvaluator -- Context
 
     FunctionGetter --> Function
-    Function --> Context
+    Expression --> Context
 
     Expression <|.. Function
     Expression <|.. LiteralExpression
     LiteralExpression <|.. ListLiteralExpression
     Expression <|.. VariableExpression
     Expression <|.. UnaryOperation
+    Expression --* UnaryOperation
     Expression <|.. BinaryOperation
+    Expression --* BinaryOperation
 
     ExpressionStream -- Expression
 }
