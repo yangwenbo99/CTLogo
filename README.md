@@ -25,6 +25,7 @@ We, the developing team of this program aim at making a new alternative to old o
 The interpreter requires JRE (Java Runtime Environment) 10 or above. Compiling or using lower version of JRE may produce unexpected results. Theoretically, this program shall runs on multiple platform, but only the following platforms has been tested by the developers:
 
 - Java 10 (OpenJDK) on Arch Linux 
+- Java 10 (zulu-10) on Windows 10 Build 1903
 
 
 ### Run the interpreter
