@@ -60,6 +60,7 @@ public class MiniController {
 			while (sc.hasNextLine()) {
 				String line = sc.nextLine();
 				while (line.length() > 0 && line.charAt(line.length() - 1) == '_') {
+					line += "\n";
 					line += sc.nextLine();
 				}
 				TokenStream ts = new BasicTokenStream(new Scanner(line));
