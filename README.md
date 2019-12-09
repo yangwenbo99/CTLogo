@@ -49,7 +49,7 @@ Try the following commands on the program.
 
 ### Language specification
 
-Currently, we are still working on this part. However, you can refer to files inside `Docs/language_specificatrion` folder now.
+You can refer to wiki or files inside `Docs/language_specificatrion` folder.
 
 
 [logo]: https://en.wikipedia.org/wiki/Logo_(programming_language)
