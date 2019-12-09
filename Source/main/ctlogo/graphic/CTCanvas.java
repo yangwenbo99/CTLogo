@@ -63,11 +63,15 @@ public class CTCanvas extends JFrame {
 	}
 
 	public void addVectorShape(VectorShape vs) {
-		vectorShapeCollection.add(vs);
+		synchronized (this) {
+			vectorShapeCollection.add(vs);
+		}
 	}
 
 	public void removeAllVectorShape() {
-		vectorShapeCollection.clear();
+		synchronized (this) {
+			vectorShapeCollection.clear();
+		}
 	}
 
 	Canvas c;
@@ -92,8 +96,10 @@ public class CTCanvas extends JFrame {
 						-getHeight() / getCurrentHeight(), getWidth() / 2, getHeight() / 2);
 				g2.transform(aftrans);
 
-				for (int i = 0; i < vectorShapeCollection.size(); i++) {
-					vectorShapeCollection.get(i).draw(g2);
+				synchronized (CTCanvas.this) {
+					for (int i = 0; i < vectorShapeCollection.size(); i++) {
+						vectorShapeCollection.get(i).draw(g2);
+					}
 				}
 				
 				//draw turtle
