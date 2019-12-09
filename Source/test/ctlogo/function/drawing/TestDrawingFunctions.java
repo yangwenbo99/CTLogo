@@ -192,6 +192,22 @@ public class TestDrawingFunctions {
 	}
 
 	@Test 
+	void testHide() throws CTException {
+		turtle().setVisible(true);
+		Assertions.assertEquals(0, HideTurtleFunction.getInstance().getDefaultParameterNum());
+		HideTurtleFunction.getInstance().execute(stubContext, List.<Expression>of());
+		Assertions.assertEquals(false, TurtleManager.getInstance().getActiveTurtle().isVisible());
+	}
+
+	@Test 
+	void testShow() throws CTException {
+		turtle().setVisible(false);
+		Assertions.assertEquals(0, ShowTurtleFunction.getInstance().getDefaultParameterNum());
+		ShowTurtleFunction.getInstance().execute(stubContext, List.<Expression>of());
+		Assertions.assertEquals(true, TurtleManager.getInstance().getActiveTurtle().isVisible());
+	}
+
+	@Test 
 	void testXcor() throws CTException {
 		turtle().setX(5);
 		Assertions.assertEquals(0, XcorFunction.getInstance().getDefaultParameterNum());

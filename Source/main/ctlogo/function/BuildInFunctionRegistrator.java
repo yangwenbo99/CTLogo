@@ -7,6 +7,7 @@ import ctlogo.function.drawing.BackwardFunction;
 import ctlogo.function.drawing.CleanFunction;
 import ctlogo.function.drawing.ClearScreenFunction;
 import ctlogo.function.drawing.ForwardFunction;
+import ctlogo.function.drawing.HideTurtleFunction;
 import ctlogo.function.drawing.LeftFunction;
 import ctlogo.function.drawing.PendownFunction;
 import ctlogo.function.drawing.PenupFunction;
@@ -14,6 +15,7 @@ import ctlogo.function.drawing.RightFunction;
 import ctlogo.function.drawing.SetxFunction;
 import ctlogo.function.drawing.SetxyFunction;
 import ctlogo.function.drawing.SetyFunction;
+import ctlogo.function.drawing.ShowTurtleFunction;
 import ctlogo.function.drawing.XcorFunction;
 import ctlogo.function.drawing.YcorFunction;
 import ctlogo.function.math.AcosFunction;
@@ -55,10 +57,10 @@ public class BuildInFunctionRegistrator {
 		FunctionManager.getInstace().register("BACKWARD", BackwardFunction.getInstance(), false);
 		FunctionManager.getInstace().register("BACK", BackwardFunction.getInstance(), false);
 		FunctionManager.getInstace().register("BK", BackwardFunction.getInstance(), false);
-		FunctionManager.getInstace().register("LEFTTERN", LeftFunction.getInstance(), false);
+		FunctionManager.getInstace().register("LEFTTURN", LeftFunction.getInstance(), false);
 		FunctionManager.getInstace().register("LEFT", LeftFunction.getInstance(), false);
 		FunctionManager.getInstace().register("LT", LeftFunction.getInstance(), false);
-		FunctionManager.getInstace().register("RIGHTTERN", RightFunction.getInstance(), false);
+		FunctionManager.getInstace().register("RIGHTTURN", RightFunction.getInstance(), false);
 		FunctionManager.getInstace().register("RIGHT", RightFunction.getInstance(), false);
 		FunctionManager.getInstace().register("RT", RightFunction.getInstance(), false);
 		
@@ -71,6 +73,11 @@ public class BuildInFunctionRegistrator {
 		FunctionManager.getInstace().register("XCOR", XcorFunction.getInstance(), false);
 		FunctionManager.getInstace().register("YCOR", YcorFunction.getInstance(), false);
 		
+		// Drawing function - turtle
+		FunctionManager.getInstace().register("HideTurtle", HideTurtleFunction.getInstance(), false);
+		FunctionManager.getInstace().register("HT", HideTurtleFunction.getInstance(), false);
+		FunctionManager.getInstace().register("ShowTurtle", ShowTurtleFunction.getInstance(), false);
+		FunctionManager.getInstace().register("ST", ShowTurtleFunction.getInstance(), false);
 		
 		// Drawing - Misc functions
 		FunctionManager.getInstace().register("Penup", PenupFunction.getInstance(), false);

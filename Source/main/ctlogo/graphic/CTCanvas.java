@@ -100,17 +100,17 @@ public class CTCanvas extends JFrame {
 					for (int i = 0; i < vectorShapeCollection.size(); i++) {
 						vectorShapeCollection.get(i).draw(g2);
 					}
-				}
 				
-				//draw turtle
-				try {
-					Turtle t = TurtleManager.getInstance().getActiveTurtle();
-					if (t.isVisible()) {
-						VectorShape vs = new VectorTurtle(t.getX(), t.getY(), t.getOrientation());
-						vs.draw(g2);						
+					//draw turtle
+					try {
+						Turtle t = TurtleManager.getInstance().getActiveTurtle();
+						if (t.isVisible()) {
+							VectorShape vs = new VectorTurtle(t.getX(), t.getY(), t.getOrientation());
+							vs.draw(g2);						
+						}
+					} catch (Exception e) {
+						// will not happen
 					}
-				} catch (Exception e) {
-					// will not happen
 				}
 			}
 		};
